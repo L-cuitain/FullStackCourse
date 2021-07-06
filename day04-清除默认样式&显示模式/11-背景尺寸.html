@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    /* background-size 是用来设置背景图片大小的
+    background-size:宽度  高度; 具体的数字
+    background-size: cover contain */
+
+    .box{
+        width:200px;
+        height:200px;
+        background-image: url();
+        background-repeat: no-repeat;
+        border:1px solid #ccc;
+
+        /* cover的作用是填满盒子  无论图片是否完全显示 */
+        background-size: cover;
+
+        /* cover的作用是把图片显示全  不管是否填满盒子 */
+        background-size: contain;
+    }
+</style>
+<body>
+    <div class="box"></div>
+</body>
+</html>
