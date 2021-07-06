@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+
+    /* 只有相同选择器  中的相同属性才会被覆盖  所谓覆盖也叫层叠 */
+
+    /* 就近原则: 哪个样式离标签近 就使用哪个样式 */
+    
+
+    .box{
+        width:100px;
+        height:100px;
+        background-color: red;
+    }
+
+    .box{
+        background-color: green;
+    }
+</style>
+<body>
+    
+    <div class="box">
+
+    </div>
+</body>
+</html>
