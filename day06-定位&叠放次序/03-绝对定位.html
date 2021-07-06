@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    html,body{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    body{
+        background-color: aquamarine;
+    }
+
+    .father{
+        position: relative;
+        width: 500px;
+        height: 500px;
+        background-color: gold;
+        margin-left: 100px;
+        margin-top: 100px;
+        border: 1px solid #ccc;
+    }
+
+    .son{
+        position: absolute;
+        top: 20;
+        left: 0;
+        width: 100px;
+        height: 100px;
+    
+        background-color: indigo;
+    }
+
+    /* 如果子元素找父级 没有定位 找爷爷辈元素 如果没有继续往上找 直到document(body)停止 相对于body */
+    /* 如果子元素找父级 没有定位 找爷爷辈的元素 如果有定位 那么相对于 */
+</style>
+
+<body>
+
+<div class="grandfather">
+    <div class="father">
+        <span class="son"></span>
+    </div>
+</div>   
+
+
+</body>
+</html>
