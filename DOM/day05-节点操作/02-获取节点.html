@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        滑稽
+        <p class="con">这是内容</p>
+
+        <!-- 这是注释 -->
+    </div>
+     
+</body>
+<script>
+    //1. 获取box元素
+    let oBox = document.querySelector('.box');
+    //2. 获取box中的所有节点
+    oBox.onclick = function(){
+        console.log(oBox.childNodes);
+        
+        console.log(oBox.childNodes[1].nodeType);
+    }
+</script>
+</html>
