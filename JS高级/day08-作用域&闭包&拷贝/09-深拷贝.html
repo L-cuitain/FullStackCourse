@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //深拷贝  拷贝多层  每一级别数据都会拷贝
+        var oldObj = {
+            name : 'zs',
+            age : 18,
+            say : {
+                code : 'hello world'
+            },
+            msg : {
+                age : 10
+            }
+        }
+
+        let o = {};
+
+        //定义深拷贝函数
+        function deepCopy(newObj,oldObj){
+            for(var k in oldObj){
+                //值
+                var item = oldObj[k];
+                //是否为数组
+                if(Array.isArray(item)){
+                    //把旧数组中的值赋值给新数组
+                    newObj[k] = [];
+                    deepCopy(newObj[k],item);
+                }else if(item instanceof Object){
+                    newObj[k] = {};
+                    deepCopy(newObj[k],item);
+                }else{
+                    newObj[k] = item;
+                }
+            }
+        }
+
+        deepCopy(o,oldObj);
+        o.msg.age = 20;
+        console.log(o);
+        console.log(oldObj);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 利用递归函数求斐波那契数列  1 1 2 3 5 8 13 21..
+        //需要知道前两项 
+        function fn(b){
+            //判断是否为前两项
+            if(b == 1 || b == 2){
+                //如果为前两项则返回 1
+                return 1;
+            }
+            //返回 前一项 和 前两项的 和
+            return fn(b-1)+fn(b-2);
+        }
+
+        console.log(fn(10));
+    </script>
+</body>
+</html>

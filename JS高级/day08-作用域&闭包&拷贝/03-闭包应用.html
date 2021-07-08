@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+
+    <script>
+        //使用闭包函缓存(延长每个i存在范围)
+        //找到 nav 中的li
+        let aLi = document.querySelectorAll('li');
+        //遍历 li 给li 添加索引属性和事件
+            //函数外面为实参
+            //函数声明时 j时是形参
+        //     for(let i = 0 ; i < aLi.length ; i++){
+        //         aLi[i].index = i;
+
+        //         aLi[i].onclick = function(){
+        //             // console.log(i);  
+        //             console.log(aLi[i].index);
+        //     }
+        // }
+
+
+        // 使用闭包函数来缓存(延长每个 i 的存在范围)
+        //遍历 li 给 li 添加索引属性和事件
+        // for(let i = 0 ; i < aLi.length ; i++){
+        //     (function(j){
+        //         aLi[j].index = j;
+        //         aLi[j].onclick = function(){
+        //             console.log(aLi[j].index);
+        //         }
+        //     })(i)
+        // }
+
+
+        //定时器
+        // for(let i = 0 ; i < aLi.length ; i++){
+        //     //创建定时器
+        //     setTimeout(function(){
+        //         //打印每个 li 的内容
+        //         console.log(aLi[i].innerHTML);
+        //     },0);
+        // }
+
+        //自调用函数 实现 闭包函数
+        for(let i = 0 ; i < aLi.length ; i++){
+            (function(j){
+                //定时器延时获取内容
+                setTimeout(function(){
+                    console.log(aLi[j].innerHTML);
+                },0)
+            })(i)
+        }
+    </script>
+</body>
+</html>

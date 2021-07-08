@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //递归
+        //函数内部自己调用自己
+
+        //需要加退出条件return 避免栈溢出
+        //利用递归求 1~n 的阶乘
+        function fn(n){
+            if(n == 1){
+                return 1;
+            }
+
+            return n * fn(n-1);
+        }
+
+        console.log(fn(5));
+    </script>
+</body>
+</html>
