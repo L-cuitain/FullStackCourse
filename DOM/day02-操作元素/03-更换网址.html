@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>更换网址</button>
+    <a href="https://www.baidu.com/">百度</a>
+</body>
+
+<script>
+    //获取a标签
+    let oA = document.querySelector('a');
+    let oBtn = document.querySelector('button');
+    
+    //为按钮添加点击事件
+    oBtn.onclick = function(){
+        oA.href = "https://www.google.com/";
+        oA.innerText = "谷歌";
+    }
+
+</script>
+</html>
