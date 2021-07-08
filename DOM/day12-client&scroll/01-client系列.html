@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            padding: 10px;
+            margin: 100px auto;
+            border: 5px solid red;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+<script>
+    let oDv = document.querySelector('div');
+
+    //client 系列
+    //clientWidth 获取元素不包括边框的宽度
+    //clientHeight: 获取元素不包括边框的高度
+    console.log(oDv.clientWidth,oDv.clientHeight);
+
+    //clientTop 获取上边框的宽度
+    //clientLeft 获取左边框的宽度
+    console.log(oDv.clientTop,oDv.clientLeft);
+
+</script>
+</html>
