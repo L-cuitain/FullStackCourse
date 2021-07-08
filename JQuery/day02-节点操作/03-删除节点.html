@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div id="content">
+        <p>5678</p>
+    </div>
+
+    <p>123</p>
+</body>
+<script>    
+    //删除匹配元素所有子节点
+    $('#content').empty();
+
+    //删除所有匹配元素
+    $('p').remove();
+</script>
+</html>
