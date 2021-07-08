@@ -110,8 +110,3 @@
     e.preventDefault(); 阻止浏览器默认行为(推荐)
     <a href="javascript:;"></>
     return false
-
-
-### 鼠标事件(mouseEvent)对象的属性
-### 键盘事件(keybordEvent)的属性
-## 事件委托
