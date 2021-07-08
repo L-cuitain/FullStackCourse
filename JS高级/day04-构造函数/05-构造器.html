@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 构造器 constructor
+    // 构造函数
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+
+    Person.prototype.say = function () {
+      console.log("你好");
+    }
+
+    let yww = new Person("yww", 18);
+
+
+    // prototype上有一个构造器constructor 值是构造函数Person
+    // console.log(Person.prototype.constuctor);
+    // __proto__上也有一个构造器 constructor值是 构造函数Person
+    console.log(yww.__proto__);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 数据类型: 1.简单数据类型(栈) 2.复杂数据类型(堆)
+    // 通过new调用构造函数创建对象
+    // new做了几件事情
+    // 1.创建一个空对象(开辟一片空间)
+    // 2.把this指向空对象(指向空对象)
+    // 3.把值赋值给对象(赋值)
+    // 4.把创建完成的对象返回(返回)
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+      this.sayHi = function () {
+        console.log("你好");
+      }
+    }
+    var obj = new Person('zs', 12);
+
+
+
+  </script>
+</body>
+
+</html>
