@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            display: none;
+        }
+
+        .box01{
+            width: 200px;
+            height: 200px;
+            background-color: green;
+        }
+
+        .box02{
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+
+        .box03{
+            width: 400px;
+            height: 400px;
+            background-color: paleturquoise;
+        }
+
+    </style>
+</head>
+<script>
+        window.onload=function(){
+            //延时定时器
+            //语法: let 定时器名称 = setTimeout(具名函数,时间(单位毫秒));
+
+            //获取div
+            let oDv1 = document.querySelector('.box01');
+            let oDv2 = document.querySelector('.box02');
+            let oDv3 = document.querySelector('.box03');
+
+
+            //设置定时器
+            setTimeout(getContent1,3000);
+            setTimeout(getContent2,4000);
+            setTimeout(getContent3,5000);
+
+            //创建函数 显示div
+            function getContent1(){
+                oDv1.style.display = 'block';
+            }
+            function getContent2(){
+                oDv2.style.display = 'block';
+            }
+            function getContent3(){
+                oDv3.style.display = 'block';
+            }
+
+            //清除定时器
+            document.querySelector('click',function(){
+                cleanTimeout();
+            });
+        }
+    </script>
+<body>
+    <div class="box01"></div>
+    <div class="box02"></div>
+    <div class="box03"></div>
+    <button>按钮</button>
+</body>
+</html>

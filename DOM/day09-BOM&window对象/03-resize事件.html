@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: greenyellow;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            // resize事件
+            // 功能: 只要浏览器发生变化  事件就会触发
+            // 语法: window.addEventListener('resize',function(){});
+            
+            //获取div
+            let oDv = document.querySelector('.box');
+
+            window.addEventListener('resize',function(){
+                //判断网页大小
+                if(window.innerWidth <= 880){
+                    oDv.style.display = 'none';
+                }else{
+                    oDv.style.display = 'block';
+                }
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.timer {
+          margin: 100px auto;
+          width: 190px;
+          height: 260px;
+          background-image: url("images/1.png");
+        }
+    
+        .time {
+          position: absolute;
+          left: 50%;
+          margin-left: -61px;
+          top: 300px;
+          width: 122px;
+          overflow: hidden;
+        }
+    
+        .time span,
+        .time b {
+          float: left
+        }
+    
+        .time span {
+          width: 32px;
+          height: 32px;
+          background-color: black;
+          color: #fff;
+          line-height: 32px;
+          text-align: center;
+          font-size: 22px;
+          font-weight: bold;
+        }
+    
+        .time b {
+          margin: 0 4px;
+          line-height: 32px;
+          color: #fff;
+        }
+      </style>
+</head>
+<script>
+    window.onload=function(){
+        //获取 小时
+        let hour = document.querySelector('.hour');
+
+        //获取 分钟
+        let min = document.querySelector('.min');
+
+        //获取 秒
+        let second = document.querySelector('.second');
+
+        //设置时间
+        let date = +new Date("2021-07-09 00:00:00");
+        
+        //创建周期计数器
+        setInterval(moveTime,1000);
+
+        function moveTime(){
+            //获取当前时间
+            let now = +new Date();
+
+            //用设置的时间 减去 当前时间
+            let needTime = date-now;
+
+            //将 倒计时的毫秒值 转换为 时分秒
+            let needHour = parseInt(needTime / 1000 / 3600);
+
+            let needMin = parseInt(needTime/ 1000 / 60 % 60);
+
+            let needSecond = parseInt(needTime / 1000 % 60);
+
+            needHour = needHour > 9 ? needHour : '0'+needHour;
+            needMin = needMin > 9 ? needMin : '0'+needMin;
+            needSecond = needSecond > 9 ? needSecond : '0'+needSecond;
+
+
+            //将 时分秒 填充到 页面中
+            hour.innerText = needHour;
+            min.innerText = needMin;
+            second.innerText = needSecond;
+            
+        }
+    }
+</script>
+<body>
+    <div class="timer">
+        <div class="time">
+          <!-- 小时 -->
+          <span class="hour">00</span>
+          <b>:</b>
+          <!-- 分钟 -->
+          <span class="min">00</span>
+          <b>:</b>
+          <!-- 秒 -->
+          <span class="second">00</span>
+        </div>
+      </div>
+</body>
+</html>

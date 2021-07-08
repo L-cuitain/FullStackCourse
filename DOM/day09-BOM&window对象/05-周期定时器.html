@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script>
+  window.onload = function () {
+    //周期定时器
+    //功能: 隔一段时间  执行一次动作
+    //语法: let 定时器名 = setInterval(具名函数,时间(毫秒))
+    //返回值: 数字
+    //注意: 具名函数 不要写匿名函数
+    let timer = setInterval(sayHi, 1000);
+    let num = 0;
+
+    function sayHi() {
+      num++;
+      console.log("滑稽" + num);
+    }
+    // 清除定时器
+    // 功能: 清除周期定时器
+    // 语法: clearInterval
+    document.querySelector('button').onclick = function () {
+      clearInterval(timer);
+    }
+  }
+</script>
+
+<body>
+  <button>按钮</button>
+</body>
+
+</html>
