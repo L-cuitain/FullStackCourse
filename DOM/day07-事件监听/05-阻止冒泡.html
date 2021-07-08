@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outer{
+            width: 400px;
+            height: 400px;
+            background-color: aqua;
+        }
+
+        .inner{
+            width: 200px;
+            height: 200px;
+            background-color: azure;
+        }
+    </style>
+</head>
+<script>
+    window.onload=function(){
+        //获取 outer
+        let outer = document.querySelector('.outer');
+        //获取 inner
+        let inner = document.querySelector('.inner');
+
+        //创建监听事件
+        inner.addEventListener('click',function(e){
+
+            console.log("adfafasfafadf");
+
+            //阻止冒泡
+            // e.stopPropagation();
+
+            e.cancelBubble = true;
+        });
+
+        outer.addEventListener('click',function(){
+            console.log("12323123123123123");
+            
+        })
+
+    }
+
+</script>
+<body>
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+</body>
+</html>

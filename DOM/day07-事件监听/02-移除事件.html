@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //移除事件
+        window.onload = function () {
+            //方法一: 传统方法移除
+
+            //语法: 事件源.on + 事件类型 = null;
+            //注意: 把function覆盖 变成null
+            oBtn.onclick = function () {
+                alert("滑稽");
+                oBtn.onclick = null;
+            }
+
+            //方法二: ie9以上浏览器移除事件方法
+
+            //语法: 事件源.removeEventListener(事件类型,事件处理函数)
+            //说明:remove移除  Event事件 Listener监听器
+            oBtn.removeEventListener('click',removeClick);
+            function removeClick(){
+                alert("131231231312");
+                oBtn.removeEventListener('click',removeClick);
+            }
+
+            //方法三: ie9及以下浏览器注册事件方法
+
+            //语法: 事件源.detachEvent('on+事件类型',事件处理程序);
+            //注意: 事件类型要带on
+
+            //oBtn.attachEvent('onclick',removeClick);
+            // function removeClick(){
+            //     alert("131231231312");
+            //     oBtn.detachEvent('onclick',removeClick);
+            // }
+
+            // 兼容写法
+            // function removeEventListener(element, eventName, fn) {
+            //   // 1.浏览器是否支持removeEventListener
+            //   if (element.removeEventListener) {
+            //     element.removeEventListener(eventName, fn)
+            //   } else if (element.detachEvent) {   // 2.浏览器是否支持detachEvent
+            //     element.detachEvent('on' + eventName, fn);
+            //   } else {
+            //     // 对象.属性
+            //     // 对象[属性]
+            //     element['on' + eventName] = null;
+        }
+    </script>
+</head>
+
+<body>
+    <button>按钮</button>
+</body>
+
+</html>
