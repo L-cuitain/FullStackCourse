@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/jquery-3.4.1.min.js"></script>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <button id="show">上滑</button>
+    <button id="hide">下滑</button>
+    <button id="toggle">上滑/下滑</button>
+    <div></div>
+</body>
+<script>
+    //向上滑动
+    //slideUp([speed],[easing],[fn])
+    $('#show').on('click',function(){
+        $('div').slideUp(300,function f1(){
+            console.log('向上滑动');
+        })
+    })
+
+    //向下滑动
+    //slideDown([speed],[easing],[fn])
+    $('#hide').on('click',function(){
+        $('div').slideDown(300,function f1(){
+            console.log('向下滑动');
+        })
+    })
+
+    //切换滑动
+    //slideToggle([speed],[easing],[fn])
+    $('#toggle').on('click',function(){
+        $('div').slideToggle(300,function f1(){
+            console.log('切换滑动');
+        })
+    })
+</script>
+</html>

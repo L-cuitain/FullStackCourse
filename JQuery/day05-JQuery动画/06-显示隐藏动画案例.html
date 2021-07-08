@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    div {
+      width: 400px;
+    }
+
+    img {
+      width: 90px;
+      height: 90px;
+      vertical-align: top;
+    }
+  </style>
+
+</head>
+
+<body>
+  <input type="button" value="隐藏动画" id="btn1" />
+  <input type="button" value="显示动画" id="btn2" />
+  <input type="button" value="切换动画" id="btn3" />
+  <div>
+    <img src="image/1.jpg" />
+    <img src="image/2.jpg" />
+    <img src="image/3.jpg" />
+    <img src="image/4.jpg" />
+  </div>
+  <script src="./lib/jquery-3.4.1.min.js"></script>
+  <script>
+      // 点击第一个按钮 图片隐藏
+      $('#btn1').on('click',function(){
+          //为图片添加隐藏动画
+          $('div img:last-child').hide(300,function f1(){
+            //找到最后一张图片以及前一个兄弟元素 实现隐藏
+            $(this).prev().hide(300,f1);
+          })
+      })
+
+      //点击第二个按钮  图片显示
+      $('#btn2').on('click',function(){
+          //为图片添加显示动画
+          $('div img:first-child').show(300,function f1(){
+            //找到最后一张图片以及前一个兄弟元素 实现隐藏
+            $(this).next().show(300,f1);
+          })
+      })
+
+      //点击第三个按钮  切换图片显示隐藏
+      $('#btn3').on('click',function(){
+          //切换图片显示隐藏动画
+          $('div img:last-child').toggle(300,function f1(){
+            //找到最后一张图片以及前一个兄弟元素 实现隐藏
+            $(this).prev().toggle(300,f1);
+          })
+      })
+  </script>
+</body>
+
+</html>

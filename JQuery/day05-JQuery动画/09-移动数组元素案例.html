@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <button class="next">下一个</button>
+    <button class="back">上一个</button>
+</body>
+<script>    
+    let arr = ['a', 'b', 'c', 'd', 'e'];
+
+    //数组操作方法
+    // shift()  获取数组第一个元素
+    // unshift()  把元素添加到数组的前面
+    // push()   把某个元素添加到数组的最后
+    // pop()  获取数组最后一个元素
+
+
+    //点击next 把数组第一个元素添加到数组末尾  不保留第一个元素
+    $('.next').click(function(){
+        //删除第一个元素 并返回给一个变量
+        let ele = arr.shift();
+
+        //把这个变量添加到数组末尾
+        arr.push(ele);
+        console.log(arr);
+    })
+
+    //点击back 把数组最后一个元素添加到数组的前面  不保留某位元素
+    $('.back').click(function(){
+        //删除末尾元素  并返回给一个变量
+        let ele = arr.pop();
+
+        //将这个变量 添加到数组开头
+        arr.unshift(ele);
+        console.log(arr);
+    })
+</script>
+</html>
