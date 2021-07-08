@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+
+        h2{
+            float: left;
+            margin: 0;
+            padding: 2px 5px 0 0;
+            font-size: 14px;
+            font-weight: initial;
+            font-family:fantasy;
+        }
+
+        input{
+            width: 160px;
+            height: 13px;
+            font-size: 13px;
+            color: #bebebe;
+        }
+
+        span{
+            font-size: 13px;
+            color: #a9b7cf;
+        }
+
+        .color1{
+            color: red;
+        }
+
+        .color2{
+            color: green;
+        }
+
+        .color3{
+            border:1px solid red;
+        }
+
+        .color4{
+            border:1px solid green;
+        }
+
+        
+    </style>
+</head>
+<script>
+    window.onload = function () {
+
+        let oIpt = document.querySelector('input');
+        let oSpan = document.querySelector('span');
+        let oImg = document.querySelector('img');
+
+        oIpt.onblur = function(){
+
+            let num = oIpt.value;
+
+            if(num >= 0 && num <= 100){
+                oImg.src = "./images/right.png";
+                oIpt.className = "color4";
+                oSpan.className = "color2";
+                oSpan.innerHTML = "输入成绩正确";
+                
+            }else if(num > 100){
+                oImg.src = "./images/error.png";
+                oIpt.className = "color3";
+                oSpan.className = "color1";
+                oSpan.innerHTML = "成绩不能超出100";
+            }else if(num < 0){
+                oImg.src = "./images/error.png";
+                oIpt.className = "color3";
+                oSpan.className = "color1";
+                oSpan.innerHTML = "成绩不能小于0";
+            }else{
+                oImg.src = "./images/error.png";
+                oIpt.className = "color3";
+                oSpan.className = "color1";
+                oSpan.innerHTML = "请您输入数字";
+            }
+        }
+    }
+</script>
+<body>
+    <h2>您的成绩: </h2><input type="text" placeholder="请输入分数"> <img src="" alt=""><span>请输入您的成绩</span>
+</body>
+
+</html>

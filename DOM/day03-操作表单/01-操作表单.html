@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+
+            //获取input输入框
+            let oIpt = document.querySelector('#firstText');
+            let oEat = document.querySelector("#eat");
+
+            //获取按钮
+            let oBtn = document.querySelector('button');
+
+            //获取span
+            let oSpan = document.querySelector('span');
+
+            //获取option
+            let oOpn = document.querySelector('#thrid');
+
+            //给input输入框绑定焦点事件
+            oIpt.onfocus = function(){
+
+                //操作表单常用属性
+
+                // value
+                // 表单输入字段的初始值
+                // 语法: 元素.value = "值";
+                oIpt.value = "233";
+
+                // type
+                // 表单类型
+                // 语法: 元素.type = "值";
+                oIpt.type = "text";
+            }
+
+            //给input输入框绑定失去焦点事件
+            oIpt.onblur = function(){
+                oIpt.value = "滑稽";
+                oIpt.type = "password";
+            }
+        
+            
+            // 给按钮添加点击事件
+            oBtn.onclick = function(){
+
+                // checked
+                // 表单预选中选项
+                // 语法: 元素.checked = "checked/true/false"
+                oEat.checked = "checked";
+
+                // disabled
+                // 规定是否禁止输入字段
+                // 语法: 元素.disabled = "disabled/true/false"
+                oSpan.disabled = "disabled";
+
+                // selected
+                // 预定义选项
+                // 语法: 元素.selected = "selected/true/false"
+                oOpn.selected = "selected";
+            }
+
+
+
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="firstText">
+
+    <label for="eat">
+    <input type="checkbox" id="eat" value="0" name="hobby">吃饭
+    </label>
+
+    <label for="sleep">
+    <input type="checkbox" id="sleep" value="1" name="hobby" checked="checked">睡觉
+    </label>
+
+    <label for="hit">
+    <input type="checkbox" id="hit" value="2" name="hobby">打豆豆
+    </label>
+
+    <button>选择</button>
+    <span>请输入</span>
+
+
+    <select name="" id="">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3" id="thrid">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+
+</body>
+</html>

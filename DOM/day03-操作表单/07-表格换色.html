@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+
+            let aLi = document.querySelector('ul').querySelectorAll('li');
+
+            let oBtn = document.querySelector('button');
+
+            oBtn.onclick = function () {
+                for (let i = 0; i < aLi.length; i++) {
+
+                    if (i % 2 == 0) {
+                        aLi[i].style.backgroundColor = "yellow";
+
+                        aLi[i].onmouseout = function () {
+                            aLi[i].style.backgroundColor = "yellow";
+                        }
+
+                    } else {
+                        aLi[i].style.backgroundColor = "red";
+
+                        aLi[i].onmouseout = function () {
+                            aLi[i].style.backgroundColor = "red";
+                        }
+                    }
+                }
+            }
+
+            for (let i = 0; i < aLi.length; i++) {
+
+                aLi[i].onmouseover = function () {
+                    aLi[i].style.backgroundColor = "green";
+                }
+
+                aLi[i].onmouseout = function () {
+                    aLi[i].style.backgroundColor = "";
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+
+    <button>按钮</button>
+</body>
+
+</html>

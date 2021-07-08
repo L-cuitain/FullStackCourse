@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Untitled Document</title>
+    <style type="text/css">
+        select {
+            width: 100px;
+        }
+    </style>
+    <script type="text/javascript">
+        var collCities = [
+            ['选择城市'],
+            ['海淀区', '朝阳区', '东城区', '西城区'],
+            ['济南', '青岛', '烟台', '威海'],
+            ['沈阳', '大连', '鞍山', '抚顺'],
+            ['石家庄', '保定', '邯郸', '廊坊']
+        ];
+
+        window.onload = function () {
+            let aSheng = document.getElementById('sheng').querySelectorAll('option');
+
+            for (let i = 0; i < aSheng.length; i++) {
+
+                if (aSheng[i].selected = 'selected') {
+
+                    for (let j = 0; j < collCities[i][j].length; j++) {
+
+                        let oShi = document.getElementById('shi');
+
+                        oShi.appendChild('<option>' + collCities[i][j] + '</option>');
+
+
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <select id="sheng">
+        <option value=”0”>选择省市</option>
+        <option value=”1”>北京</option>
+        <option value=”2”>山东</option>
+        <option value=”3”>辽宁</option>
+        <option value=”4”>河北</option>
+    </select>
+
+    <select id="shi">
+        <option>选择城市</option>
+    </select>
+
+</body>
+
+</html>
