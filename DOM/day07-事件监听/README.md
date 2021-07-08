@@ -83,30 +83,3 @@
   2.xxx.onclick 和attachEvent只有冒泡没有捕获
   3.不是所有的事件都有冒泡和捕获，有些事件没有冒泡 onblur onfocus onmouseenter onmouseleave
   4.冒泡也不全是问题 有些工作还需要冒泡来做(事件委托)
-
-## 事件对象
-
-### 什么是事件对象
-
-  概念: 在事件触发后，在事件处理程序中，所获取并操作的对象，用这个对象代表事件的状态
-  比如: 鼠标的位置，鼠标的按钮，说的直白点就是事件对象里面存的是一系列跟事件相关的信息
-  点击鼠标 存鼠标的信息 点击事件的信息
-
-  语法: 
-    事件源.on+事件类型 = function (e) { // 第一个形参e就是事件对象 不需要你创建，这是事件中js自动给我弄好的 }
-    事件源.addEventListener('事件类型', function(e){})
-
-### 事件对象的常用属性
-
-    e.target 返回触发事件的对象(比较好用没有兼容性)
-    e.srcElement 返回触发事件的对象
-    e.type 事件类型
-    e.which点的哪个键(查一下)
-
-    e.cancelBubble 取消泡泡(阻止冒泡) (非标准)
-    e.stopPropagation() 阻止冒泡的(标准)
-
-    e.returnValue =false;  阻止浏览器默认行为
-    e.preventDefault(); 阻止浏览器默认行为(推荐)
-    <a href="javascript:;"></>
-    return false
