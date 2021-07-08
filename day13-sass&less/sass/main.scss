@@ -1,0 +1,142 @@
+
+
+html,body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+// 头部
+header  {
+  display: flex;
+  width: 100%;
+  a {
+    flex: 1;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+// 主体
+main  {
+  width: 100%;
+
+  nav {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  .item {
+    display: flex;
+    width: 100%;
+    height: 90px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    .pub {
+      flex: 1;
+    }
+
+  
+
+    &:nth-child(1) {
+      background-color: #ff697a;
+    }
+    &:nth-child(2) {
+      background-color: #3d98ff;
+    }
+    &:nth-child(3) {
+      background-color: #44c522;
+    }
+    &:nth-child(4) {
+      background-color: #fc9720;
+      margin-bottom: 0px;
+
+      .sub {
+        flex: 1;
+      }
+
+      a {
+        width: 33.3333333%;
+        &:nth-last-child(-n+3) {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+
+  ::placeholder {
+    color: red;
+  }
+  
+
+  .sub {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 2;
+
+    a {
+      display: block;
+      box-sizing: border-box;
+      width: 50%;
+      height: 45px;
+      line-height: 45px;
+      text-align: center;
+      color: #fff;
+      text-shadow:  0 0 2px #464545;;
+      text-decoration: none;
+      border-left: 1px solid #fff;
+      border-bottom: 1px solid #fff;
+      &:nth-last-child(-n+2) {
+        border-bottom:none; 
+      }
+    }
+  }
+
+  .extra {
+    display: flex;
+    width: 100%;
+
+    a {
+      flex: 1;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+footer {
+  text-align: center;
+  width: 100%;
+  font-size: 12px;
+  .footer-top {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    a {
+      flex: 1;
+      text-align: center;
+      line-height: 40px;
+      text-decoration: none;
+      color: #333;
+      // font-size: 14px - 2px;
+    }
+  }
+
+  span {
+    line-height: 30px;
+    color: #333;
+  }
+
+  
+
+
+}
