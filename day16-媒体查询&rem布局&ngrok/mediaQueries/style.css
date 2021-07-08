@@ -1,0 +1,30 @@
+body {
+  background-color: orange;
+}
+
+div {
+  color: red;
+}
+
+/* 在iphone5 body中有一个字 大小为20px */
+@media screen and (width: 320px) {
+  div {
+    font-size: 20px;
+  }
+}
+
+/* 在iphone6 body中有一个字 大小为40px */
+@media screen and (width: 375px) {
+  div {
+    font-size: 40px;
+  }
+}
+
+
+
+/* 在iphone6+ body中有一个字 大小为80px */
+@media screen and (width: 414px) {
+  div {
+    font-size: 60px;
+  }
+}
