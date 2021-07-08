@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+
+        .outer{
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background-color: aqua;
+            margin-top: 100px;
+            margin-left: 100px;
+        }
+
+        .inner{
+            width: 200px;
+            height: 200px;
+            background-color: azure;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner"></div>
+    </div> 
+</body>
+<script>
+    //offsetParent : 获取自己的定位父级
+    let inner = document.querySelector('.inner');
+
+    console.log(inner.offsetParent);
+    
+    //如果元素自身有fixed属性 offsetParent值为null
+    //body元素的offsetParent为null
+    //如果最近的父级没有定位  那么offsetParent向上找  找不到返回null
+</script>
+</html>

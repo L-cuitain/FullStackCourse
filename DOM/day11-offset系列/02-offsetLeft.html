@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+
+        .outer{
+            width: 400px;
+            height: 400px;
+            background-color: aqua;
+            margin-top: 100px;
+            margin-left: 100px;
+        }
+
+        .inner{
+            width: 200px;
+            height: 200px;
+            background-color: azure;
+        }
+    </style>
+</head>
+<body>
+   <div class="outer">
+       <div class="inner"></div>
+   </div> 
+</body>
+<script>
+   //offsetLeft: 找到自身相对于定位父级的left值
+   //offsetTop: 找到自身相对定位父级的top值
+   let inner = document.querySelector('.inner');
+
+   console.log(inner.offsetTop);
+   console.log(inner.offsetLeft);
+
+</script>
+</html>

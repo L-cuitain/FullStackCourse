@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+
+        .box{
+            width: 200px;
+            height: 200px;
+            margin-top: 200px;
+            margin-left: 200px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+<script>
+    //获取鼠标在元素中的坐标
+    let box = document.querySelector('.box');
+
+    //设置鼠标移动事件
+    box.addEventListener('mousemove',function(e){
+        // console.log(e.pageX,e.pageY);
+
+        //用鼠标再页面中的坐标 - 元素本身偏移量
+        let pX = e.pageX-box.offsetLeft;
+        let pY = e.pageY-box.offsetTop;
+
+        console.log(pX,pY);
+        
+    });
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+<script>
+   //offset系列
+   //offsetWidth:  获取元素的尺寸  宽度+padding+border
+   //offsetHeight: 获取元素的高度  宽度+padding+border
+
+    let oDv = document.querySelector('div');
+
+    console.log(oDv.offsetWidth,oDv.offsetHeight);
+    
+
+    //style.windth/height  这种写法只能获取行内样式  获取的值带单位
+   //一般不用这种方法获取
+   console.log(oDv.style.width);
+    
+</script>
+</html>
