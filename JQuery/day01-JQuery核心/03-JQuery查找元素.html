@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+    <div>
+        <input type="text">
+        <input type="password">
+        <input type="button" disabled='disabled'>
+        <input type="checkbox" checked>
+    </div>
+</body>
+<script>
+    //查找ul中的第一个li
+    console.log($('ul li:first-child'));
+    //查找ul中的最后一个li
+    console.log($('ul li:last-child'));
+    //查找ul中子元素的长子标签
+    console.log($('ul li:first-of-type'));
+    //查找所有input元素
+    console.log($(':input'));
+    //查找所有文本框
+    console.log($(':text'));
+    //查找所有密码框
+    console.log($(':password'));
+    //查找所有复选框
+    console.log($(':checkbox'));
+    //查找所有不可用的input元素    
+    console.log($('input:disabled'));
+    //查找所有选中的input元素
+    console.log($('input:checked'));
+    //查找所有可用的input元素
+    console.log($('input:enabled'));
+</script>
+</html>

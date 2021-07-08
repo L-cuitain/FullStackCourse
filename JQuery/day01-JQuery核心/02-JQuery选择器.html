@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <div id="dv">
+        <span class="span">456</span>
+    </div>
+
+    <div>
+        <a href="#">123</a>
+    </div>
+
+    <ul id="ul">
+        <li>
+            <input type="password" class="test" id="username">
+        </li>
+        <li id="second">2</li>
+        <li>
+            <input type="text" class="test" >
+        </li>
+        <li>4</li>
+    </ul>
+</body>
+<script>
+
+    //标签选择器
+    console.log($('div'));
+    
+    //类选择器
+    console.log($('.span'));
+    
+    //id选择器
+    console.log($('#dv'));
+    
+    //并集选择器 使用','隔开
+    console.log($('div,ul'));
+
+    //交集选择器 直接把多个选择器连接在一起
+    console.log($('input.test#username'));
+    
+    //通配符选择器 *
+    console.log($('*'));
+    
+    //子选择器 选择子元素 使用'>'隔开
+    console.log($('div>span'));
+
+    //同辈选择器  同一级别元素  使用'~'隔开
+    console.log($('#second~li'));
+    
+    //属性选择器
+    console.log($("input[type='password']"));
+
+    //下一兄弟选择器
+    console.log($('#second+li'));
+    
+</script>
+
+</html>
