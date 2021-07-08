@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .outer {
+      position: relative;
+      margin: 100px auto;
+      width: 500px;
+      height: 500px;
+      border: 1px solid red;
+    }
+
+    .ball {
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      width: 16px;
+      height: 16px;
+      background-color: green;
+      border-radius: 50%;
+/* 
+      animation-name: move;
+      animation-duration: 4s; */
+
+      animation: move 4s ;
+      animation-timing-function: linear;
+    }
+
+
+    /* 1.定义动画 */
+   @keyframes move {
+     0% {
+       transform: translate(0,0);
+     }
+
+     100% {
+       transform: translate(500px, 0);
+     }
+   }
+  
+  </style>
+</head>
+<body>
+  <div class="outer">
+    <span class="ball"></span>
+  </div>
+</body>
+</html>

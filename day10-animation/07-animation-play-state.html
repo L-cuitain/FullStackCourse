@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CSS3 动画</title>
+  <style>
+    html,body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+
+    /* 给view元素添加了overflow:hidden ul超出不隐藏的问题 */
+    /* 为什么 给ul position:relative 可以用的问题 */
+    .view {
+      /* position: relative; */
+      margin-top: 20px;
+      width: 200px;
+      height: 86px;
+      border: 1px solid #ccc;
+      overflow: hidden;
+    }
+
+    ul {
+      /* position: absolute; */
+      position: relative;
+      top: 0;
+      left: 0;
+      width: calc(126px * 14);
+      overflow: hidden;
+    }
+
+    li {
+      float: left;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="view">
+    <ul>
+      <li><img src="./images/1.jpg" alt=""></li>
+      <li><img src="./images/2.jpg" alt=""></li>
+      <li><img src="./images/3.jpg" alt=""></li>
+      <li><img src="./images/4.jpg" alt=""></li>
+      <li><img src="./images/5.jpg" alt=""></li>
+      <li><img src="./images/6.jpg" alt=""></li>
+      <li><img src="./images/7.jpg" alt=""></li>
+      <li><img src="./images/1.jpg" alt=""></li>
+      <li><img src="./images/2.jpg" alt=""></li>
+      <li><img src="./images/3.jpg" alt=""></li>
+      <li><img src="./images/4.jpg" alt=""></li>
+      <li><img src="./images/5.jpg" alt=""></li>
+      <li><img src="./images/6.jpg" alt=""></li>
+      <li><img src="./images/7.jpg" alt=""></li>
+    </ul>
+  </div>
+</body>
+
+</html>

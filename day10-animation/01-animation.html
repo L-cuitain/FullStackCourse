@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .outer{
+        position: relative;
+        margin: 100 auto;
+        width: 500px;
+        height: 500px;
+        border: 1px solid red;
+    }
+
+    .ball{
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        width: 16px;
+        height: 16px;   
+        background-color: green;
+        border-radius: 50%;
+
+        animation: move 4s;
+        animation-iteration-count: infinite;
+    }
+
+
+    /* 定义动画 */
+    @keyframes move{
+        0%{
+            transform: translate(0,0);
+        }
+
+        25%{
+            transform: translate(500px,0);
+        }
+
+
+        50%{
+            transform: translate(500px,500px);
+        }
+
+        75%{
+            transform: translate(0,500px);
+        }
+
+        90%{
+            transform: translate(1000px,0);
+        }
+
+        100%{
+            transform: translate(0,0);
+        }
+    }
+
+
+</style>
+
+<body>
+    <div class="outer">
+        <span class="ball"></span>
+    </div>
+</body>
+
+</html>
