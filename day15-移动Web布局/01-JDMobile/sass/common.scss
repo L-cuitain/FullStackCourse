@@ -1,0 +1,17 @@
+@mixin background-img($geturl, $ptX, $ptY, $sizeX: 100%, $sizeY: 100%) {
+    background-image: url($geturl);
+    background-repeat: no-repeat;
+    background-position: $ptX $ptY;
+    background-size: $sizeX , $sizeY;
+}
+
+@mixin wh($w, $h){
+    width: $w;
+    height: $h;
+}
+
+@mixin position($ptX) {
+    position: absolute;
+    top: $ptX;
+}
+
