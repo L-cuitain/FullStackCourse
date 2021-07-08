@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/jquery-validation-1.15.0/lib/jquery-1.11.1.js"></script>
+    <script src="./lib/jquery-validation-1.15.0/dist/jquery.validate.min.js"></script>
+</head>
+
+<body>
+    <form>
+        <p>
+            <label for="username">用户名：</label>
+            <input type="text" id="username" name="username" />
+        </p>
+        <p>
+            <label for="password">密码：</label>
+            <input type="password" id="password" name="password" />
+        </p>
+
+        <p>
+            <input type="submit" value="登录" />
+        </p>
+    </form>
+</body>
+<script>
+    $(function () {
+        
+        $('form').validate({
+            rules: {
+                username: {
+                    //必须输入字段
+                    required: true,
+                    //输入值不能大于5
+                    max: 5
+                },
+
+                password: {
+                    //必须输入字段
+                    required: true,
+                    //输入值介于 之间
+                    range: [5, 10],
+                }
+            },
+
+            message: {
+                username: {
+                    required: '这是必填字段',
+                    max: '输入值不能超过5'
+                },
+
+                password: {
+                    required: '这是必填字段',
+                    range: '输入值必须在5到10之间'
+                }
+            }
+        })
+    })
+</script>
+
+</html>
