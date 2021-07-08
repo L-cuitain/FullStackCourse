@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict'
+        
+        //严格模式后使用未声明的变量
+        num = 10;
+        console.log(num);
+
+        //严格模式不允许删除变量
+        var num2 = 1;
+        delete num2;
+
+        //严格模式下全局作用域中函数 中的this 时undefined
+        function fn(){
+            console.log(this);
+        };
+        fn();
+
+        //严格模式下  如果构造函数不加new调用  this指向undefined 如果赋值 会报错
+        function Star(){
+            this.sex = '男';
+        }
+
+        let ldh = new Str();
+        console.log(ldh.sex);
+
+
+        //严格模式下 定时器this 指向window
+        setTimeout(function(){
+            console.log(this);
+        },2000);
+
+
+    </script>
+</body>
+</html>

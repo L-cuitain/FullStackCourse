@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        // 普通函数调用  window
+        // (function(){
+        //     console.log(this);
+        // }())
+
+        // 构造函数调用  实例对象 原型对象里面方法也指向实例对象
+        // function Person(name,age){
+        //     console.log(this);
+        //     this.name = name;
+        //     this.age = age;
+        // }
+
+        // let p = new Person('123',28);
+        
+
+        // 对象方法调用
+        let o = {
+            name : 'zs',
+            age : 18,
+            study : function(){
+                console.log(this);
+            }
+        }
+
+
+        //事件绑定方法
+        document.querySelector('div').onclick = function(){
+            console.log(this);
+        };
+
+        //定时器函数
+        // setInterval(function(){
+        //     console.log(this);
+        // },1000)
+
+        //立即执行函数
+        // (function(){
+        //     console.log(this);
+        // }())
+    </script>
+</body>
+</html>

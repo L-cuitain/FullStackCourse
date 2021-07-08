@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fn(a,b){
+            console.log(this);
+            console.log(a + b);
+        };
+
+        var o = {
+            name : 'zs',
+            age : 18
+        }
+
+        //call方法
+        fn.call(o,1,2);
+
+        //apply方法
+        fn.apply(o,[1,2]);
+
+        //bind方法
+        let a = fn.bind(o,1,2);
+        a();
+    </script>
+</body>
+</html>
