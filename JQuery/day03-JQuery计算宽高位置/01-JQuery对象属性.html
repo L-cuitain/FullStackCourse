@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> 
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+
+        .content{
+            width: 300px;
+            height: 300px;
+            padding: 20px;
+            border: 1px solid aqua;
+            background-color: aqua;
+        }
+    </style>
+    <script src="./lib/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div class="content"></div>
+</body>
+<script>
+    // jQuery对象.height(可设置值)  返回元素的高度
+    console.log($('.content').height());
+    $('.content').height(200);
+
+    // jQuery对象.width(可设置值)  返回元素的宽度
+    console.log($('.content').width());
+    $('.content').width(200);
+
+
+    // jQuery对象.innerWidth(可设置值)   返回元素的宽度(包括内边距) 
+    console.log($('.content').innerWidth());
+    // jQuery对象.innerHeight(可设置值)  返回元素的高度(包括内边距)
+    console.log($('.content').innerHeight());
+
+    // jQuery对象.outerWidth(可设置值)   返回元素的宽度(包括内边距和边框)
+    console.log($('.content').outerWidth());
+
+    // jQuery对象.outerHeight(可设置值)   返回元素的高度(包括内边距和边框)
+    console.log($('.content').outerHeight());
+    
+</script>
+</html>

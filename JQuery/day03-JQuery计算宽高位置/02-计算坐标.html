@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> 
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+
+        .outer{
+            position: relative;
+            top: 50px;
+            left: 50px;
+            width: 400px;
+            height: 400px;
+            background-color: aqua;
+        }
+
+        .inner{
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            width: 200px; 
+            height: 200px;
+            background-color: blanchedalmond;
+        }
+    </style>
+    <script src="./lib/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+</body>
+<script>
+    //相对于当前页面的坐标
+    //jQuery对象.offset()
+    //相对于页面左上角的top $('选择器').offset().top;
+    //相对于页面左上角的left $('选择器').offset().left
+    $('.outer').mouseenter(function(){
+        console.log($('.inner').offset().top,$('.inner').offset().left);
+    })
+
+    //相对于父元素左上角的坐标
+    // jQuery对象.position()  只对可见元素有效
+    // 相对于父元素左上角的top $('选择器').position().top
+    // 相对于父元素左上角的left $('选择器').position().left
+    $('.outer').mouseenter(function(){
+        console.log($('.inner').position().top,$('.inner').position().left);
+    })
+
+    //卷曲出去的距离
+    // jQuery对象.scrollTop(可以设置卷曲距离)  获取卷曲的高度
+    // jQuery对象.scrollLeft(可以设置卷曲距离)  获取卷曲的宽度
+    $('div').scrollTop(300);
+    $('div').scrollLeft();
+</script>
+</html>

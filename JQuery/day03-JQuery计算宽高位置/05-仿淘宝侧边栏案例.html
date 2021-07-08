@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .slider-bar {
+            position: absolute;
+            left: 50%;
+            top: 300px;
+            margin-left: 600px;
+            width: 45px;
+            height: 130px;
+            background-color: pink;
+        }
+
+        .w {
+            width: 1200px;
+            margin: 10px auto;
+        }
+
+        .header {
+            height: 150px;
+            background-color: purple;
+        }
+
+        .banner {
+            height: 250px;
+            background-color: skyblue;
+        }
+
+        .main {
+            height: 1000px;
+            background-color: yellowgreen;
+        }
+
+        span {
+            display: none;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+    <script src="./lib/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <div class="slider-bar">
+        <span class="goback">返回顶部</span>
+    </div>
+    <div class="header w">头部区域</div>
+    <div class="banner w">banner区域</div>
+    <div class="main w">主体部分</div>
+</body>
+<script>
+    //获取banner到顶部的距离
+    let bannerTop = $('.banner').offset().top;
+    //获取main到顶部的距离
+    let mainTop = $('.main').offset().top;
+
+    //获取侧边栏与顶部的距离
+    let sliderbarTop = $('.slider-bar').offset().top - bannerTop;
+
+    //创建页面滚动事件
+    $(document).scroll(function(){
+        //判断是否超过bannerTop的高度
+        if($(this).scrollTop() >= bannerTop){
+            $('.slider-bar').css({
+                'position':'fixed',
+                'top':sliderbarTop+'px'
+            });
+        }else{
+            $('.slider-bar').css({
+                'position':'absolute',
+                'top':'300px'
+            });
+        }
+        //判断是否超过mainTop的高度
+        if($(this).scrollTop() >= mainTop){
+            $('.goback').css('display','block');
+        }else{
+            $('.goback').css('display','none');
+        }
+    })
+    //span标签创建鼠标点击事件
+    $('.goback').click(function(){
+        //点击后返回顶部
+        $(document).scrollTop(0);
+    })
+</script>
+
+</html>
