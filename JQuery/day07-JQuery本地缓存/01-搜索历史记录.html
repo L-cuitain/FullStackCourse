@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin-left: 300px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul li,
+        div {
+            width: 250px;
+            padding: 10px 0;
+            margin-left: 10px;
+            border-bottom: 1px dashed #ccc;
+            height: 20px;
+        }
+
+        a {
+            float: right;
+        }
+
+        input {
+            padding: 5px;
+            margin: 10px;
+        }
+    </style>
+    <script src="./lib/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <input type="search" placeholder="输入搜索关键字" />
+    <input type="button" value="搜索" />
+    <div>
+        <a href="javascript:;">清空搜索记录</a>
+    </div>
+    <ul>
+        <!-- <li>没有搜索记录</li> -->
+        <!-- <li>
+      <span>手机</span>
+      <a href="javascript:;">删除</a>
+    </li> -->
+        </li>
+    </ul>
+</body>
+<script>
+    //历史搜索记录
+    //1.展示历史记录列表
+    //2.点击搜索  把数据添加到localStorage
+    //3.删除一条数据
+    //4.删除全部
+
+    //调用showData()
+    showData();
+
+    
+    //功能2: 把搜索添加到localStorage中
+    //给搜索框添加点击事件
+    $('input[type="button"]').on('click',function(){
+        //获取搜索关键字
+        let keyWord = $('input[type="search"]').val();
+        //判断关键字长度
+        if(keyWord.trim().length == 0){
+            alert('请输入关键字');
+        }else{
+            //调用setData方法
+            setData(keyWord);
+
+            //当数据增加  还要刷新页面
+            showData();
+
+            //清空输入框
+            $('input[type="search"]').val('');
+        }
+    })
+
+
+    //功能1: 展示历史记录列表
+    //步骤:
+    //在localStorage中存入假数据 sHistory=["手机","电脑","口红","鼠标"]
+    function showData() {
+        //获取localStorage中的数据
+        let aData = getData();
+
+        //判断数组的长度是否为 0 
+        if (aData.length == 0) {
+            //如果为0 则显示没有搜索记录
+            $('ul').html('<li>没有搜索记录</li>');
+        } else {
+            //插件变量 存储字符串
+            let htmlStr = '';
+
+            //如果不为0 遍历数组 将数组中的值添加到历史记录中
+            $.each(aData, function (i, item) {
+                htmlStr += `<li>
+                    <span>${item}</span>
+                    <a href="javascript:;">删除</a>
+                </li>`;
+            })
+
+            //添加到ul中
+            $('ul').html(htmlStr);
+        }
+    }
+
+    //获取数据
+    function getData() {
+        //获取到解析后的搜索数据
+        let aData = JSON.parse(localStorage.getItem('sHistory') || '[]');
+        //返回搜索数据
+        return aData;
+    }
+
+    //添加数据
+    function setData(value){
+        //获取历史记录中的数据
+        let aData = getData();
+        console.log(aData);
+        //判断 历史记录是否存在这个关键词  如果存在 把历史记录中的词删掉
+        $.each(aData,function(i,item){
+            if(item == value){
+                
+                aData.splice(i,1);
+            }
+        })
+
+        //给数组中添加数据
+        aData.push(value);
+
+        //把数组转换为json字符串 重新添加到localStorage中
+        localStorage.setItem('sHistory',JSON.stringify(aData));
+    }
+
+
+    //功能3: 删除某一条数据
+    //给每个li中的a标签添加点击事件
+    $('ul').on('click','a',function(){
+        //获取 兄弟元素span的内容
+        let spanFont = $(this).siblings('span').html();
+        //调用删除方法
+        delData(spanFont);
+        //调用showData方法
+        showData();
+    })
+
+    //删除数据
+    function delData(delval){
+        //获取历史记录的数据
+        let aData = getData();
+
+        //遍历aData
+        $.each(aData,function(i,item){
+            //判断数组中是否有要删除的数据
+            if(item == delval){
+                aData.splice(i,1);
+            }
+        })
+
+        //把数组转换为json字符串 重新添加到localStorage中
+        localStorage.setItem('sHistory',JSON.stringify(aData));
+    }
+</script>
+
+</html>
