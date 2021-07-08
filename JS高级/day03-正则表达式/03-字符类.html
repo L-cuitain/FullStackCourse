@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // []  代表可选的范围
+        // var regexp = /[abc]/;
+        // console.log(regexp.test('a'));
+        // console.log(regexp.test('b'));
+        // console.log(regexp.test('ab'));
+
+        // var regexp = /^[abc]$/;
+        // console.log(regexp.test('a'));  //true
+        // console.log(regexp.test('b'));  //true
+        // console.log(regexp.test('ab'));  //false
+        // console.log(regexp.test('blue'));  //false
+
+
+        // var regexp = /^[a-z]$/;
+        // console.log(regexp.test('a'));  //true
+        // console.log(regexp.test('d'));  //true
+        // console.log(regexp.test('x'));  //true
+        // console.log(regexp.test('u'));  //true
+
+        //字符组合
+        var regexp = /^[^a-zA-Z0-9]$/;
+        console.log(regexp.test(8));  //false
+        console.log(regexp.test('01abc'));  //false
+     </script>
+</body>
+</html>

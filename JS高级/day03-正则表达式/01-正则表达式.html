@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 正则表达式 是用于匹配字符串中的字符组合的模式  在JS中 正则表达式也是对象
+
+        //正则表达式语法
+
+        //正则表达式对象
+        var regex1 = new RegExp(/123/);
+
+        //正则表达式字面量
+        // var 正则表达式名 = /正则表达式/;
+        var regex2 = /123/;
+
+        //如何判断  某一个字符串 符合正则表达式规则
+        console.log(regex1.test("123"));
+        console.log(regex1.test("456"));
+
+        
+    </script>
+</body>
+</html>

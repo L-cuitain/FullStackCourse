@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //量词符: 用来设定某个模式出现的次数
+
+        // * 相当于  >= 0 可以出现 0 次或者 多次
+        // var regexp =  /^a*$/;
+        // console.log(regexp.test(''));
+        // console.log(regexp.test('a'));
+        // console.log(regexp.test('b'));
+        // console.log(regexp.test('aaaaa'));
+
+        // + 相当于 >= 1 可以出现 1次  或 多次
+        // var regexp = /^a+$/;
+        // console.log(regexp.test(''));
+        // console.log(regexp.test('a'));
+        // console.log(regexp.test('b'));
+        // console.log(regexp.test('aaaaa'));
+
+
+        // ? 相当于 1 || 0
+        // var regexp = /^a?$/;
+        // console.log(regexp.test(''));
+        // console.log(regexp.test('a'));
+        // console.log(regexp.test('b'));
+        // console.log(regexp.test('aaaaa'));
+
+        // { n } 重复 n 次
+        // var regexp = /^a{3}$/;
+
+
+        // { n, } 大于等于 n 次
+        // var regexp = /^a{3,}$/;
+
+
+        // { m , n } 大于等于 m 次  并且  小于等于 n 次
+        // var regexp = /^a{6,16}$/;
+
+        var regexp = /^\d{5}$/;
+
+        console.log(regexp.test(14213));
+    </script>
+</body>
+</html>
