@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/weibo.css">
+</head>
+
+<body>
+  <div class="w">
+    <!-- 操作的界面 -->
+    <div class="controls">
+      <img src="images/tip.png" alt=""><br>
+      <textarea placeholder="说点什么吧..." id="area" cols="30" rows="10" maxlength="200"></textarea>
+      <div>
+        <span class="useCount">0</span>
+        <span>/</span>
+        <span>200</span>
+        <button id="send">发布</button>
+      </div>
+
+    </div>
+    <!-- 微博内容列表 -->
+    <div class="contentList">
+      <ul>
+        <li>
+          <div class="info"><img src="images/03.jpg"><span>宇智波鼬</span>
+            <p>2020/3/16 下午1:00:29</p>
+          </div>
+          <div class="content">你好</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+
+</body>
+<script>
+      //获取文本框
+      let oText = document.querySelector('#area');
+
+      //获取 useCount
+      let oUseCount = document.querySelector('.useCount');
+
+      //获取发布按钮
+      let oBtn = document.querySelector('#send');
+
+      //获取微博内容列表
+      let oUl = document.querySelector('.contentList').firstElementChild;
+
+      console.log(oUl);
+      
+
+      //为文本框创建 onInput事件
+      oText.oninput=function(){
+
+          //将文本框中的文字数量显示在 useCount中
+          oUseCount.innerText = oText.value.length;
+      }
+
+      //为发布按钮创建鼠标点击事件
+      oBtn.onclick=function(){
+        
+        //获取文本框内容
+        let oTextContent = oText.value;
+
+        //创建新节点
+        let oLi = document.createElement('li');
+
+        //书写oLi的内容
+        oLi.innerHTML = `
+          <div class="info"><img src="images/03.jpg"><span>宇智波鼬</span>
+            <p>${getDate()}</p>
+          </div>
+          <div class="content">${oTextContent}</div>
+          `;
+        //添加到oUl中
+        oUl.appendChild(oLi);
+          
+        //文本框内容清空
+        oText.value = "";
+
+      }
+
+
+      //创建日期
+	 function getDate(){
+		 
+		 //创建日期对象
+     let date = new Date();
+     
+     //创建变量  获取当前时段
+     let now = "";
+
+     if(date.getHours() >= 6 && date.getHours() < 10){
+        now = "上午";
+     }else if(date.getHours() >= 10 && date.getHours() < 13){
+        now = "中午";
+     }else if(date.getHours() >= 10 && date.getHours() < 13){
+        now = "下午";
+     }else if(date.getHours() >= 13 && date.getHours() < 18){
+        now = "傍晚";
+     }else if(date.getHours() >= 18 && date.getHours() < 23){
+        now = "夜晚";
+     }else if(date.getHours() >= 23 && date.getHours() < 6){
+        now = "凌晨";
+     }
+
+		 //返回日期格式
+		 return date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate()+"  "+now+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+	 }
+
+</script>
+</html>

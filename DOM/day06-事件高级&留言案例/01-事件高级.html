@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            //注册事件  
+            //获取按钮 执行两个点击事件
+            let oBtn = document.querySelector('button');
+
+            //方法一: 元素.addEventListener(事件类型, 事件处理方法, 是否冒泡)  ie9+
+            oBtn.addEvenListener('click', function () {
+                alert('滑稽');
+            })
+
+            oBtn.addEvenListener('click', function () {
+                alert('222222');
+            })
+
+            //方法二: 元素.attachEvent(事件类型, 事件处理方法) ie9-
+            oBtn.attachEvent("onclick", function () {
+                alert("11111111");
+            })
+
+            //删除事件
+            //获取div
+            let divs = document.querySelectorAll('div');
+            // removeEventListener删除事件
+            divs[1].addEventListener('click', fn);
+
+            function fn() {
+                alert(22);
+                divs[1].removeEventListener('click', fn);
+            }
+            // detachEvent
+            divs[2].attachEvent('onclick', fn1);
+
+            function fn1() {
+                alert(33);
+                divs[2].attachEvent('onclick', fn1);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button>点击</button>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+
+</body>
+
+</html>
