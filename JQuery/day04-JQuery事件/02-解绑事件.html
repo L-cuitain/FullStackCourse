@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/jquery-3.4.1.min.js"></script>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <button>点我</button>
+    <div></div>
+</body>
+<script>
+    //解除绑定
+    //触发事件的元素.off('事件名')  
+    $('button').click(function(){
+        console.log(1111);
+    })
+
+    $('div').click(function(){
+        $('button').off('click');
+    })
+</script>
+</html>

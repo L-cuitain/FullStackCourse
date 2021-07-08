@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/jquery-3.4.1.min.js"></script>
+    <script>
+        // $(function(){})   预加载事件  相当于DOM onload事件
+        // $(function(){
+        //     $('div').css({
+        //         'width':200,
+        //         'height':200,
+        //         'backgroundColor':'aqua'
+        //     })
+        // })
+
+        //$(document).ready(function(){})  DOM就绪执行函数  相当于DOM domcontentloaded事件
+        $(document).ready(function(){
+            $('div').css({
+                'width':200,
+                'height':200,
+                'backgroundColor':'aqua'
+            })
+        })
+    </script>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

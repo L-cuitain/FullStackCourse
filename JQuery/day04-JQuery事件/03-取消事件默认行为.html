@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <a href="http://www.baidu.com">百度</a>
+</body>
+<script>
+    //取消事件默认行为
+    //方式一:
+    //<a href='javascript:;'>百度</a>
+
+    //方式二:
+    //<a href='javascript:void(0);'>百度</a>
+
+    //方式三:
+    $('a').click(function(e){
+        e.preventDefault();
+    })
+</script>
+</html>
