@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //子构造函数继承父构造函数的属性  和方法
+
+        //父构造函数
+        function Father(name , age){
+            this.name = name;
+            this.age = age;
+        }
+
+        Father.prototype.face = function(){
+            console.log('123');
+        }
+
+        //子构造函数
+        function Son(name,age, score = 5){
+            //如果能把此时this的指向从Son变到指向Father  就能获取name age
+            Father.call(this,name,age);
+            this.score = score;
+        }
+
+        // Son.prototype = Father.prototype;
+        Son.prototype = new Father();
+        Son.prototype.study = function(){
+            console.log('321');
+        }
+
+        // 使用call去实现继承夫构造函数的属性
+        let zs = new Son('张三',18);
+
+        console.log(zs);
+        zs.face();
+        console.log(Father.prototype);
+    </script>
+</body>
+</html>

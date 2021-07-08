@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //call()方法
+        function fn(x,y){
+            //当没有用call修改this指向时 this 指向 window  
+            console.log(this.name);
+            console.log(arguments);
+            console.log(y-x);
+        }
+        //1.call() 可以调用函数
+        // fn.call();
+        //2.call() 可以修改this的指向 使用call()的时候 参数一是修改后的this指向
+        let o = {
+            name : 'zs',
+            age : 18
+        }
+
+        // o代表fn中以前this指向window 现在指向 o
+        fn.call(o,2,5);
+    </script>
+</body>
+</html>
