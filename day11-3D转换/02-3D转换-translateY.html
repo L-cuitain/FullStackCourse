@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /* 鼠标移入body 让box移动300px */
+
+    html,body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: green;
+      transition: all 1s;
+    }
+
+    body:hover .box {
+      transform: translateY(300px);
+    }
+  
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      border: 1px solid #ccc;
+      margin: 100px auto;
+      /* 只能添加给转换元素的父元素 */
+      perspective: 1000px;
+    }
+
+
+    /* transform: translate(-50%,-50%) 好用 */
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: calc(-238px / 2);
+      margin-top: -150px;
+      transition: all 1s;
+    }
+
+    div:hover img {
+      transform: rotateY(85deg);
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <img src="./images/y.jpg" alt="">
+  </div>
+</body>
+</html>

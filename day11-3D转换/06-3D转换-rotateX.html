@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS 3D转换</title>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #F7F7F7;
+    }
+    
+    .rotateX {
+        height: 226px;
+        padding-top: 100px;
+        text-align: center;
+        /*perspective一般给转换元素的父级加*/
+        perspective: 1000px;
+    }
+    
+    .rotateX img {
+        transition: all 5s;
+        transform-origin: 96px;
+    }
+    /*任务1 请实现当鼠标移入rotateX这个div，让图片沿着X轴顺时针旋转85度*/
+    
+    .rotateX:hover img {
+        transform: rotateX(-85deg);
+    }
+    </style>
+</head>
+
+<body>
+    <div class="rotateX">
+        <img src="images/x.jpg" alt="">
+    </div>
+</body>
+
+</html>

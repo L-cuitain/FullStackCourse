@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 500px;
+      height: 40px;
+      margin: 100px auto;
+      /* 如果想要让转换元素呈现3D效果 就要添加一个新的属性 transform-style: flat(平面) | preserve-3d(如果你需要3D效果)*/
+      /* 只能添加给转换元素的父元素 */
+      transform-style: preserve-3d;
+    }
+
+    li {
+      position: relative;
+      width: 100px;
+      height: 40px;
+      transform-style: preserve-3d;
+      transition:  all 1s;
+      /* transform: rotateX(20deg) rotateY(20deg) rotateZ(20deg); */
+    }
+    span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+    }
+
+    span:nth-child(1) {
+      background-color: orange;
+      transform: rotateX(90deg) translateZ(20px); 
+    }
+
+    span:nth-child(2) {
+      background-color: olive;
+      transform: translateZ(20px);
+    }
+
+    li:hover {
+      transform: rotateX(-90deg);
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li><span>aaa</span><span>bbb</span></li>
+    <li><span>aaa</span><span>bbb</span></li>
+    <li><span>aaa</span><span>bbb</span></li>
+    <li><span>aaa</span><span>bbb</span></li>
+    <li><span>aaa</span><span>bbb</span></li>
+    <li><span>aaa</span><span>bbb</span></li>
+    <li><span>aaa</span><span>bbb</span></li>
+    <li><span>aaa</span><span>bbb</span></li>
+    <li><span>aaa</span><span>bbb</span></li>
+  </ul>
+</body>
+</html>

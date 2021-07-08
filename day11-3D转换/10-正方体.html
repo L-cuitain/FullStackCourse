@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .cube {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      /* border: 1px solid #ccc; */
+      margin: 100px auto;
+      transform-style: preserve-3d;
+      transform: rotateX(10deg) rotateY(20deg) rotateZ(10deg);
+    }
+
+    span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 500px;
+      height: 500px;
+      opacity: 0.5;
+      font-size: 300px;
+      line-height: 500px;
+      text-align: center;
+      color: #fff;
+    }
+
+    span:nth-child(1) {
+
+      background-color: red;
+      transform: translateZ(250px);
+    }
+
+    span:nth-child(2) {
+      background-color: orange;
+      transform: translateZ(-250px);
+    }
+
+    span:nth-child(3) {
+      background-color: yellow;
+      transform: rotateX(90deg) translateZ(250px);
+    }
+
+    span:nth-child(4) {
+      background-color: green;
+      transform: rotateX(90deg) translateZ(-250px);
+    }
+
+    span:nth-child(5) {
+      background-color: black;
+      transform: rotateY(90deg) translateZ(250px);
+    }
+
+    span:nth-child(6) {
+      background-color: blue;
+      transform: rotateY(90deg) translateZ(-250px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cube">
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+    <span>5</span>
+    <span>6</span>
+  </div>
+</body>
+
+</html>
