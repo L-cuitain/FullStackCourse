@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            position: absolute;
+            top: 140px;
+        }
+    </style>
+</head>
+<body>
+    <button>按钮</button>
+    <div></div>
+</body>
+<script src="./js/animate.js"></script>
+<script>
+    // 缓动动画原理
+    // 让运动的元素步长(每次移动距离)变小 速度就会缓慢降下来
+    // 核心的公式 (目标值 - 现在的位置) / 10  作为每次移动的步长
+    // 停止的条件: 盒子的位置 = 目标值  停定时器
+
+    //定义变速运动的函数
+    //element 获取的元素
+    //target 目标值
+    function animate(element,target){
+        //清除定时器
+        clearInterval(element.timer);
+
+        //开启定时器
+        element.timer = setInterval(function(){
+            //计算步长
+            let step = (target - element.offsetLeft) / 10;
+            //判断是否到达目标位置
+            if(element.offsetLeft == target){
+                //达到目标位置 停止定时器
+                clearInterval(element.timer);
+            }
+            //把移动的距离赋值给元素
+            element.style.left = element.offsetLeft + step + 'px';
+        },20)
+    }
+</script>
+</html>

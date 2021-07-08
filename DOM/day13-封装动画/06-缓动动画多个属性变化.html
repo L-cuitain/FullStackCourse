@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            position: absolute;
+            top: 140px;
+        }
+    </style>
+</head>
+<body>
+    <button>按钮</button>
+    <div id="oDiv"></div>
+</body>
+<script src="./js/animate.js"></script>
+<script>
+    
+    let oDiv = document.querySelector("#oDiv");
+
+    animate(oDiv,{
+        width: 400,
+        height: 400,
+        left: 800
+    });
+
+    // 缓动动画函数  多个属性同时变化
+    //element  获取的元素
+    //attrObj  获取元素的属性对象
+    function animate(element, attrObj) {
+        //清除定时器
+        clearInterval(element.timer);
+        //开启定时器
+        element.timer = setInterval(function () {
+            
+            let flag = true;
+            for(let attr in attrObj){
+                let current = parseInt(getStyle(element,attr));
+
+                let target = attrObj[attr];
+
+                //计算步长
+                let step = parseInt(target - current) / 10 ;
+
+                //判断步长是否为小数
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+
+                current += step;
+                
+                element.style[attr] = current + 'px';
+
+                if(current !== target){
+                    flag = false;
+                }
+            }
+
+            //判断是否到目标位置  清除定时器
+            if(flag){
+                clearInterval(element.timer);
+            }
+        },20);
+    }
+
+</script>
+</html>

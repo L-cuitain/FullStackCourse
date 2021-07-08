@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            position: absolute;
+            top: 140px;
+        }
+    </style>
+</head>
+
+<body>
+    <button>按钮</button>
+    <div></div>
+</body>
+<script src="./js/animate.js"></script>
+<script>
+    // 缓动动画函数
+    //element  获取的元素
+    //attr  获取元素的属性
+    //target  目标值
+    function animate(element, attr, target) {
+        //清除定时器
+        clearInterval(element.timer);
+        //开启定时器
+        element.timer = setInterval(function () {
+            //获取元素当前的属性值
+            let current = parseInt(getStyle(element,attr));
+            //计算步长
+            let step = (target - current) / 10;
+            //判断步长是否为一个小数
+            step = step > 0 ? Math.ceil(step) : Math.floor(step);
+            //在当前位置和步长进行叠加
+            current += step;
+            //计算后的值赋值给元素
+            element.style[attr] = current + 'px';
+            //判断是否到目标位置  清除定时器
+            if(current == target){
+                clearInterval(element.timer);
+            }
+        },20);
+
+    }
+</script>
+
+</html>

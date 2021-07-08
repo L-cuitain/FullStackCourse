@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            position: absolute;
+            top: 140px;
+        }
+    </style>
+</head>
+<body>
+    <button>按钮</button>
+    <div></div>
+</body>
+<script>
+    //封装动画函数
+
+    //1. 获取div 按钮
+    let oDiv = document.querySelector('div');
+    let oBtn = document.querySelector('button');
+
+    oBtn.onclick = function(){
+        animate(oDiv,400);
+    }
+
+    //参数  运动的元素  运动到的位置
+    function animate(element,target){
+        //防止出现多个定时器 先清除定时器
+        clearInterval(element.timer);
+        //创建周期定时器
+        element.timer = setInterval(function(){
+            
+            if(element.offsetLeft >= target){
+                clearInterval(element.timer);
+            }
+            element.style.left = element.offsetLeft + 1 + 'px';
+        },20)
+    }
+</script>
+</html>
