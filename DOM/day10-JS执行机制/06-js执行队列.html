@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // js执行队列
+        // 四个同步任务  两个异步任务
+        console.log(1);
+        document.onclick = function(){
+            console.log('click');
+        }
+
+        setTimeout(fn(),3000);
+        function fn(){
+            console.log(3);
+        }
+
+        var a = 1;
+        setTimeout(function(){a = 3},0);
+        console.log(a);
+    </script>
+</body>
+</html>

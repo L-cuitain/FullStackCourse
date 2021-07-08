@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+            //通过 navigator的Geolocation对象进行定位
+            //getCurrentPosition() 获取当前的位置(经度 维度)
+            //watchPosition() 不停的获取当前的位置
+            //clearWatch() 清除不停获取位置信息
+
+            //获取当前位置信息
+            //getCurrentPosition(位置信息方法  错误信息方法)
+            //需使用最新的IE浏览器来获取
+            navigator.geolocation.getCurrentPosition(function(position){
+                console.log(position);
+            },function(error){
+                // 2
+                // 代表 网络地址服务 在 googleapi这个网站 没有内容
+                console.log(error);
+            })
+
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
