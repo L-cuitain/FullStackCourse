@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    window.onload=function(){
+        //获取文本框
+        let oInput = document.querySelector('input');
+
+        //绑定键盘事件
+        document.addEventListener('keyup',function(e){
+            console.log(e.keyCode);
+            if(e.keyCode == 65){
+                oInput.focus();
+            }
+        });
+    }
+</script>
+<body>
+    <input type="text">
+</body>
+</html>
