@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/fullpage.css">
+  <script src="../lib/jquery-3.4.1.min.js"></script>
+  <script src="./js/fullpage.min.js"></script>
+</head>
+
+<body>
+  <div id="fullpage">
+    <div class="section">Some section</div>
+    <div class="section">Some section</div>
+    <div class="section">Some section</div>
+    <div class="section">Some section</div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $('#fullpage').fullpage({
+        //options here
+        autoScrolling: true,
+        scrollHorizontally: true,
+        navigation: true,
+        // 设置小圆点的方向 左右
+        navigationPosition: "right",
+        // 滚动的时间 默认是 700ms  
+      });
+    });
+  </script>
+</body>
+
+</html>

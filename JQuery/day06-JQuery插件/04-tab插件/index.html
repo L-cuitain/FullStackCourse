@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/jquery.horizontalmenu.css">
+  <script src="../lib/jquery-3.4.1.min.js"></script>
+  <script src="./js/jquery.horizontalmenu.js"></script>
+</head>
+
+<body>
+  <!-- 点击按钮 -->
+  <div class="ah-tab-wrapper">
+    <div class="ah-tab">
+      <a class="ah-tab-item" data-ah-tab-active="true" href="">北京</a>
+      <a class="ah-tab-item" href="">上海</a>
+      <a class="ah-tab-item" href="">深圳</a>
+      <a class="ah-tab-item" href="">广州</a>
+      <a class="ah-tab-item" href="">天津</a>
+      <a class="ah-tab-item" href="">成都</a>
+      <a class="ah-tab-item" href="">西安</a>
+    </div>
+  </div>
+  <!-- 内容 -->
+  <div class="ah-tab-content-wrapper">
+    <div class="ah-tab-content" data-ah-tab-active="true">
+      <h2>Personal data</h2>
+    </div>
+    <div class="ah-tab-content">
+      <h2>Contacts</h2>
+    </div>
+    <div class="ah-tab-content">
+      <h2>Tab item with a long name</h2>
+    </div>
+    <div class="ah-tab-content">
+      <h2>Password change</h2>
+    </div>
+    <div class="ah-tab-content">
+      <h2>Tab item</h2>
+    </div>
+    <div class="ah-tab-content">
+      <h2>我在成都的街上走了走</h2>
+    </div>
+    <div class="ah-tab-content">
+      <h2>还是西安的肉夹馍好吃</h2>
+    </div>
+  </div>
+  <script>
+    $(function () {
+      $('.ah-tab-wrapper').horizontalmenu({
+        itemClick: function (item) {
+          $('.ah-tab-content-wrapper .ah-tab-content').removeAttr('data-ah-tab-active');
+          $('.ah-tab-content-wrapper .ah-tab-content:eq(' + $(item).index() + ')').attr('data-ah-tab-active', 'true');
+          return false; //if this finction return true then will be executed http request
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

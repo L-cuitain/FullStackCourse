@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 引入插件 -->
+  <link rel="stylesheet" href="./css/jquery.exzoom.css">
+  <style>
+    #exzoom {
+      width: 400px;
+      /*height: 400px;*/
+      margin: 20px auto;
+    }
+  </style>
+  <script src="./js/jquery-3.4.1.min.js"></script>
+  <script src="./js/jquery.exzoom.js"></script>
+</head>
+
+<body>
+  <div class="exzoom" id="exzoom">
+    <!--大图区域-->
+    <div class="exzoom_img_box">
+      <ul class='exzoom_img_ul'>
+        <li><img src="./image/big.jpg" /></li>
+      </ul>
+    </div>
+    <!--缩略图导航-->
+    <div class="exzoom_nav">
+
+    </div>
+    <!--控制按钮-->
+    <!-- <p class="exzoom_btn">
+      <a href="javascript:void(0);" class="exzoom_prev_btn">
+        < </a>
+          <a href="javascript:void(0);" class="exzoom_next_btn"> > </a>
+    </p> -->
+  </div>
+
+  <script>
+    $("#exzoom").exzoom();
+  </script>
+</body>
+
+</html>

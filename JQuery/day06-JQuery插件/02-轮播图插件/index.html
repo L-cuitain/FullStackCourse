@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/swiper.min.css">
+  <style>
+    .swiper-container {
+      width: 600px;
+      height: 300px;
+    }
+  </style>
+  <!-- <script src="../lib/jquery-3.4.1.min.js"></script> -->
+  <script src="../lib/jquery-1.12.3.min.js"></script>
+  <script src="./js/swiper.min.js"></script>
+  <script src="./js/swiper.jquery.js"></script>
+</head>
+
+<body>
+  <!-- 幻灯片的容器 -->
+  <div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div class="swiper-slide">
+        <a href="">
+          <img src="./image/monster3.jpg" alt="">
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <a href="">
+          <img src="./image/monster4.jpg" alt="">
+        </a></div>
+      <div class="swiper-slide">
+        <a href="">
+          <img src="./image/monster5.jpg" alt="">
+        </a></div>
+      <div class="swiper-slide">
+        <a href="">
+          <img src="./image/monster6.jpg" alt="">
+        </a></div>
+    </div>
+    <!-- 分页 -->
+    <div class="swiper-pagination"></div>
+
+    <!-- 导航按钮 -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
+    <!-- 滚动条 -->
+    <!-- <div class="swiper-scrollbar"></div> -->
+  </div>
+  <script>
+    var mySwiper = new Swiper('.swiper-container', {
+      // Optional parameters
+      // direction: 'vertical',
+      loop: true,
+
+      // If we need pagination
+      // 分页
+      pagination: '.swiper-pagination',
+
+      // Navigation arrows 左右按钮
+      nextButton: '.swiper-button-next',
+      prevButton: '.swiper-button-prev',
+
+      // And if we need scrollbar
+      // scrollbar: '.swiper-scrollbar',
+    })           
+  </script>
+
+</body>
+
+</html>
