@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        li {
+            display: inline-block;
+            border: 1px solid #ccc;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+
+        .active {
+            background-color: #ddd;
+            border-color: red;
+        }
+    </style>
+</head>
+<script>
+    window.onload = function () {
+        //排他思想
+        //案例:
+        // 步骤:
+        // 1.获取到所有菜单元素
+        let aLi = document.querySelectorAll('li');
+        // 2.遍历所有菜单元素
+        for (let i = 0; i < aLi.length; i++) {
+            // 2.1 给任意一个菜单项绑定点击事件
+            aLi[i].onclick = function () {
+                // 2.1.1 排他思想: 干掉菜单项中所有的样式(清除掉这些菜单项的active这个class)
+                for (let j = 0; j < aLi.length; j++) {
+                    aLi[j].classList.remove('active');
+                }
+                // 2.1.2 排他思想: 设置自己的样式(给被点击的这个元素 添加一个active类名)
+                this.classList.add('active');
+            }
+        }
+
+        //自定义属性
+        //传统自定义属性(兼容性好  操作复杂)
+        // 添加自定义属性: 
+        // 语法: 元素.setAttribute("自定义属性的名字","自定义属性的值")
+        // 参数: 自定义属性的名 自定义属性的值
+        // 返回值: 无返回值
+
+        // let oUl = document.querySelector('ul');
+        // oUl.setAttribute('index', 1);
+
+
+        // 删除自定义属性 
+        // 语法: 元素.removeAttribute("自定义属性的名字")
+        // 参数: 自定义属性的名字
+        // 返回值: 无
+        // let oUl = document.querySelector('ul');
+        // let b = oUl.removeAttribute('family');
+        // console.log(b);
+
+        // 修改自定义属性
+        // oUl.setAttribute('index', "你好");
+
+
+        // 获取自定义属性
+        // 语法: 元素.getAttribute("自定义属性的名字")
+        // 参数: 自定义属性的名字
+        // 返回值: 自定义属性的值
+        // console.log(oUl.getAttribute('family'));
+
+
+        // H5自定义属性(兼容性弱  操作简答)
+        //增加自定义属性
+        //  语法: 元素.dataset.自定义属性的名字 =值
+        // oLi.dataset.height=1;
+
+        // 删除自定义属性
+        // 语法: delete 元素.dateset.自定义属性的名字
+        // delete oLi.dataset.age;
+
+
+        // 修改自定义属性
+        // 语法: 元素.dataset.自定义属性的名字 =值
+        // oLi.dataset.age = "2岁";
+
+        // 获取自定义属性的名字
+        // 语法: let 变量 = 元素.dataset.自定义属性的名字
+        // 两个单词的自定义属性 要使用驼峰命名法获取
+        // console.log(oLi.dataset.age);
+        // console.log(oLi.dataset.familyName);
+        // console.log(oLi.dataset['familyName']);
+    }
+</script>
+
+<body>
+    <ul>
+        <li class="active">首页</li>
+        <li>电影</li>
+        <li>关于</li>
+        <li>联系</li>
+        <li>客服</li>
+        <li>首页1</li>
+        <li>电影1</li>
+        <li>关于1</li>
+        <li>联系1</li>
+        <li>客服1</li>
+    </ul>
+
+
+    <ul family="chen">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+    <li date-age="5随" date-family-name="滑稽"></li>
+
+</body>
+
+</html>

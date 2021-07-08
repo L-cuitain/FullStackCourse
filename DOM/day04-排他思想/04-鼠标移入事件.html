@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+        }
+
+        ul {
+            margin: 0 auto;
+            padding: 0;
+            list-style: none;
+        }
+
+
+        ul {
+            margin-top: 100px;
+            width: 470px;
+            height: 256px;
+            border: 1px solid #fff;
+        }
+
+        li {
+            float: left;
+            width: 150px;
+            height: 120px;
+            padding: 5px 0 0 5px;
+        }
+
+        li img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<script>
+    window.onload = function () {
+
+        //获取ul
+        let oUl = document.querySelector('ul');
+
+        //获取 li
+        let aLi = oUl.querySelectorAll("li");
+
+        // 给 ul 添加鼠标移入事件
+        oUl.onmouseover = function () {
+
+            //获取 li 的集合
+            for (let i = 0; i < aLi.length; i++) {
+
+                //为所有 li 设置鼠标移入事件
+                aLi[i].onmouseover = function () {
+
+                    //获取 li 的集合
+                    for (let j = 0; j < aLi.length; j++) {
+
+                        //获取 每个 li 中的图片  设置图片透明度为 0.5
+                        let oImg = aLi[j].querySelector('img');
+                        oImg.style.opacity = '0.5';
+                    }
+
+                    //获取 每个 li 中的图片  设置图片透明度为 1
+                    let oImg = aLi[i].querySelector('img');
+                    oImg.style.opacity = '1';
+                }
+
+                //为所有 li 设置鼠标移出事件
+                aLi[i].onmouseout = function () {
+                    //设置图片透明度为 0.5
+                    oImg.style.opacity = '0.5';
+                }
+            }
+        }
+
+        //给 ul 添加鼠标移出事件
+        oUl.onmouseout = function () {
+            //获取 li 的集合
+            for (let i = 0; i < aLi.length; i++) {
+                
+                //获取 li 的集合
+                for (let i = 0; i < aLi.length; i++) {
+
+                    //获取 每个 li 中的图片  设置图片透明度为 1
+                    let oImg = aLi[i].querySelector('img');
+                    oImg.style.opacity = '1';
+                }
+            }
+        }
+    }
+</script>
+
+<body>
+    <ul>
+        <li>
+            <img src="./images/01.jpg" alt="">
+        </li>
+        <li>
+            <img src="./images/02.jpg" alt="">
+        </li>
+        <li>
+            <img src="./images/03.jpg" alt="">
+        </li>
+        <li>
+            <img src="./images/04.jpg" alt="">
+        </li>
+        <li>
+            <img src="./images/05.jpg" alt="">
+        </li>
+        <li>
+            <img src="./images/06.jpg" alt="">
+        </li>
+    </ul>
+
+</body>
+
+</html>
