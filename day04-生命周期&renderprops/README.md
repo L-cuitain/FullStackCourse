@@ -62,7 +62,7 @@ componentWillUnmount
 函数的作用:componentWillUnmount 当组件卸载(从页面中消失) 作用:执行清理工作(清理定时器等)
 
 
-# render-props和高阶组件
+# render-props
 
 ## React组件复用
 
