@@ -1,0 +1,34 @@
+.btn-enter{
+    /*进入动画执行之前绑定的类名*/
+    opacity: 0;
+    transform: translateX(-100%);
+}
+.btn-enter-active{
+    /*进入动画执行过程中绑定的类名*/
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 3s;
+}
+.btn-enter-done{
+    /*进入动画执行完毕之后绑定的类名*/
+}
+
+.btn-exit{
+    /*退出动画执行之前绑定的类名*/
+    opacity: 1;
+    transform: translateX(0);
+}
+.btn-exit-active{
+    /*退出动画执行过程中绑定的类名*/
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 3s;
+}
+.btn-exit-done{
+    /*退出动画执行完毕之后绑定的类名*/
+}
+
+button{
+    padding: 10px 20px;
+    margin-left: 50%;
+}
