@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        //JSX中绑定内容
+        //{} js解析
+        //绑定属性 绑定类名 绑定样式 都改为{}
+        //通过js动态获取 动态绑定
+
+        //绑定普通属性
+        //<p title={message}>我是段落</p>
+
+        //绑定类名(className)
+        //由于JSX本质是转换JS代码 而在JS中class有特殊含义 所以不能使用
+        //凡是属性名称为JS关键字都不能直接使用
+
+        //绑定样式(style)
+        //样式为键值对表示 如果要动态绑定样式 需要将样式放到一个对象中 并且所有以-连接的属性名称要转换为驼峰命名
+        
+        let box = 'box';
+        function GetDOM(){
+            return (<div title={'newTitle'} style={{fontSize: '100px' , backgroundColor: 'red'}} className={box}>滑稽</div>)
+        }
+
+        //挂载
+        ReactDOM.render(
+            <GetDOM />,
+            document.querySelector('#app')
+        )
+    </script>
+</body>
+</html>
