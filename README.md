@@ -1,2 +1,2 @@
 # HTMLandCSSCourse
-HTML_CSS个人学习库
+HTML&CSS个人学习库
