@@ -108,3 +108,57 @@ const routes = [
     }
 ]
 ```
+
+
+## 子路由传参
+```js
+//1.创建子路由
+//2.在Routes引入路由
+const route = [
+    {
+        path: '/about',
+        component: BCom,
+        routes: [
+            {
+                path: '/about/gocom',
+                exact: true,
+                component: GoCom
+            },
+            {
+                path: '/about/rustcom',
+                exact: true,
+                component: RustCom
+            }
+        ]
+    }
+]
+
+
+
+//3.在组件中显示路由
+<div>
+    <h1>BCom</h1>
+    <ul>
+        <li>
+            <NavLink to={`${this.state.pathname}/gocom?name=张三&age=12`}>子路由:GoCom</NavLink>
+        </li>
+        <li>
+            <NavLink to={`${this.state.pathname}/rustcom?name=里斯&age=29`}>子路由:RustCom</NavLink>
+        </li>
+    </ul>
+                
+    <div>
+        {renderRoutes(this.props.route.routes)}
+    </div>
+</div>
+
+
+//4.子路由中通过 URLSearchParams 获取路由参数5
+function GoCom(props){
+    const param = new URLSearchParams(props.location.search);
+
+    return (
+        <div>{param.get('name')}---{param.get('age')}</div>
+    );
+}
+```
