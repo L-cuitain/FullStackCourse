@@ -11,8 +11,8 @@
 
 ### 虚拟DOM和真实DOM
 
-  1.虚拟DOM是相对于浏览器所渲染出来的真实DOM的
-  2.虚拟DOM就是使用JS对象来表示页面上的真实DOM
+* 虚拟DOM是相对于浏览器所渲染出来的真实DOM的
+* 虚拟DOM就是使用JS对象来表示页面上的真实DOM
 
 ### 如何创建虚拟DOM
 
@@ -43,14 +43,16 @@ https://zh-hans.reactjs.org/docs/react-api.html#
 
 ## React中的JSX语法
 
-### 为什么需要JSX
-
-如果结构比较简单还好，但是如果结构比较复杂，就比较难以下手
-所以大牛们就发明了JSX, 专门用来编写React中的页面结构
-
 ### JSX是什么？
 
-JSX 是一个看起来很像XML的JavaScript语法扩展
+* 是一种JS和HTML混合的语法,将组件的结构、数据甚至样式都聚合在一起定义组件
+
+```js
+ReactDOM.render(
+  <h1>Hello</h1>,
+  document.getElementById('root')
+);
+```
 
 ### 为什么要使用JSX
 
@@ -72,7 +74,7 @@ https://babeljs.io/repl/
 导入babel.js
 在script标签上添加type="text/babel"
 
-### JSX中使用表达式
+### JSX表达式
 
 在JSX中只要看到{}就会当做JS解析(执行里面的JS代码)
 所以无论是绑定属性,还是绑定类名,还是绑定样式, 只需要将字符串改为{}
@@ -83,14 +85,14 @@ https://babeljs.io/repl/
 如果想显示上面的内容，那么就必须转换成字符串，但是对于空数组而言，即使转换成字符串，也不能显示
 
 ```js
-// const name = 'jack'
-// const h1 = <div>{name}</div>
-// const h1 = <div>{19}</div>
-// const h1 = <div>{true + ''}</div>
-// const h1 = <div>{1 + 3 + 7 + 9}</div>
-// const h1 = <div>{['red', 'yellogreen', 'pink']}</div>
-// const h1 = <div>{['red', 'yellogreen', 'pink'].join('')}</div>
-// const h1 = <div>{Math.random() > 0.5 ? '大于' : '小于等于'}</div>
+const name = 'jack'
+const h1 = <div>{name}</div>
+const h1 = <div>{19}</div>
+const h1 = <div>{true + ''}</div>
+const h1 = <div>{1 + 3 + 7 + 9}</div>
+const h1 = <div>{['red', 'yellogreen', 'pink']}</div>
+const h1 = <div>{['red', 'yellogreen', 'pink'].join('')}</div>
+const h1 = <div>{Math.random() > 0.5 ? '大于' : '小于等于'}</div>
 ```
 
 
@@ -101,73 +103,99 @@ https://babeljs.io/repl/
 3.逻辑与运算符（&&）
 
 ```js
-// function Home(){
-    //   if (flag) {
-    //     return (
-    //       <div>我是flag为true是显示的内容</div>
-    //     )
-    //   }
+function Home(){
+  if (flag) {
+    return (
+      <div>我是flag为true是显示的内容</div>
+    )
+  }
 
-    //   return (
-    //     <div>
-    //       <p>我是flag为false时显示的内容</p>
-    //     </div>
-    //     )
-    // }
-
-    // function Home(){
-    //     return flag? (
-    //       <div>我是flag为true是显示的内容</div>
-    //     ): (
-    //     <div>
-    //       <p>我是flag为false时显示的内容</p>
-    //     </div>
-    //     )
-    // }
+  return (
+    <div>
+      <p>我是flag为false时显示的内容</p>
+    </div>
+  )
+}
 
 
-    // function Home(){
-    //     return flag&&(
-    //       <div>我是flag为true是显示的内容</div>
-    //     )
-    // }
+function Home(){
+  return flag ? (
+    <div>我是flag为true是显示的内容</div>
+  ) : (
+    <div>
+      <p>我是flag为false时显示的内容</p>
+    </div>
+  )
+}
 
+
+function Home(){
+  return flag && (
+    <div>我是flag为true是显示的内容</div>
+  )
+}
 ```
 
 ### JSX中的列表渲染
 
 ```js
-
-    // function Home() {
-    //   return (
-    //     <div>{
-    //       songs.map(item => <p key={item.id}>{item.name}</p>)
-    //     }</div>
-    //   )
-    // }
+    function Home() {
+      return (
+        <div>{
+          songs.map(item => <p key={item.id}>{item.name}</p>)
+        }</div>
+      )
+    }
 ```
+
+
+### JSX中更新元素渲染
+
+* React 元素都是`immutable`不可变的。当元素被创建之后，你是无法改变其内容或属性的。一个元素就好像是动画里的一帧，它代表应用界面在某一时间点的样子
+* 更新界面的唯一办法是创建一个新的元素，然后将它传入`ReactDOM.render()`方法
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+let root = document.getElementById('root');
+function tick() {
+    const element = (
+        <div>
+            {new Date().toLocaleTimeString()}
+        </div>
+    );
+    ReactDOM.render(element, root);
+}
+setInterval(tick, 1000);
+```
+
 
 ### JSX中绑定属性
 
-1.JSX绑定内容
-  在JSX中只要看到{} 就会当作js解析(执行里面的js代码)
-  所以无论是绑定属性，还是绑定类名，还是绑定样式，只要将字符串改为{}
-  然后再通过JS动态获取，动态绑定即可
+* JSX绑定内容
+  * 在JSX中只要看到{} 就会当作js解析(执行里面的js代码)
+  * 所以无论是绑定属性，还是绑定类名，还是绑定样式，只要将字符串改为{}
+  * 再通过JS动态获取，动态绑定即可
 
-2.绑定普通属性
+* 绑定普通属性
 
 ```html
 <p title="我是标题">我是段落</p>
 <p title={message}>我是段落</p>
 ```
 
-3.绑定类名(className)
-  由于JSX本质是转换成JS代码, 而在JS中class有特殊含义, 所以不能使用
-  同理可证, 但凡是属性名称是JS关键字的都不能直接使用  
+* 绑定类名(className)
+  * 由于JSX本质是转换成JS代码, 而在JS中class有特殊含义, 所以不能使用
+  * 同理可证, 但凡是属性名称是JS关键字的都不能直接使用  
 
-4.绑定样式(style)
-  由于样式是键值对形式的, 所以在JSX中如果想要动态绑定样式
-  必须将样式放到一个对象中, 并且所有以-连接的样式名称都要转换成驼峰命名
-  `<p style={{color:'red', fontSize:'50px'}}>绑定样式</p>`
+* 绑定样式(style)
+  * 由于样式是键值对形式的, 所以在JSX中如果想要动态绑定样式
+  * 必须将样式放到一个对象中, 并且所有以-连接的样式名称都要转换成驼峰命名
+  * `<p style={{color:'red', fontSize:'50px'}}>绑定样式</p>`
 
+
+### React只会更新必要部分
+
+* React DOM 首先会比较元素内容先后的不同，而在渲染过程中只会更新改变了的部分。
+* 即便我们每秒都创建了一个描述整个UI树的新元素，React DOM 也只会更新渲染文本节点中发生变化的内容
 
