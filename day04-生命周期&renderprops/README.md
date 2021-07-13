@@ -63,9 +63,108 @@ componentWillUnmount
 
 
 # render-props
+* `render prop`是指一种在React组件之间使用一个值为函数的prop共享代码的简单技术
+* 具有 render prop 的组件接受一个函数 , 该函数返回一个React元素并调用它而不是实现自己的渲染逻辑
+* render prop 是一个用于告知组件需要渲染什么内容的函数 prop
+* 这也是逻辑复用的一种方式
 
 ## React组件复用
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+class MouseTracker extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = { x: 0 , y : 0 }
+    }
+    handleMouseMove = (event) => {
+        this.setState({
+            x: event.clientX,
+            y: event.clientY
+        });
+    }
+    render(){
+        return (
+            <div onMouseMove={this.handleMouseMove}>
+                <h1>移动鼠标!</h1>
+                <p>当前的鼠标位置是 ({this.state.x},{this.state.y})</p>
+            </div>
+        )
+    }
+}
+
+ReactDOM.render(
+    <MouseTracker />,
+    document.getElementById('root')
+)
+```
+
 
 ## render props模式
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+class MouseTracker extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { x: 0 , y: 0 };
+    }
+    handleMouseMove = (event) => {
+        this.setState({
+            x: event.clientX,
+            y: event.clientY
+        })
+    }
+
+    render(){
+        return (
+            <div onMouseMove={this.handleMouseMove}>
+                {this.props.render(this.state)}
+            </div>
+        )
+    }
+}
+```
+
 
 ## children代替render属性
+* children是一个渲染的方法
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class MouseTracker extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = { x: 0 , y: 0 };
+    }
+    handleMouseMove = (event) => {
+        this.setState({
+            x: event.clientX,
+            y: event.clientY
+        })
+    }
+
+    render(){
+        return (
+            <div onMouseMove={this.handleMouseMove}>
+                {this.props.children(this.state)}
+            </div>
+        )
+    }
+}
+
+ReactDOM.render(
+    <MouseTracker>
+        {(props) => (
+            <div>
+                <h1>移动鼠标!</h1>
+                <p>当前的鼠标位置是({props.x},{props.y})</p>
+            </div>
+        )}
+    </MouseTracker>,
+    document.getElementById('root')
+)
+
+```
