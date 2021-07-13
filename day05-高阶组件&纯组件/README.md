@@ -1,7 +1,7 @@
 # React高阶组件
 
 ## 概念
-高阶组件是参数为组件 返回值为新组件函数 它会接收一个组件作为参数并返回一个经过改造后的新组件:
+高阶组件(HOC)是参数为组件 返回值为新组件函数 它会接收一个组件作为参数并返回一个经过改造后的新组件:
 ```js
 const EnhancedComponent = higherOrderComponent(WrappedComponent)
 ```
