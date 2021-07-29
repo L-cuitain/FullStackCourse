@@ -20,6 +20,7 @@ var Numbers = /** @class */ (function () {
     }
     Numbers.prototype.storeNum = function () {
         var local_num = 14; //局部变量
+        console.log(local_num);
     };
     Numbers.sval = 10; //静态变量
     return Numbers;
