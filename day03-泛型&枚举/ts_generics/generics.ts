@@ -69,7 +69,7 @@ let getValue = <T,K extends keyof T>(obj:T , key:K)=> {
     return obj[key];
 }
 
-let obj = {
+let obj2 = {
     a: 'a',
     b: 'b',
     c: 0
