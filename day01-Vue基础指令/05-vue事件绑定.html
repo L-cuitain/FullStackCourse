@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- v-on:事件   vue事件绑定 -->
+    <!-- @:事件     简写事件绑定 -->
+
+
+    <div id="app">
+        <h1 v-on:click = "handleClick">点我1</h1>
+        <h1 v-on:dblclick = "handledblClick('小航')">点我2</h1>
+        <input type="text" @blur = "handleBlur">
+
+    </div>
+
+    <script src="./lib/vue-3.0.js"></script>
+    <script>
+        //写数据(M)
+        let vm = Vue.createApp({
+            //存数据
+            data(){
+                return{
+                    name : '张三',
+                    age : 13
+                }
+            },
+
+            //自定义方法
+            methods: {
+                //es6 新语法
+                handleClick(){
+                    alert('第一个h1被点击了');
+                },
+                
+                handledblClick : function(name){
+                    alert(`第二个h1被${name}点击了`);
+                },
+
+                handleBlur : function(){
+                    alert(`我是${this.name}  年龄为${this.age}`);
+                }
+            }
+        })
+
+        //控制器(VM)
+        vm.mount('#app');
+    </script>
+</body>
+</html>
