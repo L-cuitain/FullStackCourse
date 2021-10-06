@@ -1,15 +1,18 @@
 <template>
   <div>
-    <nav>
+    <nav class="nav">
       <ul>
         <li>
-          <NuxtLink to="/">Home</NuxtLink>
+          <!-- <NuxtLink to="/">Home</NuxtLink> -->
+          <span :class="{active:active[0].bool}" @click="go('/')">Home</span>
         </li>
         <li>
-          <NuxtLink to="/about">About Page</NuxtLink>
+          <!-- <NuxtLink to="/about">About Page</NuxtLink> -->
+          <span :class="{active:active[1].bool}" @click="go('/about')">About Page</span>
         </li>
         <li>
-            <NuxtLink to="/parent">Parent Page</NuxtLink>
+            <!-- <NuxtLink to="/parent">Parent Page</NuxtLink> -->
+            <span :class="{active:active[2].bool}" @click="go('/parent')">Parent Page</span>
         </li>
       </ul>
     </nav>
@@ -22,11 +25,39 @@
 
 <script>
 export default {
+  data(){
+    return{
+      active: [{name:'/',bool:true},{name:'/about',bool:false},{name:'/parent',bool:false}]
+    }
+  },
+  methods:{
+    go(path){
+      this.active.forEach(item => item.bool = false);
 
+      let index = this.active.findIndex(item => item.name === path);
+      this.active[index].bool = true;
+
+      //跳转到此路由
+      this.$router.push({
+        path
+      })
+    }
+  }
 }
 </script>
 
 <style>
+:root {
+  --primary-color: #00c58e;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  margin: 0;
+}
+
 a {
   text-decoration: none;
 }
@@ -67,11 +98,7 @@ nav {
 }
 
 /* 激活样式 */
-a.nuxt-link-active{
-    font-weight: bold;
-}
-
-a.nuxt-link-exact-active{
-    color: #00c58e;
+.nuxt-link-exact-active,.active {
+  color: #00c58e;
 }
 </style>
