@@ -68,16 +68,6 @@ export default {
 ```
 
 
-### 调用接口数据填充Vuex中
-* 服务器端填充: 在fetch函数中调用接口填充数据
-* 客户端填充: 不写在fetch中的代码
-
-
-#### fetch方法特点
-* fetch可以用于复用组件 asyncData只能在页面组件中使用
-* fetch可以在服务端渲染数据,有利于SEO优化
-
-
 ## 分模块使用
 大型项目数据放到Store会导致文件太大 , 这时可以分别保存在多个不同的文件中
 
@@ -91,6 +81,80 @@ store/index.js
 store/xxx.js
 * 使用state: $store.state.abc.xxx
 * 使用mutations: $store.state.commit('abc/xxx')
+
+
+
+## Fetch函数
+* 服务器端填充: 在fetch函数中调用接口填充数据
+* 客户端填充: 不写在fetch中的代码
+
+
+### Fetch方法特点
+* 把接口返回的数据填充到vuex中,可以在fetch中完成
+* fetch可以在服务端渲染数据,有利于SEO优化
+
+
+### Fetch和asyncData区别
+* asyncData中返回数据 页面直接使用
+```js
+async asyncData(){
+        const { data:{data:topics} } = await axios.get('https://cnodejs.org/api/v1/topics');
+        return{
+            topics
+        }
+}
+```
+
+* fetch只能在data上先声明变量,完成data上数据修改,适合搭配vuex使用
+```js
+export default {
+  data() {
+    return {
+      list: [],
+    };
+  },
+
+  async fetch() {
+    const {
+      data: { data: topics },
+    } = await axios.get("https://cnodejs.org/api/v1/topics");
+    // this.$store.commit("setTopics", topics);
+
+    this.list = topics
+  },
+};
+```
+
+* fetch可以用于复用组件 asyncData只能在页面组件中使用
+
+* 都可以做服务端渲染
+
+* 不需要服务端(mounted)渲染
+
+
+### 写法
+两者不兼容
+使用fetch自带参数解构读取store
+```js
+export default {
+  //使用fetch发起请求
+  async fetch({ $api , store }){
+    console.log($api);
+    const { data: {data:topics} } = await $api.getTopics('/topics');
+    store.commit('setTopics',topics);
+  } 
+}
+```
+
+使用this读取store
+```js
+async fetch() {
+    const {
+      data: { data: topics },
+    } = await axios.get("https://cnodejs.org/api/v1/topics");
+    this.$store.commit("setTopics", topics);
+  }
+```
 
 
 ## nuxtServerInit方法

@@ -13,7 +13,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      msg: "hello",
+      list: [],
     };
   },
 
@@ -22,6 +22,8 @@ export default {
       data: { data: topics },
     } = await axios.get("https://cnodejs.org/api/v1/topics");
     this.$store.commit("setTopics", topics);
+
+    // this.list = topics
   },
 };
 </script>
