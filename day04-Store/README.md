@@ -158,15 +158,21 @@ async fetch() {
 
 
 ## nuxtServerInit方法
+vuex中数据在页面刷新后,nuxtServerInit可以让vuex中的数据持久化存储
+
 ### 特点
 * 为vuex填充数据
 * 项目中所有页面刷新时都会执行一次这个函数
-* 只能写在store/index.js文件中
+* 只能写在store/index.js文件中的actions对象
 
 store/index.js
 ```js
  actions: {
-       nuxtServerInit({ commit}, { req }) {
+        /**
+         * @params context 包含commit,dispatch等方法
+         * @params 包含req对象
+         */ 
+       nuxtServerInit({ commit }, { req }) {
            if (req.session.user)
              commit('user', req.session.user)
        }
