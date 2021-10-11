@@ -99,12 +99,61 @@ app.use(router.routes());
 
 ### 子路由
 步骤:
-1. `/routes`文件夹中三个文件 `index.js`,`ARouter.js`,`BRouter.js`
+1. `/routes`文件夹中创建 `index.js`,`ARouter.js`
+
+
 
 2. `ARouter.js`
+```js
+//引入koa-router
+const Router = require('koa-router');
 
-## 请求参数
+//生成路由并设置前缀
+const ARouter = new Router({
+    //设置前缀
+    prefix: '/a'
+})
 
-### GET请求参数获取
+//接收请求方法下的请求 并处理响应内容
+ARouter.get('/',async (ctx,next) => {
+    //编写内容
+    ctx.body = 'a路由内容'
+})
 
-### POST请求参数获取
+//导出模块
+module.exports = ARouter;
+```
+
+
+
+3. `index.js`引入`ARouter.js`
+```js
+//引入koa-router
+const Router = require('koa-router');
+
+//创建router实例
+const router = new Router();
+
+//导入路由
+const ARouter = require('./ARouter');
+
+//将引入的路由 挂载到router上
+router.use(ARouter.routes() , ARouter.allowedMethods());
+
+//导出router
+module.exports = router;
+```
+
+
+
+4. `app.js`中引入`/routes/index.js`
+```js
+//配置路由
+const Router = require('koa-router');
+
+//导入router 挂载到app上
+const router = require('./routes');
+
+//启动路由
+app.use(router.routes()).use(router.allowedMethods());
+```
