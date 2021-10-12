@@ -129,15 +129,48 @@ nginx -s reload
 ```
 
 ## 项目打包部署
-### 静态打包
-```
-yarn generate
-```
 
 ### 静态部署
 优势: 访问速度快
 劣势: 网站数据频繁变化则不能静态化
 
+#### 操作流程
+1. 打包
+```
+yarn generate
+```
+
+2. 存放生成的dist文件夹
+
+3. nginx配置
+conf/nginx.conf
+```
+    server {
+        listen       端口号;
+        server_name  域名;
+
+        location / {
+            root   存放目录;
+            index  index.html index.htm;
+        }
+    }
+```
+
 ### 动态部署
 优势: 数据可以实时更新
 劣势: 访问速度变慢
+
+#### 操作流程
+1. 打包
+```
+yarn build
+```
+
+2. 将`.nuxt`,`static`,`nuxt.config.js`,`package.json`放到服务器指定目录
+
+3. 使用`yarn`安装需要的包
+
+4. 在服务端项目根目录
+```
+yarn start
+```
