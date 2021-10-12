@@ -113,10 +113,19 @@ nginx.exe
 停止
 ```
 快速停止
-nginx.exe -s stop
+nginx -s stop
 
 完整停止
-nginx.exe -s quit
+nginx -s quit
+```
+
+重启
+```
+重新加载nginx
+nginx -s reopen
+
+重新加载Nginx配置文件，然后以优雅的方式重启Nginx
+nginx -s reload
 ```
 
 ## 项目打包部署
