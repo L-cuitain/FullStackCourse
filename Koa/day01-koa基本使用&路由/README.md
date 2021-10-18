@@ -1,19 +1,4 @@
-# Koa
-基于NodeJS下一代Web框架
-
-## 特点
-* 没有回调地狱
-* 通过try/catch处理错误
-* 不同于express,不提供便携设施
-* 对中间件依赖减少
-
-## Koa与Exporess的区别
-* Koa皆在`修复和替换节点`,而Express皆在`增加节点`
-* Koa使用Promise和异步摆脱回调地狱,并简化处理
-* Koa暴露`ctx.request`和`ctx.response`对象,而不是Node的req和res对象
-* koa可视为NodeJS的http模块的抽象,,其中Express是NodeJS的应用程序框架
-
-## 使用
+# Koa使用
 初始化package.json
 ```
 npm init -y
@@ -40,7 +25,7 @@ app.listen(3000,() => {
 });
 ```
 
-### 返回响应
+## 返回响应
 使用koa实例调用use中间件
 ```js
 app.use(async ctx => {
@@ -50,7 +35,7 @@ app.use(async ctx => {
 })
 ```
 
-### 上下文&请求&响应
+## 上下文&请求&响应
 每个中间件都接受一个koa的Context对象(上下文),该对象封装了一个传入的http消息,并对该消息进行了相应的响应
 ctx通常用作上下文对象的参数名称
 ```js
@@ -63,7 +48,7 @@ app.use(async (ctx, next) => {
 ```
 
 
-## 路由
+# 路由
 使用koa-router路由中间件来配置路由
 
 步骤:
@@ -97,7 +82,7 @@ app.use(router.routes());
 ```
 
 
-### 子路由
+## 子路由
 步骤:
 1. `/routes`文件夹中创建 `index.js`,`ARouter.js`
 
