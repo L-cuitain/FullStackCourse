@@ -403,7 +403,9 @@ create table emp(
 insert into emp(id,name,age,salary) values(null,'金毛狮王',55,3800),(null,'白眉鹰王',60,4000),(null,'青翼蝠王',38,2800),(null,'紫衫龙王',42,1800);
 
 -- 查询emp表中数据 并逐行获取进行展示
-create procedure pro_test()
+delimiter $
+
+create procedure pro_test1()
 begin
     declare e_id int(11);
     declare e_name varchar(50);
@@ -425,6 +427,33 @@ begin
 
     close emp_result;
 end$
+
+delimiter ;
+
+--通过循环结构 , 获取游标中的数据
+delimiter $
+
+create procedure pro_test2()
+begin
+    declare id int(11);
+    declare name varchar(50);
+    declare age int(11);
+    declare salary int(11);
+    declare has_data int default 1;
+
+    declare emp_result cursor for select * from emp;
+    declare exit handler for not found set has_data = 0;
+    open emp_result;
+
+    repeat
+        fetch emp_result into id , name , age , salary;
+        select concat('id为',id,', name为',name,', age为',age,', 薪水为: ',salary);
+    until has_data=0
+        end repeat;
+    close emp_result;
+end $
+
+delimiter ;
 
 ```
 
