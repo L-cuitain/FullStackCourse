@@ -60,7 +60,7 @@ async asyncData(){
 | asyncData             | 服务器 或 路由更新 |
 | fetch                 | 服务器 或 路由更新 |
 | created,beforeCreated | 服务器 或 路由更新 |
-| nuxtServerInt         | 服务器端           |
+| nuxtServerInit         | 服务器端           |
 
 
 ### 区分代码执行位置
