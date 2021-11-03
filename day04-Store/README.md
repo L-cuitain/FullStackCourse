@@ -75,7 +75,7 @@ export default {
 vuex会根据store目录下xxx.js自动拆分模块,使用时模块名就是文件名,默认为index模块,该模块使用时无需带模块名
 
 store/index.js
-* 使用state: $state.state.xxx
+* 使用state: $store.state.xxx
 * 使用mutations: $store.state.commit('xxx')
 
 store/xxx.js
