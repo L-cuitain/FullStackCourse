@@ -117,4 +117,104 @@ export default {
 ```
 
 ## 响应式组件状态 ref
+------
 
+ref函数用户创建响应式数据,即数据变化视图更新
+
+------
+
+使用 ref 函数创建基本数据类型的响应式数据
+```js
+//引入ref
+import { ref } from "vue";
+
+export default {
+  setup() {
+    const name = ref("张三");
+    const age = ref(29);
+
+    return {
+      name,
+      age,
+    };
+  },
+};
+```
+
+使用 ref 创建的数据在模板中可以直接使用
+```vue
+<template>
+  <div>
+    {{ name }}
+    {{ age }}
+  </div>
+</template>
+```
+
+在 JavaScript 中通过 value 属性修改数据
+```js
+//引入ref
+import { ref } from "vue";
+
+export default {
+  setup() {
+    const name = ref("张三");
+    const age = ref(29);
+
+    const onClickHandler = () => {
+        name.value = "里斯";
+        age.value = 30;
+    }
+
+    return {
+      name,
+      age,
+      onClickHandler
+    };
+  },
+};
+```
+
+```vue
+<template>
+  <div>
+    {{ name }}
+    {{ age }}
+    <button @click="onClickHandler">button</button>
+  </div>
+</template>
+```
+
+------
+
+使用 ref 函数创建引用数据类型的响应式数据
+```js
+import { ref } from 'vue'
+export default {
+    setup(){
+        const person = ref({ name: "张三" , age: 25 })
+        const onClickHandler = () => {
+            person.value.name = "王五";
+            person.value.age = 60;
+            //重新为 person 赋值
+            // person.value = { name: "里斯" , age: 20 }
+        }
+
+        return{
+            person,
+            onClickHandler
+        }
+    }
+}
+```
+
+```vue
+<template>
+  <div>
+      {{person.name}}
+      {{person.age}}
+
+      <button @click="onClickHandler">button</button>
+  </div>
+</template>
+```
