@@ -8,7 +8,7 @@
 * Vue3中提供了`teleport`,`suspense`等更先进功能
 
 ## 使用Vite创建项目
-1. 创建应用: `npm init vite-app vue-tutorial` 或 `npx create-vite-app vue-tutorial`
+1. 创建应用: `npm init vite vue-tutorial`
 2. 切换至应用根目录: `cd vue-tutorial`
 3. 下载应用依赖: `npm install`
 4. 启动应用: `npm run dev`
@@ -218,3 +218,113 @@ export default {
   </div>
 </template>
 ```
+
+
+## 响应式组件状态 reactive
+------
+
+reactive函数也可以用来创建响应式数据
+
+------
+
+使用 reactive 函数创建基于引用数据类型的响应式数据
+```js
+import { reactive } from "vue";
+
+export default{
+  setup(){
+    //创建person对象
+    const person = reactive({ name: "张三" , age: 20 });
+
+    //点击事件
+    const onClickHandler = () => {
+      //
+      person.name = "里斯";
+      person.age = 50;
+    }
+    return{
+      person,
+      onClickHandler
+    }
+  }
+}
+```
+
+```vue
+<template>
+  <div>
+    {{person.name}}
+    {{person.age}}
+
+    <button @click="onClickHandler">button</button>
+  </div>
+</template>
+```
+
+-------
+
+reactive 函数只能基于引用数据类型创建响应式数据 , 对于基本数据类型它是不起作用的
+```js
+import { reactive } from "vue";
+export default {
+    setup(){
+        let name = reactive("张三");
+        const onClickHandler = () => {
+            name = reactive("里斯");
+        }
+        return {
+            name,
+            onClickHandler
+        }
+    }
+}
+```
+
+在点击按钮后将`newPerson`中的值赋值给`person`
+```js
+import { reactive } from 'vue';
+
+export default {
+    name: 'ChangePerson',
+    setup(){
+        let person = reactive({name:'张三',age:30});
+        const newPerson = {name: '里斯' , age: 50};
+        const onClickHandler = () => {
+            for(const attr in newPerson){
+                person[attr] = newPerson[attr];
+            }
+        }
+        return{
+            person,
+            onClickHandler
+        }
+    }
+}
+```
+
+```vue
+<template>
+  <div>
+      {{person.name}}
+      {{person.age}}
+
+      <button @click="onClickHandler">button</button>
+  </div>
+</template>
+```
+
+ref既可以创建基于基本数据类型的响应式数据,也可以创建基于引用数据类型的响应式数据,reactive只用于创建基于引用数据类型的响应式数据
+
+ref在JS中使用时需要`.value`,而reactive在JS中使用不需要`.value`,在模板中使用时都不需要加value
+
+ref创建的响应式数据可以被直接整体赋值,而reactive创建的响应式数据不可以,若要整体赋值需要使用遍历的方式
+
+------
+
+为什么使用ref方法创建的响应式数据在修改时需要使用value属性,而reactive方法创建的响应式数据不需要
+
+ref既可以创建基于基本数据类型的响应式数据,也可以创建基于引用数据类型的响应式数据,基本数据类型的响应式是通过类的属性访问器实现的,引用数据类型的响应式是通过代理对象实现的,虽然内部实现不同,但为了更好的API使用体验,内部封装了统一的调用入口,即value属性,具体通过哪种方式创建响应式数据由内部统一处理
+
+reactive只用于创建基于引用数据类型的响应式数据,不需要供统一的调用入口,所以没有必要使用value属性
+
+
