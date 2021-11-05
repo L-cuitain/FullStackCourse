@@ -327,4 +327,47 @@ ref既可以创建基于基本数据类型的响应式数据,也可以创建基�
 
 reactive只用于创建基于引用数据类型的响应式数据,不需要供统一的调用入口,所以没有必要使用value属性
 
+## 计算属性 computed
+接收回调函数作为参数,基于回调函数中使用的响应式数据进行计算属性的创建,回调函数的返回值就是计算结果
+```js
+import { ref, computed } from "vue";
+
+export default {
+  setup() {
+    const names = ref([
+      "林俊杰",
+      "孙燕姿",
+      "周杰伦",
+      "张惠妹",
+      "刘若英",
+      "林宥嘉",
+      "刘德华",
+      "张韶涵",
+      "周笔畅",
+      "孙楠",
+    ]);
+
+    const search = ref("");
+    const filterNames = computed(() =>
+      names.value.filter((name) => name.includes(search.value))
+    );
+    return {
+      search,
+      filterNames,
+    };
+  },
+};
+```
+
+```vue
+<template>
+  <div>
+    <input type="text" v-model="search" />
+    <ul>
+      <li v-for="(item,index) in filterNames" :key="index">{{item}}</li>
+    </ul>
+  </div>
+</template>
+```
+
 
