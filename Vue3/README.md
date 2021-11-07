@@ -631,3 +631,112 @@ export default {
 ```
 
 ## toRef函数
+------
+
+toRef方法用于将响应式数据内部的普通数据转换为响应式数据,并且转换后的数据和原始数据存在`引用关系`,存在引用关系意味着当原始数据发生变化后,toRef转换后的数据也会跟着变化
+
+------
+
+```js
+import { ref , toRef } from "vue";
+
+export default{
+  setup(){
+    const person = ref({ name: "张三" });
+    const onClickHandler = () => {
+      person.value.name = "里斯";
+    }
+    return{
+      name: toRef(person.value,"name"),
+      person,
+      onClickHandler
+    }
+  }
+}
+```
+
+```vue
+<template>
+  <div>
+    <p>{{name}}</p>
+    <p>{{person}}</p>
+    <button @click="onClickHandler">button</button>
+  </div>
+</template>
+```
+
+------ 
+
+需求:当响应式数据的结构层级比较深时,在模板中使用比较繁琐,能否在模板中使用时简化结构层级呢?
+```js
+export default{
+  setup(){
+    const person = ref({ brand: {name: "宝马"} });
+    return {person}
+  }
+}
+```
+
+```vue
+<template>{{ person.brand.name }}</template>
+```
+
+如果能够将模板中的`person.brand.name`简化成`brandName`,模板代码会更加简洁
+```vue
+<template>
+  <div>
+    <p>{{ person }}</p>
+    <p>{{ brandName }}</p> 
+    <button @click="onClickHandler">button</button>     
+  </div>
+</template>
+
+<script>
+import {ref} from "vue";
+
+export default {
+    setup(){
+        const person = ref({ brand: {name: "宝马"} });
+        const onClickHandler = () => {
+            person.value.brand.name = "奔驰";
+        };
+        return{
+            person,
+            brandName: person.value.brand.name,
+            onClickHandler
+        }
+    }
+}
+</script>
+```
+
+------
+
+```vue
+<template>
+  <div>
+      <p>{{person}}</p>
+      <p>{{brandName}}</p>
+      <button @click="onClickHandler">button</button>
+  </div>
+</template>
+
+<script>
+import { ref , toRef } from "vue";
+
+export default {
+    setup(){
+        const person = ref({ brand: {name:"宝马"} });
+        const onClickHandler = () => {
+            person.value.brand.name = "奔驰";
+        };
+        return{
+            person,
+            brandName: toRef(person.value.brand , "name"),
+            onClickHandler
+        }
+    }
+}
+</script>
+```
+
