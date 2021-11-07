@@ -594,3 +594,40 @@ export default {
 </template>
 ```
 
+## 监听状态 watchEffect
+------
+
+watchEffect和watch一样,都是用于监听响应式数据的变化
+
+------
+watchEffect只关心数据的最新值,不关心旧值,而且watchEffect默认会在初始时执行一次
+
+```js
+import { ref, watchEffect } from "vue";
+
+export default {
+  setup() {
+    const firstName = ref("");
+    const lastName = ref("");
+    watchEffect(() => {
+      console.log(firstName.value);
+      console.log(lastName.value);
+    });
+    return{
+      firstName,
+      lastName
+    }
+  },
+};
+```
+
+```vue
+<template>
+  <div>
+    <input type="text" v-model="firstName">
+    <input type="text" v-model="lastName">
+  </div>
+</template>
+```
+
+## toRef函数
