@@ -370,4 +370,227 @@ export default {
 </template>
 ```
 
+## 监听状态 watch
+------
+
+watch函数用于监听响应式数据的变化
+
+------
+
+* 使用 watch 函数监听基于 ref 创建的响应式数据(基本数据类型)
+```js
+import { ref , watch } from 'vue'
+
+export default{
+  setup(){
+    //定义响应式变量 text
+    const text = ref("");
+    //监听文本改变 并打印结果
+    watch(text,(current,previous) => {
+      console.log("current",current);
+      console.log("previous",previous);
+    })
+    return { text }
+  }
+}
+```
+
+```vue
+<template>
+  <div>
+    <input type="text" v-model="text">
+  </div>
+</template>
+```
+
+* 使用watch监听基于ref创建的响应式数据(引用数据类型)
+```js
+import { ref , watch } from "vue";
+
+export default {
+    setup(){
+        const person = ref({ name : "张三" });
+        watch(person.value,(current) => {
+            console.log(current);
+        })
+
+        function onClickHandler(){
+            person.value.name = "里斯";
+        }
+
+        return{
+            person,
+            onClickHandler
+        }
+    }
+}
+```
+
+```vue
+<template>
+  <div>
+      <button @click="onClickHandler">{{person.name}}</button>
+  </div>
+</template>
+```
+
+* 使用watch监听响应式数据内部的具体属性(基本数据类型)
+```js
+import { ref , watch } from "vue";
+
+export default {
+    setup(){
+        const person = ref({ name : "张三" });
+        watch(
+            () => person.value.name,
+            (current) => {
+                console.log(current);
+            }
+        );
+
+        function onClickHandler(){
+            person.value.name = "里斯";
+        }
+        return {
+            person,
+            onClickHandler
+        }
+    }
+}
+```
+
+```vue
+<template>
+  <div>
+      <button @click="onClickHandler">{{person.name}}</button>
+  </div>
+</template>
+```
+
+* 使用watch监听响应式数据内部的具体属性(引用数据类型)
+```js
+import { ref , watch } from 'vue';
+
+export default {
+  setup() {
+    const person = ref({ brand: { title: "宝马" }, name: "张三" });
+    const changeBrandTitle = () => {
+      person.value.brand.title = "奔驰";
+    };
+    const changeName = () => {
+      person.value.name = "里斯";
+    };
+    watch(person.value.brand, (current) => {
+      console.log(current);
+    });
+    return {
+      person,
+      changeBrandTitle,
+      changeName,
+    };
+  },
+};
+```
+
+```vue
+<template>
+  <div>
+    <p>{{ person.brand.title }} {{ person.name }}</p>
+    <button @click="changeBrandTitle">title</button>
+    <button @click="changeName">name</button>
+  </div>
+</template>
+```
+
+* 使用watch监听基于reactive创建的响应式数据
+```js
+import { reactive , watch } from 'vue';
+
+export default {
+    setup(){
+        const person = reactive({ name : "张三" });
+        const onClickHandler = () => {
+            person.name = "里斯";
+        }
+        watch(person , (current , previous) => {
+            console.log(current);
+        })
+        return {
+            person,
+            onClickHandler
+        }
+    }
+}
+```
+
+```vue
+<template>
+  <div>
+      {{ person.name }}
+      <button @click="onClickHandler">button</button>
+  </div>
+</template>
+```
+
+* 使watch监听数据在初始时执行一次
+```js
+import {ref , watch} from "vue";
+
+export default {
+    setup(){
+        const firstName = ref("");
+        const lastName = ref("");
+        watch([firstName , lastName] , current => {
+            console.log(current);
+        })
+        return {
+            firstName,
+            lastName
+        }
+    }
+}
+```
+
+```vue
+<template>
+  <div>
+      <input type="text" v-model="firstName">
+      <input type="text" v-model="lastName">
+  </div>
+</template>
+```
+
+* 使watch监听数据在初始时执行一次
+```js
+import { ref , watch } from "vue";
+
+export default {
+    setup(){
+        const firstName = ref("hello");
+        const lastName = ref("world");
+        watch(
+            [firstName,lastName],
+            current => {
+                console.log(current);
+            },
+            {
+                immediate: true,
+            } 
+        )
+        return{
+            firstName,
+            lastName
+        }
+    }
+}
+```
+
+```vue
+<template>
+  <div>
+      <input type="text" v-model="firstName">
+      <input type="text" v-model="lastName">
+  </div>
+</template>
+```
 
