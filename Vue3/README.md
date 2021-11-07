@@ -740,3 +740,68 @@ export default {
 </script>
 ```
 
+## toRefs函数
+------
+
+通过`toRef`方法一次只能转换一个数据,通过`toRefs`方法可以实现批量数据转换
+
+------
+
+toRefs方法接收引用数据类型的响应式数据,它可以将数据中的第一层属性全部转换为响应式数据,返回值是一个对象,对象中存储所有转换后的响应式数据
+```vue
+<template>
+  <div>
+    {{name}}
+    {{age}}
+    {{brand.title}}
+    {{brand.year}}
+  </div>
+</template>
+
+<script>
+import { reactive , ref } from 'vue'
+
+export default{
+  setup(){
+    const person = reactive({
+      name: "张三",
+      age: 20,
+      brand: { title: "宝马" , year: 1 }
+    });
+    return{
+      ...toRefs(person)
+    }
+  }
+}
+</script>
+```
+
+对引用数据类型颞部的数据进行转换
+```vue
+<template>
+  <div>
+      {{name}}
+      {{age}}
+      {{year}}
+  </div>
+</template>
+
+<script>
+import { reactive , toRefs } from "vue";
+
+export default {
+    name: "APP",
+    setup(){
+        const person = reactive({
+            name: "张三",
+            age: 20,
+            brand: { title: "宝马" , year: 1 }
+        });
+        return{
+            ...toRefs(person),
+            ...toRefs(person.brand)
+        }
+    }
+}
+</script>
+```
