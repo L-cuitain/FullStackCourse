@@ -1420,6 +1420,84 @@ index.html
 </body>
 ```
 
+## Suspense组件
 
+------
+
+Suspense用于确保组件中的setup函数调用和模板渲染之间的执行顺序,先执行setup后渲染模板
+
+当组件中的setup被写成异步函数的形式,代码执行的顺序就变成了先渲染模板后执行setup函数了
+
+------
+
+App.vue
+```vue
+<template>
+  <div>
+    <Suspense>
+      <Posts />
+    </Suspense>
+  </div>
+</template>
+
+<script>
+import Posts from './components/Posts.vue';
+
+export default{
+  components: {
+    Posts
+  },
+  name: "App"
+}
+</script>
+```
+
+components/Posts
+```vue
+<template>
+  <div>
+      <pre>{{ data }}</pre>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+
+export default {
+    async setup(){
+        let response = await axios.get("https://jsonplaceholder.typicode.com/posts");
+        return{
+            data: response.data
+        }
+    }
+}
+</script>
+```
+
+通过Suspense组件还可以为异步操作添加等待提示效果
+App.vue
+```vue
+<template>
+  <div>
+    <Suspense>
+      <template v-slot:default>
+        <Posts />
+      </template>
+      <template v-slot:fallback>loading...</template>
+    </Suspense>
+  </div>
+</template>
+
+<script>
+import Posts from './components/Posts.vue';
+
+export default{
+  components: {
+    Posts
+  },
+  name: "App"
+}
+</script>
+```
 
 
