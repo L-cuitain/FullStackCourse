@@ -1337,3 +1337,89 @@ export default {
 </script>
 ```
 
+## teleport组件
+------
+
+teleport组件可以将指定组件渲染应用外部的其他位置
+比如弹框组件,它可能在任意组件中使用,但它不属于任意组件,所以不能在使用它的组件中渲染它,我们需要将它渲染到指定位置
+
+------
+
+App.vue
+```vue
+<template>
+  <div>
+    <teleport to="#modal">
+      <Modal />
+    </teleport>
+  </div>
+</template>
+
+<script>
+import Modal from './components/Modal.vue'
+
+export default{
+  components: {
+    Modal
+  },
+}
+</script>
+```
+
+components/Modal
+```vue
+<template>
+  <div class="wrapper">
+      <div class="content">
+          <a class="close" href="javascript:;">关闭</a>
+      </div>
+  </div>
+</template>
+
+<script>
+export default {
+    name: "Modal"
+}
+</script>
+
+<style scoped>
+.wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+.content {
+  width: 660px;
+  height: 400px;
+  background: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: #999;
+  text-decoration: none;
+}
+</style>
+```
+
+index.html
+```html
+<body>
+  <div id="modal"></div>
+
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+```
+
+
+
+
