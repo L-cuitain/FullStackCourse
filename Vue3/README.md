@@ -2425,3 +2425,58 @@ export default {
 }
 </script>
 ```
+
+## customRef
+------
+
+创建具有自定义行为的响应式数据,通过拦截响应式数据的读取和设置实现
+
+------
+
+防抖: 监听用户的连续操作,最终只响应连续操作中的最后一次操作
+
+节流: 函数节流的目的，是为了限制函数一段时间内只能执行一次
+
+```vue
+<template>
+  <div>
+    <input type="text" v-model="keyword">
+    {{ keyword }}
+  </div>
+</template>
+
+
+<script>
+import { customRef } from "vue";
+
+export default{
+  setup(){
+    const keyword = useDebounceRef("Hello",400);
+    return{
+      keyword
+    }
+  }
+}
+
+function useDebounceRef(initialValue,delay){
+  let timer = null;
+  return customRef((track,trigger) => {
+    return {
+      get(){
+        //跟踪 initialValue 值的变量
+        track();
+        return initialValue;
+      },
+      set(newValue){
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          initialValue = newValue;
+          //触发视图更新
+          trigger();
+        },delay);
+      }
+    }
+  })
+}
+</script>
+```
