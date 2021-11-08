@@ -805,3 +805,144 @@ export default {
 }
 </script>
 ```
+
+## 组件通讯
+------
+
+父组件通过props向子组件传递数据
+
+------
+
+App.vue
+```vue
+<template>
+  <div>
+    <div>I am parent component</div>
+    <hr />
+    <ChildComA :msg="msg"/>
+  </div>
+</template>
+
+<script>
+import ChildComA from "./components/ChildComA.vue";
+import { ref } from "vue";
+
+export default {
+  components: {
+    ChildComA,
+  },
+  setup() {
+    const msg = ref("a message from parent");
+    return{
+      msg
+    }
+  },
+};
+</script>
+```
+
+
+components/ChildComA.vue
+```vue
+<template>
+  <div>
+      {{childMsg}}
+      <hr />
+      {{ msg }}
+  </div>
+</template>
+
+<script>
+import { computed } from "vue";
+
+export default {
+    props: ["msg"],
+    setup(props){
+        //当父组件更新props时 setup 函数时不会重新执行的
+        //所以在 setup 函数中使用 props 时需要用到 computed 或 watch 来响应 props 的变化
+        //注意: 直接在模板中使用 props 数据时没有这个问题的
+        const childMsg = computed(() => props.msg + "AA");
+        return{
+            childMsg
+        }
+    }
+}
+</script>
+```
+
+------
+
+子组件通过自定义事件向父组件传递数据
+App.vue
+```vue
+<template>
+  <div>
+    <div>I am parent component</div>
+    <hr />
+    <ChildComB :msg="msg" @onMsgChanged="onMsgChanged"/>
+  </div>
+</template>
+
+<script>
+import ChildComB from "./components/ChildComB.vue";
+
+import { ref } from "vue";
+
+export default {
+  components: {
+    ChildComB,
+  },
+  setup() {
+    const msg = ref("i am a message");
+    const onMsgChanged = (data) => {
+      msg.value = data;
+    }
+    return{
+      msg,
+      onMsgChanged
+    }
+  },
+};
+</script>
+```
+
+components/ChildComB.vue
+```vue
+<template>
+  <div>
+      {{childMsg}}
+      <hr />
+      {{msg}}
+      <hr />
+      <button @click="onMsgChanged">change msg</button>
+  </div>
+</template>
+
+<script>
+export default {
+    props: ["msg"],
+    setup(props,{ emit }){
+        const onMsgChanged = () => {
+            emit("onMsgChanged","change msg from children");
+        }
+        return{
+            onMsgChanged
+        }
+    }
+}
+</script>
+```
+
+注意事项:在Vue2中,模板需要被一个根元素包裹,但在Vue3中是不需要的,Vue3支持在模板中编写代码片段
+```vue
+<template>
+  <div>{{ childMsg }}</div>
+  <button @click="onClickHandler">change msg</button>
+</template>
+```
+
+如果在模板中使用代码片段,自定义事件需要被显式的声明在emits选项中
+```js
+emits: ["onMsgChanged"]
+```
+
