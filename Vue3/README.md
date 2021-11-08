@@ -1500,4 +1500,108 @@ export default{
 </script>
 ```
 
+## 过渡动画
+
+### 概述
+Vue提供了transition组件供我们执行过渡动画,我们只需要使用transition组件包裹要执行动画的元素即可
+
+执行过渡动画的前提条件是元素具有创建与销毁的操作
+```vue
+<transition>
+  <h1>hello world</h1>
+</transition>
+```
+
+当创建元素时,transition组件会为执行动画的元素添加三个类名,我们可以通过这三个类名为元素添加入场动画
+```css
+.enter-form{}   // 元素执行动画的初始样式(动画起点样式)
+.enter-to{}   // 元素执行动画的目标样式(动画终点样式)
+.enter-active{}   // 可以用于指定元素指定动画的类型
+```
+
+```css
+.enter-from{ opacity: 0 }
+.enter-to { opacity: 1 }
+.enter-active { transition: opacity 2s ease-in }  // ease-in 先慢后快
+```
+
+当销毁元素时,transition组件会为执行动画的元素添加三个类名,我们可以通过这三个类名为元素添加离场动画样式
+```css
+.leave-from{}  // 元素执行动画的初始样式(动画起点样式)
+.leave-to{}  // 元素执行动画的目标样式(动画终点样式)
+.leave-active{}   //可以用于指定元素指定动画类型
+```
+
+```css
+.leave-from { opacity: 1 }
+.leave-to { opacity: 0 }
+.leave-active{ transition: opacity 2s ease-out }  // ease-out 先快后慢
+```
+
+如果在页面中有多个元素要执行动画,而多个元素要执行的动画不同时,为了对多个元素的动画样式进行区分,在调用transition组件时需要为它添加name属性以区分样式类名
+
+```vue
+<transition name="fade">
+  <h1>hello world</h1>
+</transition>
+```
+
+```css
+.fade-enter-from{}
+.fade-enter-to{}
+.fade-enter-active{}
+
+.fade-leave-from{}
+.fade-leave-to{}
+.fade-leave-active{}
+```
+
+### 示例
+需求: 点击按钮让元素显示隐藏(执行动画)
+```vue
+<template>
+  <div>
+      <transition name="fade">
+          <h2 v-if="show">hello world</h2>
+      </transition>
+      <button @click="show = !show">button</button>
+  </div>
+</template>
+
+<script>
+import { ref } from "vue";
+
+export default {
+    setup(){
+        const show = ref(false);
+
+        return{
+            show
+        }
+    }
+}
+</script>
+
+<style>
+.fade-enter-from {
+  opacity: 0;
+}
+.fade-enter-to {
+  opacity: 1;
+}
+.fade-enter-active {
+  transition: opacity 2s ease-in;
+}
+
+.fade-leave-from {
+  opacity: 1;
+}
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-leave-active {
+  transition: opacity 2s ease-out;
+}
+</style>
+```
 
