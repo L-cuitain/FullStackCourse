@@ -2193,3 +2193,235 @@ export default {
 </script>
 ```
 
+
+## 双向数据绑定
+### 实现表单双向数据绑定
+1. 什么是双向数据绑定
+双向指视图(template) 和 逻辑(script),双向数据绑定是指视图更新数据后自动同步到逻辑,逻辑更新数据后自动同步到视图
+
+2. 如何实现双向数据绑定
+```vue
+<template>
+  <div>
+    <input type="text" v-model="firstName" />
+    <button @click="onClickHandler">button</button>
+  </div>
+</template>
+
+<script>
+import { ref } from "vue";
+
+export default {
+  setup() {
+    const firstName = ref("张三");
+    const onClickHandler = () => {
+      firstName.value = "里斯";
+    };
+    return {
+      firstName,
+      onClickHandler,
+    };
+  },
+};
+</script>
+```
+
+3. 如何监听双向数据绑定中数据的变化
+```vue
+<template>
+  <div>
+      <input type="text" v-model="firstName" @update:modelValue="onFirstNameChanged($event)">
+  </div>
+</template>
+
+<script>
+import { ref } from "vue";
+
+export default {
+    setup(){
+        const firstName = ref("张三");
+        const onFirstNameChanged = (event) => {
+            console.log(event);
+        };
+        return{
+            firstName,
+            onFirstNameChanged
+        }
+    }
+}
+</script>
+```
+
+### 实现组件双向数据绑定
+1. 普通版
+components/ChildComC.vue
+```vue
+<template>
+  <div>
+      <SonComA :firstName="firstName" @onFirstNameChanged="onFirstNameChanged($event)"/>
+      <button @click="onClickHandler">我是ChildComC组件中的button</button>
+  </div>
+</template>
+
+<script>
+import { ref } from "vue";
+import SonComA from "./SonCom/SonComA.vue";
+
+export default {
+    name: "App",
+    setup(){
+        //
+        const firstName = ref("张三");
+        const onClickHandler = () => {
+            firstName.value = "里斯";
+        };
+        const onFirstNameChanged = (event) => {
+            firstName.value = event;
+        };
+        return {
+            firstName,
+            onClickHandler,
+            onFirstNameChanged
+        }
+    }
+}
+</script>
+```
+
+components/SonCom/SonComA.vue
+```vue
+<template>
+  <div>
+      {{firstName}}
+      <button @click="onClickHandler">我是SonComA组件中的button</button>
+  </div>
+</template>
+
+<script>
+export default {
+    props: ["firstName"],
+    setup(props,{ emit }){
+        const onClickHandler = () => {
+            emit("onFirstNameChanged","王五");
+        };
+        return {
+            onClickHandler
+        }
+    }
+}
+</script>
+```
+
+
+2. 升级版
+components/ChildComD.vue
+```vue
+<template>
+  <div>
+      <SonComB v-model="firstName"/>
+      <button @click="onClickHandler">我是ChildComD组件中的button</button>
+  </div>
+</template>
+
+<script>
+import SonComB from "./SonCom/SonComB.vue";
+import { ref } from "vue";
+
+export default {
+  components: { SonComB },
+  setup() {
+    const firstName = ref("张三");
+    const onClickHandler = () => {
+      firstName.value = "里斯";
+    };
+    return {
+      firstName,
+      onClickHandler,
+    };
+  },
+};
+</script>
+```
+
+components/SonCom/SonComB.vue
+```vue
+<template>
+  <div>
+      {{modelValue}}
+      <button @click="onClickHandler">我是SonComB组件中的button</button>
+  </div>
+</template>
+
+<script>
+export default {
+    props: ["modelValue"],
+    setup(props,{emit}){
+        const onClickHandler = () => {
+            emit("update:modelValue","王五");
+        };
+        return{
+            onClickHandler
+        }
+    }
+}
+</script>
+```
+
+
+3. 终极版
+components/ChildComE.vue
+```vue
+<template>
+  <div>
+    <SonComC v-model:firstName="firstName" v-model:lastName="lastName" />
+      <button @click="onClickHandler">我是ChildComE组件中的button</button>
+  </div>
+</template>
+
+<script>
+import SonComC from "./SonCom/SonComC.vue";
+import { ref } from "vue";
+
+export default {
+  components: { SonComC },
+  setup() {
+    const firstName = ref("张三");
+    const lastName = ref("里斯");
+    const onClickHandler = () => {
+      firstName.value = "孙悟空";
+      lastName.value = "猪八戒";
+    };
+    return {
+      firstName,
+      lastName,
+      onClickHandler,
+    };
+  },
+};
+</script>
+```
+
+components/SonCom/SonComC.vue
+```vue
+<template>
+  <div>
+      {{firstName}} {{lastName}}
+      <button @click="onClickHandler">我是SonComC组件中的button</button>
+  </div>
+</template>
+
+<script>
+export default {
+    props: ["firstName","lastName"],
+    setup(props,{emit}){
+        const onClickHandler = () => {
+            emit("update:firstName","刘备");
+            emit("update:lastName","诸葛亮");
+        };
+        return{
+            onClickHandler
+        }
+    }
+}
+</script>
+```
