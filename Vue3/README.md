@@ -1261,3 +1261,79 @@ export default {
 </script>
 ```
 
+## provide,inject函数
+
+------
+
+通过provide , inject函数的配合使用,可以实现跨组件传递数据(组件与组件存在嵌套关系)
+
+------
+
+父组件 App.vue
+```vue
+<template>
+  <ChildComA />
+</template>
+
+<script>
+import { ref , provide } from "vue";
+import ChildComA from './components/ChildComA.vue'
+
+export default{
+  components:{
+    ChildComA
+  },
+  setup(){
+    const person = ref({ name: "张三" });
+    const changePerson = () => {
+      person.value.name = "里斯";
+    }
+    provide("person",person);
+    provide("changePerson",changePerson);
+  }
+}
+</script>
+```
+
+子组件 components/ChildComA.vue
+```vue
+<template>
+    <LastChildComA />
+</template>
+
+<script>
+import LastChildComA from './LastChildComA.vue';
+
+export default {
+    components: {
+        LastChildComA
+    },
+}
+</script>
+```
+
+孙组件 components/LastChildComA.vue
+```vue
+<template>
+  <div>
+      {{person.name}}
+      <button @click="changePerson">button</button>
+  </div>
+</template>
+
+<script>
+import { inject } from "vue";
+
+export default {
+    setup(){
+        const person = inject("person");
+        const changePerson = inject("changePerson");
+        return{
+            person,
+            changePerson
+        }
+    }
+}
+</script>
+```
+
