@@ -1605,3 +1605,494 @@ export default {
 </style>
 ```
 
+## 状态管理 Vuex
+
+### 问题
+在不使用全局状态管理库时,应用状态由组件管理,当多个组件需要共享使用同一个应用状态时,应用状态需要通过props或自定义事件在组件之间进行传递,在组件与组件之间的关系比较疏远时,手递手的这种传递方式显得特别混乱,使得应用的维护变得困难
+
+在使用了全局状态管理库后,需要共享的应用状态被单独存储在一个独立于组件的Store对象中,所有组件可以直接从这个对象中获取状态,省去了繁琐的组件状态传递过程,而且当Store中的状态发生变化后,组件也会自动更新
+
+### Vuex工作流程
+* State: 用于存储应用状态(store.state)
+* Action: 用于执行异步操作(dispatch)
+* Mutation: 用于修改state中的应用状态(commit)
+* Getter: Vuex中的计算属性(store.getters)
+* Moudle: 模块,用于对状态进行拆分
+
+在组件中开发者可以调用`dispatch`方法触发`Action`执行异步操作,当异步操作执行完成后,在Action中可以继续调用commit方法触发mutaion修改状态,当状态被修改以后,视图更新
+
+### 下载
+Vuex目前有两个版本,一个是`3.6.2`,另一个是`4.0.2`,3.X的版本是供Vue2使用,4.X版本是供Vue3使用
+
+下载指定版本号的Vuex
+```
+npm install vuex@4.0.2
+```
+
+### 创建Store
+src/store/index.js
+```js
+//创建Store
+import { createStore } from 'vuex';
+
+export default createStore({});
+```
+
+src/main.js
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+
+//挂载 store
+import store from './store';
+const app = createApp(App);
+
+
+app.use(store).mount('#app')
+```
+
+
+### state
+------
+
+在应用状态对象中存储`username`状态.
+
+------
+
+```js
+export default createStore({
+    state: {
+        username: "张三"
+    }
+});
+```
+
+在组件中获取`username`状态
+```vue
+<template>
+  <div>
+    {{$store.state.username}}
+  </div>
+</template>
+```
+
+```vue
+<script>
+import { useStore } from 'vuex';
+
+export default{
+  setup(){
+    const store = useStore();
+    console.log(store.state.username);
+  }
+}
+</script>
+```
+
+### getters
+------
+
+getters是vuex中的计算属性,基于现有状态计算出新的状态
+
+------
+
+```js
+export default createStore({
+    getters:{
+        newUsername(state){
+            return state.username + "😈😈😈😈"
+        }
+    }
+});
+```
+
+```vue
+<template>
+  <div>
+    {{$store.getters.newUsername}}
+  </div>
+</template>
+```
+
+```vue
+<script>
+import { useStore } from 'vuex';
+
+export default{
+  setup(){
+    const store = useStore();
+    console.log(store.getters.newUsername);
+  }
+}
+</script>
+```
+
+### mutations
+------
+
+mutations是Vuex中用于修改状态的方法
+
+------
+
+```js
+export default createStore({
+    mutations:{
+        updateUsername(state,username){
+            state.username = username;
+        }
+    }
+});
+```
+
+```vue
+<template>
+  <div>
+    <button @click="$store.commit('updateUsername','里斯')">change username</button>
+  </div>
+</template>
+
+```
+
+### actions
+------
+
+actions在Vuex中用于执行异步操作,当异步操作执行完成以后可以调用commit方法触发mutation来修改应用状态
+
+------
+
+```js
+export default createStore({
+    actions:{
+        updateName(ctx){
+            setTimeout(() => {
+                ctx.commit('updateName','里斯')
+            },1000)
+        }
+    }
+});
+```
+
+```vue
+<script>
+import { useStore } from 'vuex';
+
+export default{
+  setup(){
+    const store = useStore();
+
+    const onClickHandler = () => {
+      store.dispatch('updateName');
+    }
+    return{
+      onClickHandler
+    }
+  }
+}
+</script>
+```
+
+```vue
+<template>
+  <div>
+    <button @click="onClickHandler">button</button>
+  </div>
+</template>
+```
+
+### module
+#### 概述
+Vuex允许开发者通过模块对状态进行拆分,允许开发者将不同功能的状态代码拆分到不同的模块中
+
+模块分为两种,一种是不具备命名空间的模块,另一种是具备命名空间的模块,推荐使用命名空间,命名空间使模块更加独立
+
+#### 非命名空间模块
+```js
+//创建Store
+import { createStore } from 'vuex';
+
+const moduleA = {
+    state(){
+        return{
+            name: '模块A'
+        }
+    }
+}
+
+const moduleB = {
+    state(){
+        return{
+            name: '模块B'
+        }
+    }
+}
+
+export default createStore({
+    modules: {
+        a: moduleA,
+        b: moduleB
+    }
+})
+```
+
+```vue
+<template>
+  <div>
+    {{$store.state['a'].name}}
+    {{$store.state['b'].name}}
+  </div>
+</template>
+
+<script>
+import { useStore } from 'vuex';
+
+export default{
+  setup(){
+    const store = useStore();
+    console.log(store.state.a.name);
+    console.log(store.state.b.name);
+  }
+}
+</script>
+```
+
+------
+
+非命名空间模块中的mutation方法,当`updateName`方法被触发后,所有定义此方法的模块都会调用该方法
+```js
+//创建Store
+import { createStore } from 'vuex';
+
+const moduleA = {
+    mutations:{
+        updateName(state){
+            state.name = '😈模块A😈'
+        }
+    }
+}
+
+const moduleB = {
+    mutations: {
+        updateName(state){
+            state.name = '😀模块B😀'
+        }
+    }
+}
+
+export default createStore({
+    modules: {
+        a: moduleA,
+        b: moduleB
+    }
+})
+```
+
+```vue
+<template>
+  <div>
+    {{ $store.state["a"].name }}
+    {{ $store.state["b"].name }}
+    <button @click="$store.commit('updateName')">updateName</button>
+  </div>
+</template>
+```
+
+------
+
+非命名空间模块中的`getter`,不能再两个模块中定义相同的`getter`以避免程序报错
+```js
+//创建Store
+import { createStore } from 'vuex';
+
+const moduleA = {
+    getters:{
+        newName(state){
+            return state.name + '😈'
+        }
+    }
+}
+
+const moduleB = {
+    getters: {
+        newName(state){
+            return state.name + '😀'
+        }
+    }
+}
+
+export default createStore({
+    modules: {
+        a: moduleA,
+        b: moduleB
+    }
+})
+```
+
+```vue
+<template>
+    {{$store.getters.newName}}
+</template>
+```
+
+### 命名空间模块
+------
+
+命名空间模块需要再模块对象中添加`namespaced: true`选项
+
+------
+
+```js
+//创建Store
+import { createStore } from 'vuex';
+
+const moduleA = {
+    namespaced: true,
+    state(){
+        return{
+            name: '模块A'
+        }
+    }
+}
+
+const moduleB = {
+    namespaced: true,
+    state(){
+        return{
+            name: '模块B'
+        }
+    }
+}
+
+export default createStore({
+    modules: {
+        a: moduleA,
+        b: moduleB
+    }
+})
+```
+
+```vue
+<template>
+  <div>
+      {{$store.state['a'].name}}
+      {{$store.state['b'].name}}
+  </div>
+</template>
+```
+
+------
+
+具有命名空间的模块状态更加独立,如可以在不同的命令空间中定义相同的`getter`
+```js
+//创建Store
+import { createStore } from 'vuex';
+
+const moduleA = {
+    namespaced: true,
+    state(){
+        return{
+            name: '张三'
+        }
+    },
+    getters:{
+        newName(state){
+            return state.name + '😀'
+        }
+    }
+}
+
+const moduleB = {
+    namespaced: true,
+    state(){
+        return{
+            name: '里斯'
+        }
+    },
+    getters:{
+        newName(state){
+            return state.name + '😈'
+        }
+    }
+}
+
+export default createStore({
+    modules: {
+        a: moduleA,
+        b: moduleB
+    }
+})
+```
+
+```vue
+<template>
+  <div>
+      {{$store.getters['a/newName']}}
+      {{$store.getters['b/newName']}}
+  </div>
+</template>
+```
+
+------
+
+在不同的命名空间模块中定义相同的变异方法
+```js
+//创建Store
+import { createStore } from 'vuex';
+
+const moduleA = {
+    namespaced: true,
+    state() {
+        return {
+            name: '张三'
+        }
+    },
+    getters: {
+        newName(state) {
+            return state.name + '😀'
+        }
+    },
+    mutations: {
+        updateName(state) {
+            state.name = '我是模块A'
+        }
+    }
+}
+
+const moduleB = {
+    namespaced: true,
+    state() {
+        return {
+            name: '里斯'
+        }
+    },
+    getters: {
+        newName(state) {
+            return state.name + '😈'
+        }
+    },
+    mutations: {
+        updateName(state) {
+            state.name = '我是模块B'
+        }
+    }
+}
+
+
+export default createStore({
+    modules: {
+        a: moduleA,
+        b: moduleB
+    }
+})
+```
+
+```vue
+<template>
+  <div>
+      {{$store.getters['a/newName']}}
+      {{$store.getters['b/newName']}}
+      <button @click="$store.commit('a/updateName')">update moduleA</button>
+      <button @click="$store.commit('b/updateName')">update moduleB</button>
+  </div>
+</template>
+```
+
