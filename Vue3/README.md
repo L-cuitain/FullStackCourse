@@ -1203,3 +1203,61 @@ export default{
 </script>
 ```
 
+## 获取DOM对象
+
+获取单个 DOM 对象
+```vue
+<template>
+    <div ref="divRef">
+        Hello Ref
+    </div>
+</template>
+
+<script>
+import { ref , onMounted } from "vue";
+
+export default {
+    setup(){
+        const divRef = ref(null);
+        onMounted(() => {
+            console.log(divRef.value);
+        })
+        return{
+            divRef
+        }
+    }
+}
+</script>
+```
+
+获取一组 DOM 对象
+```vue
+<template>
+  <div>
+      <ul>
+          <li v-for="(item,index) in list" :key="index" :ref="(el) => (elms[index] = el)">{{item}}</li>
+      </ul>
+      <button @click="onClickHandler">button</button>
+  </div>
+</template>
+
+<script>
+import { ref , onMounted , onUpdated } from "vue";
+
+export default {
+    setup(){
+        const list = ref(["a","b","c"]);
+        const elms = ref([]);
+        const onClickHandler = () => list.value.push("d")
+        onMounted(() => console.log(elms.value));
+        onUpdated(() => console.log(elms.value));
+        return{
+            list,
+            elms,
+            onClickHandler
+        }
+    }
+}
+</script>
+```
+
