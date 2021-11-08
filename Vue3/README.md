@@ -946,3 +946,147 @@ export default {
 emits: ["onMsgChanged"]
 ```
 
+## 组件生命周期
+`setup`:Vue3中组合式API,它会在创建组件实例对象前执行,会在每次组件重新挂载时执行
+
+创建组件实例对象前执行
+```js
+export default{
+  setup(){
+    console.log('setup');
+  },
+  beforeCreate(){
+    console.log("before create");
+  }
+}
+```
+
+每次组件重新挂载时执行
+App.vue
+```vue
+<template>
+  <div>
+    <button @click="show = !show">toggle</button>
+    <ChildComA v-if="show"/>
+  </div>
+</template>
+
+
+<script>
+import ChildComA from "./components/ChildComA.vue";
+
+import { ref } from "vue";
+
+export default {
+  components: {
+    ChildComA,
+  },
+  setup() {
+    console.log("setup");
+
+    const show = ref(true);
+    return{
+      show
+    }
+  }
+};
+</script>
+```
+
+components/ChildComA.vue
+```vue
+<template>
+  <div>
+      child component
+  </div>
+</template>
+
+<script>
+export default {
+    name: "ChildComponent",
+    setup(){
+        //setup 函数会在组件每次重新渲染时执行
+        console.log("setup");
+    }
+}
+</script>
+```
+
+`onMounted` 组件挂载完成后执行
+
+`onUpdated` 组件数据更新后执行
+
+`onUnmounted` 组件卸载后执行
+
+App.vue
+```vue
+<template>
+  <div>
+    <button @click="show = !show">toggle</button>
+    <ChildComB v-if="show"/>
+  </div>
+</template>
+
+
+<script>
+import ChildComB from './components/ChildComB.vue'
+
+import { ref } from "vue";
+
+export default {
+  components: {
+    ChildComB,
+  },
+  setup() {
+    const show = ref(true);
+    return{
+      show
+    }
+  },
+};
+</script>
+```
+
+components/ChildComB.vue
+```vue
+<template>
+  <div>
+      {{count}}
+      <button @click="onClickHandler">button</button>
+  </div>
+</template>
+
+<script>
+import { onMounted , onUnmounted , onUpdated , ref } from "vue";
+
+export default {
+    setup(){
+        let timer = null;
+        //组件挂载完成后开启定时器
+        onMounted(() => {
+            timer = setInterval(() => {
+                console.log("timer...");
+            },1000);
+        })
+        //组件卸载完成后清除定时器
+        onUnmounted(() => {
+            clearInterval(timer);
+        });
+        const count = ref(0);
+        const onClickHandler = () => {
+            count.value = count.value + 1;
+        }
+        //组件更新之后在控制台中输出 onUpdated
+        onUpdated(() => {
+            console.log("onUpdated");
+        });
+        return{
+            count,
+            onClickHandler
+        }
+    }
+}
+</script>
+```
+
+
