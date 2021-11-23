@@ -1106,9 +1106,9 @@ export default {
 </template>
 ```
 
-```js
+```vue
 <script>
-import { ref } from 'vue'
+import { ref } from 'vue';
 import axios from 'axios';
 
 export default{
@@ -1514,28 +1514,37 @@ Vue提供了transition组件供我们执行过渡动画,我们只需要使用tra
 
 当创建元素时,transition组件会为执行动画的元素添加三个类名,我们可以通过这三个类名为元素添加入场动画
 ```css
-.enter-form{}   // 元素执行动画的初始样式(动画起点样式)
-.enter-to{}   // 元素执行动画的目标样式(动画终点样式)
-.enter-active{}   // 可以用于指定元素指定动画的类型
+/*元素执行动画的初始样式(动画起点样式)*/
+.v-enter-form{}
+/*元素执行动画的目标样式(动画终点样式)*/
+.v-enter-to{}
+/*可以用于指定元素指定动画的类型*/
+.v-enter-active{} 
 ```
 
 ```css
-.enter-from{ opacity: 0 }
-.enter-to { opacity: 1 }
-.enter-active { transition: opacity 2s ease-in }  // ease-in 先慢后快
+.v-enter-from{ opacity: 0 }
+.v-enter-to { opacity: 1 }
+
+/*ease-in 先慢后快*/
+.v-enter-active { transition: opacity 2s ease-in } 
 ```
 
 当销毁元素时,transition组件会为执行动画的元素添加三个类名,我们可以通过这三个类名为元素添加离场动画样式
 ```css
-.leave-from{}  // 元素执行动画的初始样式(动画起点样式)
-.leave-to{}  // 元素执行动画的目标样式(动画终点样式)
-.leave-active{}   //可以用于指定元素指定动画类型
+/*元素执行动画的初始样式(动画起点样式)*/
+.v-leave-from{}
+/*元素执行动画的目标样式(动画终点样式)*/
+.v-leave-to{}
+/*可以用于指定元素指定动画类型*/
+.v-leave-active{} 
 ```
 
 ```css
-.leave-from { opacity: 1 }
-.leave-to { opacity: 0 }
-.leave-active{ transition: opacity 2s ease-out }  // ease-out 先快后慢
+.v-leave-from { opacity: 1 }
+.v-leave-to { opacity: 0 }
+/*ease-out 先快后慢*/
+.v-leave-active{ transition: opacity 2s ease-out } 
 ```
 
 如果在页面中有多个元素要执行动画,而多个元素要执行的动画不同时,为了对多个元素的动画样式进行区分,在调用transition组件时需要为它添加name属性以区分样式类名
