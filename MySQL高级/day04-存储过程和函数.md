@@ -495,3 +495,117 @@ select count_city(1);
 
 select count_city(2);
 ```
+
+## 练习
+建表语句
+```sql
+create table dept1(
+  id int unsigned primary key auto_increment,
+  deptno mediumint unsigned not null default 0,
+  dname varchar(20) not null default "",
+  loc varchar(13) not null default ""
+)engine=innodb default charset=gbk;
+
+create table emp1(
+  id int unsigned primary key auto_increment,
+  empno mediumint unsigned not null default 0,/*编号*/
+  ename varchar(20) not null default "",/*姓名*/
+  job varchar(9) not null default "",/*工作*/
+  mgr mediumint unsigned not null default 0,/*上级编号*/
+  hiredate date not null,/*入职时间*/
+  sal decimal(7,2) not null, /*薪水*/
+  comm decimal(7,2) not null,/*红利*/
+  deptno mediumint unsigned not null default 0/*部门编号*/
+)engine=innodb default charset=gbk;
+```
+
+任务要求1：写一个随机生成100-109的函数（PS：FLOOR可以取整  示例：FLOOR(3.5) = 3）
+
+任务要求2：写一个随机生成长度为N的字符串的函数（n为入参，字符串中字符为大小写的英文）
+
+任务要求3：写一个存储过程，向两张表emp1与dept2中分别插入1W条数据
+
+
+### 个人答案：
+```sql
+create database GaussDB_2;
+
+use GaussDB_2;
+
+create table dept1(
+  id int unsigned primary key auto_increment,
+  deptno mediumint unsigned not null default 0,
+  dname varchar(20) not null default "",
+  loc varchar(13) not null default ""
+)engine=innodb default charset=gbk;
+
+
+create table emp1(
+  id int unsigned primary key auto_increment,
+  empno mediumint unsigned not null default 0,/*编号*/
+  ename varchar(20) not null default "",/*姓名*/
+  job varchar(9) not null default "",/*工作*/
+  mgr mediumint unsigned not null default 0,/*上级编号*/
+  hiredate date not null,/*入职时间*/
+  sal decimal(7,2) not null, /*薪水*/
+  comm decimal(7,2) not null,/*红利*/
+  deptno mediumint unsigned not null default 0/*部门编号*/
+)engine=innodb default charset=gbk;
+
+# 任务要求1：写一个随机生成100-109的函数（PS：FLOOR可以取整  示例：FLOOR(3.5) = 3）
+delimiter $
+
+create procedure Random_Num_Function()
+begin
+    declare num int default 0;
+    set num = FLOOR(RAND() * 10 + 100);
+    select num;
+end $
+
+delimiter ;
+
+drop procedure Random_Num_Function;
+
+call Random_Num_Function;
+
+
+# 任务要求2：写一个随机生成长度为N的字符串的函数（n为入参，字符串中字符为大小写的英文）
+delimiter $
+
+create procedure Random_Str_Function(in n int)
+begin
+    declare origin_str char(52) default 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    declare str VARCHAR(255) default '';
+    declare count int default 0;
+    while count <= n do
+        set str = concat(str,substring(origin_str,floor(1 + rand()*52),1));
+            set count = count + 1;
+        end while;
+    select str;
+end $;
+
+delimiter ;
+
+drop procedure Random_Str_Function;
+
+call Random_Str_Function(10);
+
+# 任务要求3：写一个存储过程，向两张表emp1与dept2中分别插入1W条数据
+delimiter $
+
+create procedure add_data()
+begin
+    declare count int default 0;
+    while count <= 10000 do
+        insert into dept1(deptno, dname, loc) values(count,concat('张三',count),'不知道是什么');
+        insert into emp1(empno, ename, job, mgr, hiredate, sal, comm, deptno) values(count+2,concat('里斯',count+2),concat('职员',count+2),count+1,'2000-10-20',2000,500,count);
+        set count = count + 1;
+        end while;
+end $;
+
+delimiter ;
+
+drop procedure add_data;
+
+call add_data();
+```
