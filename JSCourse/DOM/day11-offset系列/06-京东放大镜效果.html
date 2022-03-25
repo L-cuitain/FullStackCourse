@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .preview_img {
+      position: relative;
+      height: 398px;
+      width: 398px;
+      margin-left: 10px;
+      margin-top: 200px;
+      border: 1px solid #ccc;
+    }
+
+    .mask {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 300px;
+      background: #FEDE4F;
+      opacity: .5;
+      border: 1px solid #ccc;
+      cursor: move;
+    }
+
+    .big {
+      display: none;
+      position: absolute;
+      left: 410px;
+      top: 0;
+      width: 500px;
+      height: 500px;
+      background-color: pink;
+      z-index: 999;
+      border: 1px solid #ccc;
+      overflow: hidden;
+    }
+
+    .big img {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="preview_wrap fl">
+    <!-- 小手机区域 -->
+    <div class="preview_img">
+      <img src="image/s3.png" alt="">
+      <!-- 黄色遮罩 -->
+      <div class="mask"></div>
+      <!-- 大手机区域 -->
+      <div class="big">
+        <img src="image/big.jpg" alt="" class="bigImg">
+      </div>
+    </div>
+  </div>
+  <script>
+    // 1.获取元素 preiew_img  mask big
+    let previewImg = document.querySelector('.preview_img');
+    let mask = document.querySelector('.mask');
+    let big = document.querySelector('.big');
+    // 2.给preview_img添加加移入事件
+    previewImg.addEventListener('mouseover', function () {
+      // 2.1 黄色区域显示
+      mask.style.display = "block";
+      // 2.2 大手机显示
+      big.style.display = "block";
+    })
+
+    // 3.给preview_img添加加移出事件
+    previewImg.addEventListener('mouseout', function () {
+      // 3.1 黄色区域隐藏
+      mask.style.display = "none";
+      // 3.2 大手机隐藏
+      big.style.display = "none";
+    })
+
+    // 功能2:
+    // 1.鼠标在preview_imgs区域移动 给preview_img添加mousemove事件
+    previewImg.addEventListener('mousemove', function (e) {
+      // 1.1 获取鼠标在preview_img中的坐标 e.pageX - 这个元素的offsetLeft e.pageY - 这个元素的offsetTop
+      let x = e.pageX - this.offsetLeft;
+      let y = e.pageY - this.offsetTop;
+      // 1.2 获得的值赋值给黄色区域的left 和 top
+
+      // 1.3 解决鼠标总是在黄色区域的左上角
+      let maskx = x - mask.offsetWidth / 2;
+      let masky = y - mask.offsetHeight / 2;
+      // 1.4 解决黄色区域超出preveiw_img的问题
+      // 1.4.1 计算 黄色区域的最大移动距离 0 100
+      let MaxMask = previewImg.offsetWidth - mask.offsetWidth;
+      if (maskx <= 0) {// 黄色区域在最左边
+        maskx = 0;
+      } else if (maskx >= MaxMask) { // 黄色区域在最右边
+        maskx = MaxMask;
+      }
+
+      if (masky <= 0) {// 黄色区域在最上边
+        masky = 0;
+      } else if (masky >= MaxMask) { // 黄色区域在最下边
+        masky = MaxMask;
+      }
+      mask.style.left = maskx + 'px';
+      mask.style.top = masky + 'px';
+
+      // 功能三
+      // 1.获取大图片
+      let bigImg = document.querySelector('.bigImg');
+      // 2.获取大图片的最大移动距离
+      let bigMax = bigImg.offsetWidth - big.offsetWidth;
+      // 3.计算大图的移动距离  小图的移动距离*大图的最大移动距离/小兔的最大移动距离=大图的移动距离
+      let bigx = maskx * bigMax / MaxMask;
+      let bigy = masky * bigMax / MaxMask;
+      // 4.赋值
+      bigImg.style.left = -bigx + 'px';
+      bigImg.style.top = -bigy + 'px';
+    })
+
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <ul id="list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+
+    <div>
+        <span>hello</span>
+
+        <b>fate</b>
+    </div>
+
+    <p><span>为了</span> 滑稽</p>
+</body>
+<script>
+    //元素.children() 获取某个元素的所有子元素
+    console.log($('#list').children());
+    
+    //元素.find(后代元素选择器)
+    console.log($('p').find('span'));
+
+    // 元素.parent()  某个元素的父元素
+    console.log($('span').parent());
+    // 元素.parents()  某个元素的祖父元素
+    console.log($('span').parents());
+
+    // 元素.prev()  某个元素前面的一个兄弟元素
+    console.log($('p').prev());
+    // 元素.prevAll()  某个元素前面的所有兄弟元素
+    console.log($('p').prevAll());
+
+    // 元素.next()  某个元素后面的一个兄弟元素
+    console.log($('#list').next());
+    // 元素.nextAll()  某个元素后面的一个兄弟元素
+    console.log($('#list').nextAll());
+
+    // 元素.siblings() 某个元素的其他兄弟元素
+    console.log($('#list').siblings());
+
+    // 元素.clone()  克隆节点
+    $('b').clone().appendTo('p');
+
+</script>
+</html>

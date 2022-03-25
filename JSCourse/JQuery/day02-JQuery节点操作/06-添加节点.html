@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div id="content">
+
+    </div>
+
+    <div id="dv">
+
+    </div>
+</body>
+<script>    
+    //jQuery创建元素方式:
+    //方法1: $('html标签')
+    let p = $('<p>123123</p>');
+
+    //方法2: $(‘元素’).html(‘html标签’)
+    $('#dv').html(p);
+
+    //方法3: 插入到元素内部的后面
+    //append(content)  父元素.append(子元素)
+    $('#content').append('<span>滑稽</span>');
+    //appendTo(content)  子元素.appendTo(父元素)
+    $("<a href='javascript:;'>呵呵</a>").appendTo('#content');
+
+
+    //方法4: 插入元素到内部的前面
+    //prepend(content) 父元素.prepend(子元素)
+    $('#dv').prepend('<h1>23333</h1>');
+    //prependTo(content)  子元素.prependTo(父元素)
+    $('<span>123455</span>').prependTo('#dv');
+
+
+    //方法5: 插入元素到某个元素外部的前后
+    //插入元素到某个元素外部的后面  after
+    $('#dv').after('<div>巫妖王</div>');
+    //插入元素到某个元素外部的前面  before
+    $('#dv').before('<div>为了</div>');
+
+    //插入元素到某个元素外部的后面  insertAfter
+    $('<div>在忽悠你</div>').insertAfter('#dv');
+    //插入元素到某个元素外部的前面  insertBefore
+    $('<div>大地母亲</div>').insertBefore('#dv');
+
+
+</script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/laydate/laydate.js"></script>
+</head>
+<body>
+    <input type="text" id="ipt">
+</body>
+<script>
+    //laydate执行初始化
+    laydate.render({
+        //指定元素
+        elem: '#ipt',
+        //设置日期范围
+        min: '2018-10-10',
+        max: '2021-10-10',
+        ready: function(){
+            ins22.hint('日期可选值设定在 <br> 2018-10-10 到 2021-10-10');
+        },
+        theme: 'grid'
+    })
+</script>
+</html>

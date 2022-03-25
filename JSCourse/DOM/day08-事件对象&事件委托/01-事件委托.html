@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+            //获取ul
+            let oUl = document.querySelector('ul');
+
+            //找到子孙元素的上级
+            oUl.onclick=function(e){
+                //通过e.target找到触发事件的元素
+                let t = e.target;
+
+                //判断触发事件元素为 li 打印 li中的内容
+                if(t.nodeName == 'LI'){
+                    console.log(t.innerText);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <span>111</span>
+        <li>5</li>
+    </ul>
+</body>
+</html>

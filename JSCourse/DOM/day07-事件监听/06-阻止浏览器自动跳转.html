@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    window.onload=function(){
+        //阻止浏览器自动跳转
+        //方法一:在a标签href中写入javascript:;
+        
+        //方法二:创建a标签鼠标点击事件  return false
+        //获取a标签
+        let a = document.querySelector('a');
+
+        //创建鼠标点击事件
+        a.onclick=function(e){
+            //返回 false
+            return false;
+
+            //方法三: 事件对象方法  preventDefault()
+            //返回 false
+            e.preventDefault()
+        }
+    }
+</script>
+<body>
+    <a href="javascript:;">链接</a>
+</body>
+</html>

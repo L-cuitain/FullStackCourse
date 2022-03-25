@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/jquery-3.4.1.min.js"></script>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <button>点我</button>
+    <div></div>
+</body>
+<script>
+    //元素.hover(over,out)  鼠标移入移出元素触发的事件函数  over代表移入函数  out代表移出函数  
+    $('div').hover(function(){
+        $(this).css('backgroundColor','green')
+    },function(){
+        $(this).css('backgroundColor','red');
+    })
+
+    //元素.toggle()  元素在显示隐藏之间切换
+    $('button').on('click',function(){
+        $('div').toggle();
+    })
+</script>
+</html>

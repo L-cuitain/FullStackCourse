@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 400px;
+            border: 1px solid #000;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+        td,
+        th {
+            border: 1px solid #000;
+            text-align: center;
+        }
+
+        input {
+            width: 50px;
+        }
+
+        .search {
+            width: 600px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="search">
+        按照价格查询: <input type="text" class="start"> - <input type="text" class="end"> <button
+            class="search-price">搜索</button>
+        按照商品名称查询: <input type="text" class="product"> <button class="search-pro">查询</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>产品名称</th>
+                <th>价格</th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+        </tbody>
+    </table>
+    <script>
+        var data = [{
+            id: 1,
+            pname: '小米',
+            price: 3999
+        }, {
+            id: 2,
+            pname: 'oppo',
+            price: 999
+        }, {
+            id: 3,
+            pname: '荣耀',
+            price: 1299
+        }, {
+            id: 4,
+            pname: '华为',
+            price: 1999
+        }, ];
+
+        //获取tbody
+        let tbody = document.querySelector('tbody');
+
+        //1.渲染页面
+
+        function addList(arr) {
+            let tr = '';
+            //使用 forEach遍历数组渲染到页面
+            arr.forEach((value, index) => {
+                tr += `<tr>
+                        <th>${value.id}</th>
+                        <th>${value.pname}</th>
+                        <th>${value.price}</th>
+                    </tr>`;
+            })
+
+            return tr;
+        }
+
+        tbody.innerHTML = addList(data);
+
+
+
+        //2.根据价格筛选数据
+
+        //过滤数组
+        function getDataByPrice(min, max, arr) {
+            let newArr = arr.filter((value, index) => {
+                return value.price >= min && value.price <= max;
+            })
+
+            return newArr;
+        }
+
+        //获取查询按钮
+        let searchBtn = document.querySelector('.search-price');
+
+        //创建查询按钮的点击事件
+        searchBtn.onclick = function () {
+            //获取最低价格
+            let minPrice = document.querySelector('.start').value;
+
+            //获取最高价格
+            let maxPrice = document.querySelector('.end').value;
+
+            //调用方法  得到新数组
+            let newArr = getDataByPrice(minPrice, maxPrice, data);
+            console.log(newArr);
+
+            tbody.innerHTML = addList(newArr);
+        }
+
+
+        //3.根据商品名称筛选数据
+        //获取查询按钮
+        let searchBtnByName = document.querySelector('.search-pro');
+        //创建查询按钮的点击事件
+        searchBtnByName.onclick = function () {
+            //获取名称
+            let searchPname = document.querySelector('.product').value;
+            //数组查询
+            let boolean = data.some((value, index) => {
+                return value.pname === searchPname;
+            });
+
+            //判断是否存在
+            if (boolean == true) {
+                //过滤数组
+                let newArr = data.filter((value, index) => {
+                    return value.pname === searchPname;
+                })
+
+                //调用函数
+                tbody.innerHTML = addList(newArr);
+
+            } else {
+                alert('查询失败');
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+html,
+body,
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+/* 业务代码 */
+.slider {
+    position: relative;
+    width: 721px;
+    height: 455px;
+    margin: 100px auto;
+    overflow: hidden;
+}
+
+
+ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(721px *4);
+    height: 455px;
+}
+
+li {
+    float: left;
+}
+
+a {
+    display: block;
+}
+
+.prev,
+.next {
+    display: none;
+    position: absolute;
+    top: 50%;
+    margin-top: -16px;
+    width: 22px;
+    height: 32px;
+    z-index: 10;
+}
+
+.prev {
+    left: 0;
+    background-image: url(../image/arrow-prev.png);
+}
+
+.next {
+    right: 0;
+    background-image: url(../image/arrow-next.png);
+}
+
+ol {
+    position: absolute;
+    left: 45%;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+ol li {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ccc;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-radius: 50%;
+    margin: 0 3px;
+}
+
+ol li.active {
+    border: 2px solid #fff;
+    background-color: #ccc;
+  }

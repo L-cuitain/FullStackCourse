@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>主页</h1>
+    <a href="04-前进&后退页面1.html">嘿嘿</a>
+    <button class="Bgo">前进</button>
+    <button class="Bback">后退</button>
+    <script>
+        //获取前进和后退按钮
+        let oGo = document.querySelector('.Bgo');
+        let oBack = document.querySelector('.Bback');
+    
+        //设置鼠标点击事件
+        oGo.onclick = function(){
+            // history.forward();
+            
+            //向前 一步
+            history.go(1);
+        }
+        oBack.onclick = function(){
+            // history.back();
+            
+            //后退一步
+            history.go(-1);
+        }
+    </script>
+</body>
+</html>

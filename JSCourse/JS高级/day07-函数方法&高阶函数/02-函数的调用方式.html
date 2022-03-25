@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //定时器函数
+        setInterval(function(){
+            console.log(new Date());
+        }, 1000);
+
+        window.setTimeout(() => {
+            console.log(new Date());
+        }, 5000);
+
+
+
+        //立即执行函数(自调用函数)
+        (function(a){
+            console.log(a);
+        });
+
+        let a = function(){
+            console.log('1111');
+        };
+
+        console.log(a);
+
+        (function(){
+            console.log('11111');
+        }());
+
+
+
+    </script>
+</body>
+</html>

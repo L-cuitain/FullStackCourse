@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //浅拷贝 只拷贝一层   更深层次对象级别的只拷贝引用(地址)
+        //深拷贝拷贝多层   每一级别的数据都会拷贝
+
+        //原对象
+        var oldObj = {
+            name : 'zs',
+            age : 18,
+            say : {
+                code : 'hello world'
+            }
+        }
+
+
+        //浅拷贝
+        //新对象
+        var newObj = {};
+
+        newObj = oldObj;
+        newObj.name = 'js';
+
+        console.log(oldObj.name);
+
+        for(let i in oldObj){
+            newObj[i] = oldObj[i];
+        }
+
+        newObj.name = 'ls';
+        newObj.say.code = '1234121';
+
+        console.log(oldObj.say.code);
+
+        //复制对象
+        // const copy = Object.assign(newObj,oldObj);
+        // console.log(copy);
+        
+    </script>
+</body>
+</html>

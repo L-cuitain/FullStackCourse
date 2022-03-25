@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // function Person(name, age) {
+    //   this.name = name;
+    //   this.age = age;
+    //   this.sayHi = function () {
+    //     console.log("你好");
+    //   }
+    // }
+
+    // // 创建对象
+    // var zs = new Person('zs', 18);
+    // var ls = new Person('ls', 22);
+    // // zs.sayHi();
+    // // ls.sayHi();
+    // console.log(zs.sayHi === ls.sayHi); // false 因为通过new创建出来了功能相同地址不同的两个函数，造成了内存浪费
+
+
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    // console.dir(Person); // Person.prototype 是构造函数的原型对象
+    Person.prototype.sayHi = function () {
+      console.log("你好")
+    }
+
+    console.dir(Person)
+    // 创建对象
+    // var zs = new Person('zs', 18);
+    // var ls = new Person('ls', 22);
+    // zs.sayHi();
+    // ls.sayHi();
+    // console.log(zs.sayHi === ls.sayHi);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+<script>
+    let oBox = document.querySelector('.box');
+
+    // 方法1: 元素.innerHTML
+    // 可以在任何元素中添加元素
+    oBox.onclick = function () {
+        oBox.innerHTML = '<a href="http://www.baidu.com/">度娘</a>';
+    }
+
+    // 方法2: document.write()
+    // 只能在body中添加
+    oBox.onclick = function () {
+        document.write('<a href="http://www.baidu.com/">度娘</a>');
+    }
+
+    // 方法3: document.createElement();
+    // 只能创建元素  不能插入元素
+    oBox.onclick = function () {
+        let h1 = document.createElement('h1');
+        h1.innerText = '滑稽';
+        this.appendChild(h1);
+    }
+
+</script>
+
+</html>

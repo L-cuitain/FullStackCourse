@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body,html{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <input type="password">
+</body>
+<script>
+    let oIpt = document.querySelector('input');
+
+    oIpt.onfocus = function(){
+        oIpt.type = 'text';
+    }
+
+    oIpt.onblur = function(){
+        oIpt.type = 'password'
+    }
+</script>
+</html>

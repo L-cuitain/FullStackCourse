@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/jquery-3.4.1.min.js"></script>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <button>点我</button>
+    <div></div>
+</body>
+<script>
+    //自定义动画
+    //元素.animate({设置动画元素最终样式},动画速度,回调函数)
+    //创建按钮鼠标点击事件
+    $('button').on('click', function () {
+        //设置动画
+        $('div').animate({
+            backgroundColor : 'red'
+        }, 1000, function () {
+            $('div').animate({
+                width: 400,
+                height: 200
+            }, 1000, function () {
+                $('div').animate({
+                    opacity: 0.5
+                }, 1000)
+            })
+        })
+    })
+    
+</script>
+
+</html>

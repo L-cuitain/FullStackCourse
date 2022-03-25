@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 实例成员: 在构造函数内部通过this添加的成员
+    // function Person(name, age) {
+    //   this.name = name;
+    //   this.age = age;
+    //   this.sayHi = function () {
+    //     console.log("你好");
+    //   }
+    // }
+    // // 实例成员只能通过实例化的对象来访问
+    // // 但是实例成员不能通过构造函数来访问
+    // var obj = new Person('zs', 12);
+    // // console.log(obj.age);
+    // console.log(Person.age);
+
+
+    // 静态成员: 就是在构造函数上添加的成员
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+      this.sayHi = function () {
+        console.log("你好");
+      }
+    }
+
+    Person.sex = "男";
+    var obj = new Person('zs', 12);
+    // 静态成员只能通过构造函数来访问
+    // 但是不能通过实例化的对象来访问
+    console.log(obj.sex);
+    console.log(Person.sex);
+  </script>
+</body>
+
+</html>

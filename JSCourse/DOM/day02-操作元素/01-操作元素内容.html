@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>点我</button>
+    <div class="box"></div>
+    <div class="outer"></div>
+</body>
+<script>
+    // 操作元素的内容  innerHTML  innerText
+    //格式: 元素.innerHTML = '内容';
+    //格式: 元素.innerText = '内容';
+
+
+    //获取元素
+    let oBtn = document.querySelector('button');
+    let oBox = document.querySelector('.box');
+    let oOuter = document.querySelector('.outer');
+
+    //给元素添加事件    
+    // oBtn.onclick = function(){
+    //     oBox.innerHTML = '滑稽';
+    //     oOuter.innerHTML = "1234123";
+    // }
+
+    oBtn.onclick = function(){
+        // innerHTML
+        // 可以解析标签
+        oBox.innerHTML = '<h1>滑稽</h1>';
+        
+        //innerText
+        // 无法解析标签  把标签显示为文本
+        oOuter.innerText = "<h1>滑稽</h1>";
+    }
+
+
+    //获取内容的区别
+    console.log(oBox.innerHTML);
+    console.log(oOuter.innerText);
+
+    //清除元素
+    oBox.innerHTML = null;
+    oOuter.innerText = null;
+
+        
+
+</script>
+</html>

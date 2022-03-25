@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            position: absolute;
+            top: 140px;
+        }
+    </style>
+</head>
+<body>
+    <button>按钮</button>
+    <div></div>
+</body>
+<script>
+    //动画原理
+    //1.获取盒子的位置 offsetLeft
+    //2.让盒子再当下位置  加距离
+    //3.让步长重复的增加到盒子当前位置  周期定时器setInterval
+    //4.加一个定时器停止执行的条件
+
+    //1. 获取div 按钮
+    let oDiv = document.querySelector('div');
+    let oBtn = document.querySelector('button');
+
+    //2.给按钮添加鼠标点击事件
+    oBtn.onclick = function(){
+        // 创建周期定时器
+        let timer = setInterval(function(){
+            //判断是否到达目标位置 如果达到 就不会往下走
+            if(oDiv.offsetLeft >= 400){
+                clearInterval(timer);
+            }else{
+                oDiv.style.left = oDiv.offsetLeft+ 1 + 'px';
+            }
+        },20)
+    }
+</script>
+</html>

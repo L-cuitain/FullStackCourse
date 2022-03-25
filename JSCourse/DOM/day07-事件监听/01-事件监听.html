@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //事件监听
+        window.onload = function () {
+            //给同一个元素添加不同类型的事件  需要事件监听的方式注册事件
+            var oBtn = document.getElementById('getOtn');
+
+            //添加监听事件
+            // 元素.addEventListener(事件,函数) 首选
+            oBtn.addEventListener('click',function(){
+                alert('滑稽');
+            });
+
+            oBtn.addEventListener('click',function(){
+                alert('11111');
+            });
+
+
+            // 元素.attachEvent(事件,函数)  次选 照顾低版本浏览器 
+            // 只在IE浏览器中有效
+            // oBtn.attachEvent('onclick',function(){
+            //     alert('滑稽');
+            // });
+
+            // oBtn.attachEvent('onclick',function(){
+            //     alert('111');
+            // });
+        }
+    </script>
+</head>
+
+<body>
+    <button id="getOtn">按钮</button>
+</body>
+
+</html>

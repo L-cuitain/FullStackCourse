@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // num是一个全局变量
+        var num = 10;
+
+        function fn(){
+            console.log(num);
+        }
+
+        fn();
+
+        // 局部变量  只在函数内才有  所以局部作用域也叫函数作用域
+        function fn(){
+            var a = 10;
+        }
+
+        fn();
+
+        console.log(a);
+    </script>
+</body>
+</html>

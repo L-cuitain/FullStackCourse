@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        window.onload = function(){
+            //获取事件对象
+            let oBtn = document.querySelector('button');
+
+            //创建鼠标点击事件
+            oBtn.onclick=function(e){
+                console.log(window.event);
+            }
+
+            //事件监听
+            oBtn.addEventListener('click',function(e){
+                console.log(e);
+            })
+
+            
+        }
+    </script>
+</head>
+<body>
+    <button>按钮</button>
+</body>
+</html>

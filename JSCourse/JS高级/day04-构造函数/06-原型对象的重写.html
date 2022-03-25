@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 构造器 constructor
+    // 构造函数
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+
+    // prototype.constructor 原型对象的构造器
+    // prototype是对象
+    // Person.prototype.add = function () {
+    //   console.log("你好");
+    // }
+
+    // Person.prototype.minus = function () {
+    //   console.log("你好");
+    // }
+
+    // Person.prototype.cheng = function () {
+    //   console.log("你好");
+    // }
+
+    // Person.prototype.chu = function () {
+    //   console.log("你好");
+    // }
+
+
+    Person.prototype = {
+      // 手动指定该原型对象的原型
+      constructor: Person,
+      add: function () {
+        console.log("你好");
+      },
+      minus: function () {
+        console.log("你好");
+      },
+      cheng: function () {
+        console.log("你好");
+      },
+      chu: function () {
+        console.log("你好");
+      }
+    }
+
+    console.log(Person.prototype)
+
+    let yww = new Person("yww", 18);
+  </script>
+</body>
+
+</html>

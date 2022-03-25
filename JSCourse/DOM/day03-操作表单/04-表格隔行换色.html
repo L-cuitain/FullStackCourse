@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <style>
+        td,
+        th {
+            border: solid 1px burlywood;
+            height: 15px;
+            width: 80px;
+        }
+    </style>
+
+</head>
+<table id="tb">
+    <tr style="background-color: gray;">
+        <th>ID</th>
+        <th>姓名</th>
+        <th>专业</th>
+    </tr>
+    <tr>
+        <td>20180201</td>
+        <td>刘备</td>
+        <td>全栈</td>
+    </tr>
+    <tr>
+        <td>20180202</td>
+        <td>曹操</td>
+        <td>java</td>
+    </tr>
+    <tr>
+        <td>20180203</td>
+        <td>孙权</td>
+        <td>Python</td>
+    </tr>
+    <tr>
+        <td>20180204</td>
+        <td>刘表</td>
+        <td>大数据</td>
+    </tr>
+</table>
+</body>
+<script type="text/javascript">
+    let aTr = document.querySelectorAll('tr');
+
+
+    for (var i = 0; i < aTr.length; i++) {
+        if (i % 2 == 0) {
+            aTr[i].bgColor = "#c4e3f3";
+        } else {
+            aTr[i].bgColor = "#c7decc";
+        }
+    }
+</script>
+</html>

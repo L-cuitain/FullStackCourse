@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            transition: all 1s;
+            background-color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+<script>
+    //给元素添加样式
+    //元素.style.属性的名字
+    //元素.style.border='1px solid #ccc'
+
+    //获取元素
+    let oDv = document.querySelector('div');
+
+    //鼠标移入事件
+    oDv.onmouseover = function(){
+        oDv.style.width = "250px";
+        oDv.style.height = "250px";
+        oDv.style.backgroundColor = "red";
+    }
+
+    //鼠标移出事件
+    oDv.onmouseout = function(){
+        oDv.style.width = "200px";
+        oDv.style.height = "200px";
+        oDv.style.backgroundColor = "greenyellow";
+    }
+
+
+</script>
+</html>

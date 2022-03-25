@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //命名函数(有作用域提升  预解析)
+        function fn(){
+            console.log('命名函数');
+        }
+        //函数表达式(没有预解析)
+        var fn1 = function(){
+            console.log('函数表达式');
+        }
+
+        //函数的构造函数
+        //方法有参数和函数体
+        let fn2 = new Function('x','y','console.log(x+y)');
+        fn2(1,2);
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <button id="btn">开</button>
+    <img id="img" src="images/123.gif" alt="">
+
+    <script>
+        var oBtn = document.getElementById('btn');
+  var oImg = document.getElementById('img');
+  oBtn.onmouseover = function () {
+    oImg.className == 'show'; 
+  }
+  oBtn.onmouseout = function () {
+  oImg.className = 'hide';
+
+}
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 原型对象是原型的对象(prototype)
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    // console.dir(Person); // Person.prototype 是构造函数的原型对象
+    Person.prototype.sayHi = function () {
+      console.log("你好")
+    }
+
+    // 对象原型是对象的原型 __proto__
+    // 作用: 象的查找机制提供一个方向，或者说一条路线  开发中从来不用，
+    // 只是为了解释为什么对象能调用原型对象的方法
+    // 对象的__proto__非标准
+    // 原型(构造函数)的原型对象(prototype)是标准
+    var ls = new Person('ls', 22);
+    console.log(ls)
+    // ls.sayHi();
+    console.log(ls.__proto__ == Person.prototype);
+
+  </script>
+</body>
+
+</html>

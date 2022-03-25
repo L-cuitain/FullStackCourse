@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" value="滑稽">
+</body>
+<script>
+    //获取input输入框
+    let oInput = document.querySelector('input');
+
+    //给input输入框绑定焦点事件(onfocus)
+    oInput.onfocus = function(){
+        //给input写入值
+        oInput.value = "滑稽";
+    }
+
+    oInput.onblur = function(){
+        //给input写入值
+        oInput.value = "2333";
+    }
+</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 子构造函数继承父构造函数属性
+        // 父构造函数
+        function Father(name,age){
+            this.name = name;
+            this.age = age;
+        }
+
+        
+
+        //子构造函数
+        function Son(name,age){
+            //这里 this指向 Son
+            console.log(this);
+            //使用 call 函数 将 Father中的this指向 Son 将Son中的值 传给 Father参数中
+            Father.call(this,name,age);
+        }
+        //创建 son对象
+        let son = new Son('zs',19);
+
+        //打印 son对象
+        console.log(son);
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+    <input type="checkbox">
+
+</body>
+<script>
+    //操作类名
+    //添加类名  addClass()
+    $('ul>li:nth-child(1)').addClass('first');
+    
+    //删除类名  removeClass()
+    $('ul>li:nth-child(1)').removeClass();
+    //切换类名  toggleClass()
+    $('ul>li:nth-child(2)').toggleClass('second');
+    //是否包含类名  hasClass()
+    console.log($('ul>li:nth-child(3)').hasClass('third'));
+    
+
+    //操作属性
+    //添加属性 attr()
+    $('input').attr('checked','true');
+
+    //删除属性 removeAttr()
+    $('input').removeAttr('checked');
+
+    //操作表单的值
+    $('input').val();
+
+
+    // 原生DOM对象转换成jQuery对象
+    // $(原生DOM对象放在这里)
+
+    // jQuery对象转换成原生DOM对象
+    // $('选择器')[索引]
+    // $('选择器').get(索引)
+</script>
+</html>

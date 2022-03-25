@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Untitled Document</title>
+
+
+    <style type="text/css">
+        .one {
+            background-color: #9bf7d5;
+        }
+
+        .two {
+            background-color: #f3e99a;
+        }
+
+        .over {
+            background-color: #ef7125;
+        }
+
+        table {
+            border: #249bdb 1px solid;
+            width: 500px;
+            border-collapse: collapse;
+        }
+
+        table td {
+            border: #249bdb 1px solid;
+            padding: 10px;
+        }
+
+        table th {
+            border: #249bdb 1px solid;
+            padding: 10px;
+            background-color: rgb(200, 200, 200);
+        }
+    </style>
+</head>
+
+<body>
+
+    <table id="mailtable">
+        <tr>
+            <th>
+                <input type="checkbox" name="all" />全选
+            </th>
+            <th>
+                发件人
+            </th>
+            <th>
+                邮件名称
+            </th>
+            <th>
+                邮件附属信息
+            </th>
+        </tr>
+
+        <tr class="one">
+            <td>
+                <input type="checkbox" name="mail" />
+            </td>
+            <td>
+                张三11
+            </td>
+            <td>
+                我是邮件11
+            </td>
+            <td>
+                我是附属信息11
+            </td>
+        </tr>
+        <tr class="two">
+            <td>
+                <input type="checkbox" name="mail" />
+            </td>
+            <td>
+                张三22
+            </td>
+            <td>
+                我是邮件22
+            </td>
+            <td>
+                我是附属信息22
+            </td>
+        </tr>
+        <tr class="one">
+            <td>
+                <input type="checkbox" name="mail" />
+            </td>
+            <td>
+                张三33
+            </td>
+            <td>
+                我是邮件33
+            </td>
+            <td>
+                我是附属信息33
+            </td>
+        </tr>
+        <tr class="two">
+            <td>
+                <input type="checkbox" name="mail" />
+            </td>
+            <td>
+                张三44
+            </td>
+            <td>
+                我是邮件44
+            </td>
+            <td>
+                我是附属信息44
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+
+            </th>
+            <th colspan="3" id="chooseBtn">
+                <input type="button" value="全选" />
+                <input type="button" value="取消全选" />
+                <input type="button" value="反选" />
+
+            </th>
+        </tr>
+    </table>
+    <script>
+        // 1.勾选全选复选框，列表中的选项都被选中，取消全选复选框的勾选，列表中的选项都被取消选中
+        // 2.点击全选按钮，列表中的选项都被选中
+        // 3.点击取消全选按钮，列表中的选项都被取消选中
+        // 4.点击反选按钮，列表中选项选结果呈相反选中结果（原来选择的都取消选择，原来未选择的都变为选择）
+
+        //获取全选复选框
+        let oCheck = document.getElementsByName('all')[0];
+
+        //获取所有 按钮
+        let aBtns = document.getElementById('chooseBtn').querySelectorAll('input');
+
+        //获取所有单选框
+        let oIpts = document.getElementsByName('mail');
+
+
+        //为全选复选框添加鼠标点击事件
+        oCheck.onclick = function () {
+
+            //循环遍历 单选框 
+            for (let i = 0; i < oIpts.length; i++) {
+
+                //让所有单选框 变成 全选复选框状态
+                oIpts[i].checked = oCheck.checked;
+            }
+        }
+
+
+        //为全选按钮 添加鼠标点击事件
+        aBtns[0].onclick = function () {
+            //循环遍历 单选框 
+            for (let i = 0; i < oIpts.length; i++) {
+
+                //让所有单选框变为选中
+                oIpts[i].checked = "true";
+                oCheck.checked = "true";
+            }
+        }
+
+
+
+        //为取消全选 添加鼠标点击事件
+        aBtns[1].onclick = function () {
+            //循环遍历 单选框 
+            for (let i = 0; i < oIpts.length; i++) {
+
+                //让所有单选框变为 不选
+                oCheck.checked = "";
+                oIpts[i].checked = oCheck.checked;
+            }
+        }
+
+
+
+        //循环遍历 单选框 
+        for (let i = 0; i < oIpts.length; i++) {
+
+            //为所有单选框设置 鼠标点击事件
+            oIpts[i].onclick = function () {
+
+                //设置 flag 做判断
+                let flag = true;
+
+                //遍历 所有单选框
+                for (let j = 0; j < oIpts.length; j++) {
+                    //如果 有 单选框 没有选中
+                    if (!oIpts[j].checked) {
+                        //flag 为false 终止循环
+                        flag = false;
+                        break;
+                    }
+                }
+
+                //如果 flag 在循环结束后 为true
+                if (flag == true) {
+                    //将 复选框 选中
+                    oCheck.checked = "true";
+                }
+
+
+                //为反选 添加鼠标点击事件
+                aBtns[2].onclick = function () {
+
+                    // 遍历单选框
+                    for (let j = 0; j < oIpts.length; j++) {
+
+                        //三元 判断 反选
+                        oIpts[j].checked = oIpts[j].checked ? "" : true;
+
+                        //如果有单选框 没有选中
+                        if (!oIpts[j].checked) {
+
+                            // 将选中的复选框设为 取消选中
+                            oCheck.checked = "";
+
+                        } else {
+
+                            // 如果 flag为 true
+                            if (flag){
+                                //将 复选框 选中
+                                oCheck.checked = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

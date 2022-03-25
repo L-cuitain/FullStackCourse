@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //获取任何元素在任何浏览器获取任何属性值
+
+    // IE9 chrome 火狐 safari
+    //格式: 属性值 = window.getComputedStyle(元素,伪元素(没有就写null)).属性名
+
+    
+    // IE8
+    // 格式: 属性值 = 元素.currentStyle.属性名
+
+
+    //兼容任何浏览器的获取任何元素属性的方法
+    function getStyle(element,attr){
+        //判断浏览器是否支持该方法
+        if(window.getComputedStyle){
+            //支持返回元素属性
+            return window.getComputedStyle(element,null)[attr];
+        }else{
+            //不支持 转换格式 获取元素
+            return element.currentStyle[attr];
+        }
+    }
+
+
+</script>
+</html>

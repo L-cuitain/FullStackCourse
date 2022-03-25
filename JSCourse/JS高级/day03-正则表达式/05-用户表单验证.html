@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <input type="text" id="username" > <span class="test"></span>
+
+    <script>
+        //创建正则对象
+        var regexp = /^[a-zA-Z0-9-_]{6,16}$/;
+
+        let input = document.querySelector('#username');
+
+        let dv = document.querySelector('.test');
+
+        //创建文本框失去焦点事件
+        input.onblur = function(){
+            //获取value值
+            let value = this.value;
+
+            if(regexp.test(value)){
+                dv.innerHTML = '用户名格式输入正确';
+                dv.style.color = 'green';
+            }else{  
+                dv.innerHTML = '用户名格式输入不正确';
+                dv.style.color = 'red';
+            }
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            position: absolute;
+            top: 140px;
+        }
+    </style>
+</head>
+<body>
+    <button>按钮</button>
+    <div></div>
+</body>
+<script>
+    //回调函数
+    //定义: 如果一个函数a 作为另一个函数b的参数 这个函数 a 就是 b 的回调函数
+    //特点: 如果a是回调函数 b为主函数 主函数一定是先执行
+    //主函数不执行 回调函数也不执行
+    
+    function a(){
+        console.log(1);
+    }
+
+    function b(fn){
+        console.log(2);
+        fn();
+    }
+
+    console.log(a());
+    
+</script>
+</html>

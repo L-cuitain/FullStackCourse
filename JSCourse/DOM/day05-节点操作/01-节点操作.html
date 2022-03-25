@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+
+            //获取所有节点 childNodes
+            let oBox = document.querySelector('.box');
+            console.log(oBox.childNodes);
+            //nodeType 获取节点类型
+            console.log(oBox.childNodes[1].nodeType);
+            //nodeName  获取标签名
+            console.log(oBox.childNodes[1].nodeName);
+            //nodeValue  获取节点值
+            console.log(oBox.childNodes[1].nodeValue);
+
+
+
+            //节点创建
+            let oCl = document.querySelector('.clickMe');
+
+            oCl.onclick = function () {
+                //方法1: 元素.innerHTML
+                // 可以在任何元素中添加元素
+                // 包括创建和插入节点
+                // 创建元素并插入 会把元素中内容清空再插入
+                oCl.innerHTML = `<a href="http://www.baidu.com">滑稽</a>`;
+
+
+                //方法2: document.write()
+                // 只能在body中添加
+                // 包括创建和插入元素
+                // 创建的元素相当于写在body中  清空body中所有标签和内容
+                document.write(`<a href="http://www.baidu.com">滑稽</a>`);
+
+                //方法3: document.createElement();
+                // 只能创建  不能插入到页面
+                // 参数: 标签名
+                // 返回值:元素对象
+                let h1 = document.createElement('h1');
+                h1.innerText = "滑稽";
+
+                //节点插入
+                // 插入元素  appendChild
+                this.appendChild(h1);
+                // 插入元素  insertBefore(新元素,基准元素)
+                this.insertBefore(h1, oCl.lastChild);
+            }
+
+
+            let oTest = document.querySelector('.test');
+
+            //节点删除
+            //removeChild(要删除的元素)
+            let flag = oTest.removeChild(oTest.children);
+
+
+            //查找父元素
+            // 获取p标签
+            let p = document.querySelector('p');
+
+            // 元素.parentElement
+            console.log(p.parentElement);
+            // 元素.parentNode  推荐使用:parentNode是节点  parentElement是元素 节点包括元素
+            console.log(p.parentNode);
+
+            //查找子元素
+            // 获取ul
+            let oUl = document.querySelector('ul');
+            //查找所有子节点
+            console.log(oUl.childNotes);
+            console.log(oUl.children);
+
+            //查找第一个子节点
+            console.log(oUl.firstChild);
+            console.log(oUl.firstElementChild);
+            console.log(oUl.children[0]);
+
+            //查找最后一个子节点
+            console.log(oUl.lastChild);
+            console.log(oUl.lastElementChild);
+            console.log(oUl.children[oUl.children.length - 1]);
+
+            //查找兄弟节点
+            let oLi = document.querySelectorAll('#theSpecial');
+            //获取后面的兄弟节点
+            console.log(oLi.nextElementSibling);
+            console.log(oLi.nextSibling);
+            //获取前面兄弟节点
+            console.log(oLi.previousElementSibling);
+
+
+            //节点替换
+            // 创建一个新元素
+            let newLi = document.createElement('li');
+            newLi.innerText = "我是新li";
+
+            // replaceChild(新元素,要替换的元素);
+            oUl.replaceChild(newLi, oLi);
+
+
+            //节点复制
+            //获取按钮
+            let copynow = document.querySelector('#copynow');
+
+            //给按钮添加鼠标点击事件
+            copynow.onclick = function () {
+                let copyLi = oLi.cloneNode(true);
+
+                //将复制的节点添加到oUl前面
+                document.body.insertBefore(copyItem3, oUl);
+            }
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <div class="box">滑稽<p class="con">这是内容</p><!-- 这是注释 -->
+    </div>
+
+    <div class="clickMe">
+        点我看看
+    </div>
+
+    <div class="test">
+        <span>滑稽</span>
+    </div>
+
+    <div>
+        <p>你好</p>
+    </div>
+
+    <ul>
+        <li>项目1</li>
+        <li>项目2</li>
+        <li id="theSpecial">项目3</li>
+        <li>项目4</li>
+        <li>项目5</li>
+        <li>项目6</li>
+    </ul>
+
+    <button id="copynow">点击复制</button>
+</body>
+
+</html>

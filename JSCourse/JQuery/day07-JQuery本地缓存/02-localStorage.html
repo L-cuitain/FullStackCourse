@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="add">添加数据</button>
+    <button class="get">获取数据</button>
+    <button class="remove">删除单个数据</button>
+    <button class="clear">删除所有数据</button>
+    <button class="key">通过索引获取key</button>
+</body>
+<script>
+    //以键值对方式储存数据
+    //localStorage.setItem(key,value)
+    document.querySelector('.add').onclick = function () {
+        localStorage.setItem('name', '滑稽');
+        localStorage.setItem('name1', '{"age":"12","hobby":"阿斯蒂芬"}');
+        localStorage.setItem('name2', '["滑稽1","滑稽2"]');
+
+    }
+    //获取数据
+    //localStorage.getItem(key)
+    document.querySelector('.get').onclick = function () {
+        console.log(localStorage.getItem('name'));
+        console.log(localStorage.getItem('name1'));
+        console.log(localStorage.getItem('name2'));
+    }
+
+    //删除单一数据 根据键值移除当前信息
+    //localStorage.removeItem()
+    document.querySelector('.remove').onclick = function () {
+        localStorage.removeItem('name1');
+        localStorage.removeItem('name2');
+    }
+
+    //删除所有数据
+    //localStorage.clear()  
+    document.querySelector('.clear').onclick = function () {
+        localStorage.clear();
+    }
+
+    //获取某个索引的key
+    //localStorage.key(index)
+    document.querySelector('.key').onclick = function () {
+        console.log(localStorage.key(2));      
+    }
+</script>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/jquery-3.4.1.min.js"></script>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <button id="show">淡入</button>
+    <button id="hide">淡出</button>
+    <button id="toggle">淡出/淡入</button>
+    <div></div>
+</body>
+<script>
+    //淡入动画
+    //fadeIn([speed],[easing],[fn])
+    $('#show').on('click',function(){
+        $('div').fadeIn();
+    })
+    //淡出动画
+    //fadeOut([speed],[easing],[fn])
+    $('#hide').on('click',function(){
+        $('div').fadeOut();
+    })
+
+    //淡出淡入切换
+    //fadeToggle([speed],[easing],[fn])
+    $('#toggle').on('click',function(){
+        $('div').fadeToggle();
+    })
+</script>
+</html>

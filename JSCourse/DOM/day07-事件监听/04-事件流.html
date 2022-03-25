@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outer {
+            width: 400px;
+            height: 400px;
+            background-color: aqua;
+        }
+
+        .inner {
+            width: 200px;
+            height: 200px;
+            background-color: azure;
+        }
+    </style>
+</head>
+<script>
+    //获取 outer
+    let outer = document.querySelector('.outer');
+    //获取 inner
+    let inner = document.querySelector('.inner');
+
+    //事件流
+    //事件流格式: addEventListener(事件类型,事件处理程序,是否冒泡(如果是false 为冒泡  如果是true 为捕获  默认为冒泡));
+
+    //冒泡
+    // // 给inner绑定事件
+    inner.addEventListener('click', function () {
+      console.log("我是inner");
+    })
+
+    // // 给outer绑定事件
+    outer.addEventListener('click', function () {
+      console.log("我是outer");
+    })
+
+    //捕获
+    inner.addEventListener('click', function () {
+      console.log("我是inner");
+    },true)
+
+    // // 给outer绑定事件
+    outer.addEventListener('click', function () {
+      console.log("我是outer");
+    },true)
+
+
+    // 如果是冒泡 那应该先触发inner 再触发outer
+    // 如果是捕获 那应该先触发outer 再触发inner
+</script>
+
+<body>
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+</body>
+
+</html>

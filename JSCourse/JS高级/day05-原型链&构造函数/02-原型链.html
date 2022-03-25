@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //原型  原型对象 实例对象
+        //1.原型
+        function Animal(name,age){
+            this.name = name;
+            this.age = age;
+        }
+
+        //2.原型对象
+        Animal.prototype.eat = function(){
+            console.log('吃');
+        }
+
+        //3.实例对象
+        let cat = new Animal('汤姆',18);
+
+        // console.log(Animal.prototype);
+        // console.log(cat.__proto__);
+        // console.log(Animal.prototype.__proto__);
+        console.log(Object.prototype.__proto__);
+
+        //Object() 系统构造函数
+        //在js中  一切皆对象
+        //所有对象都是通过Object实例化构成
+    </script>
+</body>
+</html>

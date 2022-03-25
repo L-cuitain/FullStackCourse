@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [44,23,51,35,98,54];
+
+        // 遍历数组 forEach(value , index , array){}
+        arr.forEach((value,index) => {
+            console.log(value);
+            console.log(index);
+        })
+
+        // 过滤数组 filter(value , index , array){}
+        let newArr = arr.filter((value,index) => {
+            return value % 2 == 0;
+        })
+
+        console.log(newArr);
+
+
+        // 查找是否有满足的条件 some(value , index , array){}
+        let boolean = arr.some((value,index) => {
+            return value > 40;
+        })
+
+        console.log(boolean);
+    </script>
+</body>
+</html>

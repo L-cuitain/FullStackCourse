@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+          width: 322px;
+          position: fixed;
+          bottom: 0;
+          right: 0;
+          overflow: hidden;
+        }
+    
+        span {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 30px;
+          height: 20px;
+          cursor: pointer;
+        }
+      </style>
+      <script src="js/animate.js"></script>
+</head>
+<body>
+    <div class="box" id="box">
+    <span id="closeButton"></span>
+    <div class="hd" id="headPart">
+      <img src="images/t.jpg" alt="" />
+    </div>
+    <div class="bd" id="bottomPart">
+      <img src="images/b.jpg" alt="" />
+    </div>
+  </div>
+</body>
+<script src="js/animate.js"></script>
+<script>
+    //点击关闭按钮
+    let closeBtn = document.querySelector('#closeButton');
+    let oBox = document.querySelector('#box');
+
+    closeBtn.onclick = function(){
+        // 使用animate方法让box向下移动
+        animate(oBox,{bottom: -105},function(){
+            animate(oBox,{right: -322})
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //创建数组
+        var array = [11, 42, 22, 52, 63];
+
+        //
+        Array.prototype.mStort = function () {
+            //循环遍历数组元素
+            for (let i = 0; i < this.length; i++) {
+                for (let j = 0; j < this.length - 1 - i; j++) {
+                    if (this[j] > this[j + 1]) {
+                        let temp = this[j];
+                        this[j] = this[i];
+                        this[i] = temp;
+                    }
+                }
+            }
+
+            return this;
+
+        }
+        console.log(Array.prototype);
+        console.log(array.mStort());
+    </script>
+</body>
+</html>
