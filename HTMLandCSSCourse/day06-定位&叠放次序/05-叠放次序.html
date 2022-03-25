@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+
+    #theOne{
+        width:200px;
+        height: 200px;
+        background-image: url("./002.jpg");
+
+    }
+
+    #theTwo{
+        width:200px;
+        height: 200px;
+        background-image: url("./002.jpg");
+
+    }
+
+    #theThree{
+        width:200px;
+        height: 200px;
+        background-image: url("./002.jpg");
+
+    }
+
+
+    #theOne::before{
+        content: "12312312";
+        width:200px;
+        height: 200px;
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    #theTwo::after{
+        content: "1231232312";
+        width:200px;
+        height: 200px;
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+
+
+    #theThree::after{
+        content: "12312213123312";
+        width:200px;
+        height: 200px;
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+
+</style>
+<body>
+       <div id="theOne">
+
+       </div>
+
+       <div id="theTwo">
+
+       </div>
+
+       <div id="theThree">
+
+       </div>
+</body>
+</html>

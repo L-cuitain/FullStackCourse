@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- maximum-scale=2.0所代表的含义是允许用户最大缩放到2倍
+       这样的值在ios10及以上系统是不起作用的 因为根据safari的
+       官方文档 认为 限制用户的缩放 会影响用户更好的获取互联网信息
+
+       但是如果用的不是safari 用的是其他第三方浏览器 这个有的时候会起作用
+       只和浏览器本身的功能实现有关系
+  -->
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=2" >
+  <title>Document</title>
+  <style>
+    html,body{
+      margin:0;
+      padding:0;
+    }
+    .box {
+        width:375px;
+        height:200px;
+        background-color:blue;
+        text-align: center;
+        line-height: 200px;
+        font-size: 50px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="box">8</div>
+</body>
+</html>

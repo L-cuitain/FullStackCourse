@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .outer {
+      width: 200px;
+      height: 300px;
+    }
+
+    .inner {
+      /* 相对父元素的宽 */
+      width: 50%;
+      /* 相对于父元素的高 */
+      height: 50%;
+      /* margin和padding相对于宽 */
+      margin: 10%;
+      padding: 10%;
+
+      border: 10% solid #fff;
+
+    }
+  </style>
+</head>
+<body>
+  <div class="outer">
+    <div class="inner"></div>
+  </div>
+</body>
+</html>

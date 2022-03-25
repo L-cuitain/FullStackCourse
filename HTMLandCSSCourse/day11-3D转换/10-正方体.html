@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #137975;
+    }
+
+    .thebody {
+        position: relative;
+        top: 150px;
+        width: 220px;
+        height: 220px;
+        margin: 0 auto;
+        transform-style: preserve-3d;
+        transform-origin: center;
+        transform: rotateX(-180deg) rotateY(180deg);
+        animation: change 5s linear infinite;
+    }
+
+
+    .cube {
+        position: absolute;
+        top: -1px;
+        left: 1px;
+        margin: 0 auto;
+        width: 220px;
+        height: 220px;
+        transform-style: preserve-3d;
+        transform: rotateX(-180deg) rotateY(180deg) translateZ(44px);
+    }
+
+    .cube-one,
+    .cube-two,
+    .cube-three,
+    .cube-four,
+    .cube-five,
+    .cube-six {
+        position: absolute;
+        top: 51px;
+        left: 8px;
+        width: 200px;
+        height: 200px;
+        border: 5px solid #65d9fe;
+        border-radius: 20px;
+        background-color: rgba(0, 0, 0, 0.2);
+        text-align: center;
+        line-height: 200px;
+        font-size: 40px;
+        color: #e79be7;
+        transition: all 0.3s;
+    }
+
+    .cube-one {
+        transform: rotateX(180deg) rotateY(180deg) translateZ(61px) translateX(3px) translateY(46px);
+    }
+
+    .cube-two {
+        transform: rotateX(180deg) rotateY(180deg) translateZ(-145px) translateX(3px) translateY(46px);
+    }
+
+    .cube-three {
+        transform: rotateX(180deg) rotateY(270deg) translateZ(-103px) translateX(41px) translateY(47px);
+    }
+
+    .cube-four {
+        transform: rotateX(180deg) rotateY(270deg) translateZ(108px) translateX(41px) translateY(47px);
+    }
+
+    .cube-five {
+        transform: rotateX(270deg) rotateY(360deg) translateZ(58px) translateX(-3px) translateY(42px);
+    }
+
+    .cube-six {
+        transform: rotateX(270deg) rotateY(360deg) translateZ(-150px) translateX(-3px) translateY(42px);
+    }
+
+
+    /* hover实现 */
+    .cube:hover .cube-one {
+        transform: rotateX(180deg) rotateY(180deg) translateZ(165px) translateX(3px) translateY(46px);
+    }
+
+    .cube:hover .cube-two {
+        transform: rotateX(180deg) rotateY(180deg) translateZ(-240px) translateX(3px) translateY(46px);
+    }
+
+
+    .cube:hover .cube-three {
+        transform: rotateX(180deg) rotateY(270deg) translateZ(-185px) translateX(41px) translateY(47px);
+    }
+
+
+    .cube:hover .cube-four {
+        transform: rotateX(180deg) rotateY(270deg) translateZ(190px) translateX(41px) translateY(47px);
+    }
+
+
+    .cube:hover .cube-five {
+        transform: rotateX(270deg) rotateY(360deg) translateZ(160px) translateX(-3px) translateY(42px);
+    }
+
+    .cube:hover .cube-six {
+        transform: rotateX(270deg) rotateY(360deg) translateZ(-240px) translateX(-3px) translateY(42px);
+    }
+
+
+
+    .dice {
+        position: relative;
+        top: 55px;
+        left: 7px;
+        width: 105px;
+        height: 105px;
+        transform-style: preserve-3d;
+        margin: 100px auto;
+        transform: rotateX(0deg) rotateY(180deg) translateZ(-56px);
+    }
+
+
+    .dice-one,
+    .dice-two,
+    .dice-three,
+    .dice-four,
+    .dice-five,
+    .dice-six {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        border: 5px solid #000;
+        border-radius: 30px;
+        background-color: rgba(252, 229, 247, 0.8);
+    }
+
+    .dice-six {
+        transform: rotateX(90deg) translateZ(166px) translateX(1px) translateY(54px);
+    }
+
+    .dice-two {
+        transform: rotateX(90deg) translateZ(166px) translateX(2px) translateY(54px);
+    }
+
+    .dice-three {
+        transform: rotateX(0deg) rotateY(90deg) translateZ(56px) translateX(-55px) translateY(-332px);
+    }
+
+    .dice-four {
+        transform: rotateX(0deg) rotateY(90deg) translateZ(-53px) translateX(-55px) translateY(-441px);
+    }
+
+    .dice-five {
+        transform: rotateX(0deg) rotateY(0deg) translateZ(110px) translateX(1px) translateY(-550px);
+    }
+
+
+
+
+    .dice-one span {
+        position: absolute;
+        top: 31px;
+        left: 29px;
+        display: block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+    .dice-two span:nth-child(1) {
+        position: absolute;
+        top: 15px;
+        left: 13px;
+        display: block;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+    .dice-two span:nth-child(2) {
+        position: absolute;
+        top: 55px;
+        left: 55px;
+        display: block;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+
+    .dice-three span:nth-child(1) {
+        position: absolute;
+        top: 65px;
+        left: 67px;
+        display: block;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+    .dice-three span:nth-child(2) {
+        position: absolute;
+        top: 36px;
+        left: 35px;
+        display: block;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+    .dice-three span:nth-child(3) {
+        position: absolute;
+        top: 8px;
+        left: 5px;
+        display: block;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+
+    .dice-four span:nth-child(1) {
+        position: absolute;
+        top: 64px;
+        left: 14px;
+        display: block;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+    .dice-four span:nth-child(2) {
+        position: absolute;
+        top: 8px;
+        left: 59px;
+        display: block;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+    .dice-four span:nth-child(3) {
+        position: absolute;
+        top: 64px;
+        left: 59px;
+        display: block;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+    .dice-four span:nth-child(4) {
+        position: absolute;
+        top: 8px;
+        left: 14px;
+        display: block;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+    .dice-five span:nth-child(1) {
+        position: absolute;
+        top: 8px;
+        left: 14px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+    .dice-five span:nth-child(2) {
+        position: absolute;
+        top: 68px;
+        left: 14px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+    .dice-five span:nth-child(3) {
+        position: absolute;
+        top: 8px;
+        left: 65px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+    .dice-five span:nth-child(4) {
+        position: absolute;
+        top: 68px;
+        left: 65px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+    .dice-five span:nth-child(5) {
+        position: absolute;
+        top: 38px;
+        left: 40px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+    .dice-six span:nth-child(1) {
+        position: absolute;
+        top: 12px;
+        left: 19px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+    .dice-six span:nth-child(2) {
+        position: absolute;
+        top: 43px;
+        left: 20px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+
+    .dice-six span:nth-child(3) {
+        position: absolute;
+        top: 71px;
+        left: 20px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+    .dice-six span:nth-child(4) {
+        position: absolute;
+        top: 11px;
+        left: 61px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+
+    .dice-six span:nth-child(5) {
+        position: absolute;
+        top: 43px;
+        left: 61px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+
+    .dice-six span:nth-child(6) {
+        position: absolute;
+        top: 71px;
+        left: 61px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #bea1fc;
+    }
+
+
+    @keyframes change {
+
+        0% {
+            transform: rotateX(0deg) rotateY(0deg);
+        }
+
+        100% {
+            transform: rotateX(360deg) rotateY(360deg);
+        }
+    }
+</style>
+
+<body>
+
+    <div class="thebody">
+        <!-- 外框 -->
+        <div class="cube">
+            <div class="cube-one">
+                前面
+            </div>
+            <div class="cube-two">
+                后面
+            </div>
+            <div class="cube-three">
+                左面
+            </div>
+            <div class="cube-four">
+                右面
+            </div>
+            <div class="cube-five">
+                上面
+            </div>
+            <div class="cube-six">
+                下面
+            </div>
+        </div>
+
+        <!-- 骰子 -->
+        <div class="dice">
+            <div class="dice-one">
+                <span></span>
+            </div>
+
+            <div class="dice-six">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="dice-two">
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="dice-three">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="dice-four">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="dice-five">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
