@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        //JSX条件渲染
+        //三元运算符
+        // function GetDOM(){
+        //     const flag = true;
+        //     return flag ? (<div>滑稽</div>):(<h1>我是火车王</h1>)
+        // }
+
+        //判断条件
+        // function GetDOM(){
+        //     const flag = false;
+        //     if(flag){
+        //         return (<div>滑稽</div>);
+        //     }else{
+        //         return (<h1>我是火车王</h1>);
+        //     }
+        // }
+
+        //&& ||
+        function GetDOM(){
+            const flag = false;
+            return flag || (<h1>我是火车王</h1>)
+        }
+
+        //挂载
+        ReactDOM.render(
+            <GetDOM />,
+            document.querySelector("#app")
+        )
+    </script>
+</body>
+</html>

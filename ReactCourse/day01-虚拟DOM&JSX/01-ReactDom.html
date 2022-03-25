@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+</head>
+<style>
+    .reactDiv{
+        width: 300px;
+        height: 100px;
+        background-color: cornflowerblue;
+        color: aquamarine;
+        text-align: center;
+        line-height: 100px;
+    }
+
+    .reactDivSon{
+        width: 50px;
+        height: 20px;
+        font-size: small;
+        color: brown;
+    }
+</style>
+<body>
+    <div id="app"></div>
+    <script>
+        const clickAlert = function(){
+            alert("点击了");
+        }
+
+        //创建虚拟DOM
+        //React.createElement(标签名 , 标签属性 , 标签内容)
+        // const element = React.createElement('button', {}, 'like');
+
+        const eleSpan = React.createElement('span',{className: "reactDivSon"},'我是火车王的子元素');
+        //添加class属性 参数名必须为 className 
+        //标签内容后可以在元素里再添加内容
+        const element = React.createElement('div', {className: "reactDiv" , onClick: clickAlert} , '我是火车王',eleSpan);
+
+        //渲染到视图层
+        ReactDOM.render(
+            element,
+            document.querySelector("#app")
+        )
+    </script>
+</body>
+
+</html>

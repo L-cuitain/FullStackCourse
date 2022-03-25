@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        //render方法注意点
+        //- 多次渲染 后渲染会覆盖先渲染
+        //- render方法一次只能渲染一个元素 / 组件
+
+        //createElement方法注意点
+        //可以添加3个以上参数 后续参数都会作为当前创建元素内容处理
+
+        //如何给元素添加监听
+        //- 给元素添加监听的本质就是给元素添加属性  所以可以在createElement() 的第二个参数中添加
+        //- <button onclick="btnClick">按钮</button>
+        //- React.createElement('button',{onClick: btnClick},'按钮')
+        
+    </script>
+</body>
+</html>
